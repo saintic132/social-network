@@ -1,26 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import s from './App.module.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className={s.app}>
+            <div className={s.header}>
+                <img
+                    className={s.imgLogo}
+                    src="https://static.vecteezy.com/system/resources/previews/001/188/239/non_2x/heart-logo-png.png"
+                    alt="logo"/>
+            </div>
+            <div className={s.main}>
+                <div className={s.nav}>
+                    <div>Profile</div>
+                    <div>Messages</div>
+                    <div>News</div>
+                    <div>Music</div>
+                    <div>Settings</div>
+                </div>
+
+                <div className={s.content}>
+                    <div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default App;

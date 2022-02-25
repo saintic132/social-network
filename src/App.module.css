@@ -1,0 +1,58 @@
+.app, .header, .main, .nav, .content {
+    border: 1px solid black;
+}
+
+.app {
+    width: 1000px;
+    height: 2000px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.header {
+    width: 1000px;
+    height: 100px;
+    background: lightseagreen;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.imgLogo {
+    width: 80px;
+    height: 80px;
+    margin-left: 10px;
+}
+
+.main {
+    width: 1000px;
+    height: 1500px;
+    margin-top: 20px;
+    display: flex;
+}
+
+.nav {
+    width: 150px;
+    height: 1500px;
+    background: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.nav > div {
+    margin: 7px 0 0 10px;
+}
+
+.nav:first-child {
+    padding-top: 10px;
+}
+
+.content {
+    width: 850px;
+    height: 1500px;
+    margin-left: 20px;
+}
