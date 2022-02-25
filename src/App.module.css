@@ -19,7 +19,6 @@
     height: 100px;
     background: lightseagreen;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
 }
 
@@ -27,6 +26,12 @@
     width: 80px;
     height: 80px;
     margin-left: 10px;
+}
+
+.nameLogo {
+    margin: auto;
+    font-size: 25px;
+    color: white;
 }
 
 .main {
@@ -66,9 +71,22 @@
     height: 100px;
 }
 
+.myPage {
+    margin-top: 20px;
+    display: flex;
+}
 
+.myPage img {
+    width: 100px;
+    height: 100px;
+}
 
-
+.nameMyPage {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
 .footer {
     width: 1000px;

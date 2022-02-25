@@ -9,6 +9,9 @@ function App() {
                     className={s.headerImgLogo}
                     src="https://static.vecteezy.com/system/resources/previews/001/188/239/non_2x/heart-logo-png.png"
                     alt="logo"/>
+                <div className={s.nameLogo}>
+                    Social-Network
+                </div>
             </div>
             <div className={s.main}>
                 <div className={s.nav}>
@@ -25,6 +28,17 @@ function App() {
                             className={s.mainImgLogo}
                             src="https://ak.picdn.net/shutterstock/videos/1947427/thumb/1.jpg"
                             alt="mainImgLogo"/>
+                    </div>
+                    <div className={s.myPage}>
+                        <img
+                            src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile.png"
+                            alt="avatarLogo"/>
+                        <div className={s.nameMyPage}>
+                            <div>Akhremchyk I.</div>
+                            <div>Date of Birth: 17 December</div>
+                            <div>City: Minsk</div>
+                            <div>Web Site: https://saintic132.github.io/social-network/</div>
+                        </div>
                     </div>
 
                 </div>
