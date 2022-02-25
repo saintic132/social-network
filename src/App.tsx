@@ -20,7 +20,7 @@ function App() {
                 </div>
 
                 <div className={s.content}>
-                    <div >
+                    <div>
                         <img
                             className={s.mainImgLogo}
                             src="https://ak.picdn.net/shutterstock/videos/1947427/thumb/1.jpg"
@@ -28,6 +28,9 @@ function App() {
                     </div>
 
                 </div>
+            </div>
+            <div className={s.footer}>
+                FOOTER
             </div>
         </div>
     );
