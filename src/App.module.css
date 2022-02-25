@@ -51,8 +51,12 @@
     margin: 7px 0 0 10px;
 }
 
-.nav:first-child {
+.nav div:first-child {
     padding-top: 10px;
+}
+
+.nav div:nth-child(5) {
+    padding-top: 20px;
 }
 
 .content {
@@ -66,7 +70,7 @@
 
 .mainImgLogo {
     width: 850px;
-    height: 100px;
+    height: 120px;
 }
 
 .myPage {
