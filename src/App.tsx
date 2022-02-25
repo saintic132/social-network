@@ -6,7 +6,7 @@ function App() {
         <div className={s.app}>
             <div className={s.header}>
                 <img
-                    className={s.imgLogo}
+                    className={s.headerImgLogo}
                     src="https://static.vecteezy.com/system/resources/previews/001/188/239/non_2x/heart-logo-png.png"
                     alt="logo"/>
             </div>
@@ -20,8 +20,11 @@ function App() {
                 </div>
 
                 <div className={s.content}>
-                    <div>
-
+                    <div >
+                        <img
+                            className={s.mainImgLogo}
+                            src="https://ak.picdn.net/shutterstock/videos/1947427/thumb/1.jpg"
+                            alt="mainImgLogo"/>
                     </div>
 
                 </div>

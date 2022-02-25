@@ -1,10 +1,13 @@
-.app, .header, .main, .nav, .content {
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700&display=swap');
+
+.app {
     border: 1px solid black;
 }
 
 .app {
+    font-family: 'Exo 2', sans-serif;
     width: 1000px;
-    height: 2000px;
+    height: 1500px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -20,7 +23,7 @@
     align-items: center;
 }
 
-.imgLogo {
+.headerImgLogo {
     width: 80px;
     height: 80px;
     margin-left: 10px;
@@ -28,14 +31,14 @@
 
 .main {
     width: 1000px;
-    height: 1500px;
+    height: 1000px;
     margin-top: 20px;
     display: flex;
 }
 
 .nav {
     width: 150px;
-    height: 1500px;
+    height: 1000px;
     background: lightseagreen;
     display: flex;
     flex-direction: column;
@@ -44,6 +47,7 @@
 }
 
 .nav > div {
+    color: white;
     margin: 7px 0 0 10px;
 }
 
@@ -53,6 +57,11 @@
 
 .content {
     width: 850px;
-    height: 1500px;
+    height: 1000px;
     margin-left: 20px;
+}
+
+.mainImgLogo {
+    width: 850px;
+    height: 100px;
 }
