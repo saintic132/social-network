@@ -1,0 +1,95 @@
+.main {
+    width: 1000px;
+    height: 700px;
+    margin-top: 20px;
+    display: flex;
+}
+
+.nav {
+    width: 150px;
+    background: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.nav > div {
+    color: white;
+    margin: 7px 0 0 10px;
+}
+
+.nav div:first-child {
+    padding-top: 10px;
+}
+
+.nav div:nth-child(5) {
+    padding-top: 20px;
+}
+
+.content {
+    width: 850px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.mainImgLogo {
+    width: 850px;
+    height: 120px;
+}
+
+.myPage {
+    margin-top: 20px;
+    display: flex;
+}
+
+.myPage img {
+    width: 100px;
+    height: 100px;
+}
+
+.myProfile {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;;
+}
+
+.nameMyPosts {
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+.writePosts {
+    padding-top: 20px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputForNewPost {
+    width: auto;
+    height: 30px;
+}
+
+.submitInputButtonForPost {
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+.myPosts {
+    margin-top: 50px;
+    font-size: 25px;
+}
