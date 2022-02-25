@@ -33,11 +33,31 @@ function App() {
                         <img
                             src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile.png"
                             alt="avatarLogo"/>
-                        <div className={s.nameMyPage}>
+                        <div className={s.myProfile}>
                             <div>Akhremchyk I.</div>
                             <div>Date of Birth: 17 December</div>
                             <div>City: Minsk</div>
                             <div>Web Site: https://saintic132.github.io/social-network/</div>
+                        </div>
+                    </div>
+                    <div className={s.posts}>
+                        <div className={s.nameMyPosts}>
+                            My posts
+                        </div>
+                        <div
+                            className={s.writePosts}>
+                            <input
+                                className={s.inputForNewPost}
+                                type="text"
+                                placeholder='Enter the text'/>
+                            <button
+                                className={s.submitInputButtonForPost}
+                            >Submit</button>
+                        </div>
+
+                        <div
+                            className={s.myPosts}>
+                            Posts here
                         </div>
                     </div>
 

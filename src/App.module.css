@@ -7,7 +7,7 @@
 .app {
     font-family: 'Exo 2', sans-serif;
     width: 1000px;
-    height: 1500px;
+    height: 1000px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
@@ -36,14 +36,13 @@
 
 .main {
     width: 1000px;
-    height: 1000px;
+    height: 700px;
     margin-top: 20px;
     display: flex;
 }
 
 .nav {
     width: 150px;
-    height: 1000px;
     background: lightseagreen;
     display: flex;
     flex-direction: column;
@@ -62,8 +61,11 @@
 
 .content {
     width: 850px;
-    height: 1000px;
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .mainImgLogo {
@@ -81,16 +83,50 @@
     height: 100px;
 }
 
-.nameMyPage {
+.myProfile {
     margin-left: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
+.posts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;;
+}
+
+.nameMyPosts {
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+.writePosts {
+    padding-top: 20px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputForNewPost {
+    width: auto;
+    height: 30px;
+}
+
+.submitInputButtonForPost {
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+    align-self: flex-end;
+}
+
+.myPosts {
+    margin-top: 50px;
+    font-size: 25px;
+}
+
 .footer {
-    width: 1000px;
-    height: 340px;
     background: lightseagreen;
     margin-top: 40px;
     display: flex;
@@ -98,4 +134,5 @@
     align-items: center;
     font-size: 60px;
     color: white;
+    flex: auto;
 }
