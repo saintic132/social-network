@@ -1,0 +1,16 @@
+.aboutProfile {
+    margin-top: 20px;
+    display: flex;
+}
+
+.aboutProfile img {
+    width: 100px;
+    height: 100px;
+}
+
+.myProfile {
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -9,23 +9,3 @@
     flex-wrap: wrap;
     align-content: flex-start;
 }
-
-.header {
-    width: 1000px;
-    height: 100px;
-    background: lightseagreen;
-    display: flex;
-    align-items: center;
-}
-
-.headerImgLogo {
-    width: 80px;
-    height: 80px;
-    margin-left: 10px;
-}
-
-.nameLogo {
-    margin: auto;
-    font-size: 25px;
-    color: white;
-}

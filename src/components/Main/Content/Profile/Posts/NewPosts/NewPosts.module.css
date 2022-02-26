@@ -1,0 +1,23 @@
+.nameMyPosts {
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+.writePosts {
+    padding-top: 20px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputForNewPost {
+    width: auto;
+    height: 30px;
+}
+
+.submitInputButtonForPost {
+    width: 100px;
+    height: 30px;
+    margin-top: 10px;
+    align-self: flex-end;
+}

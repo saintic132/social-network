@@ -1,0 +1,21 @@
+.nav {
+    width: 150px;
+    background: lightseagreen;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.nav > div {
+    color: white;
+    margin: 7px 0 0 10px;
+}
+
+.nav div:first-child {
+    padding-top: 10px;
+}
+
+.nav div:nth-child(5) {
+    padding-top: 20px;
+}
