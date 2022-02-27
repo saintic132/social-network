@@ -1,5 +1,6 @@
 import React from "react";
 import s from './Dialogs.module.css'
+import {NavLink} from "react-router-dom";
 
 function Dialogs() {
     return (
@@ -12,7 +13,7 @@ function Dialogs() {
                     Name:
                     <div className={s.names}>
                         <div>
-                            Masha
+                            <NavLink to='/dialogs/1'>Masha</NavLink>
                         </div>
 
                         <div>

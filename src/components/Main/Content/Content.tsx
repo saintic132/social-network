@@ -14,19 +14,24 @@ function Content() {
             <MainLogo/>
             <Routes>
                 <Route
-                    path="/" element={<Profile />}
+                    path="/"
+                    element={<Profile />}
                 />
                 <Route
-                    path="dialogs" element={<Dialogs />}
+                    path="/dialogs/*"
+                    element={<Dialogs />}
                 />
                 <Route
-                    path="news" element={<News />}
+                    path="news/*"
+                    element={<News />}
                 />
                 <Route
-                    path="music" element={<Music />}
+                    path="music/*"
+                    element={<Music />}
                 />
                 <Route
-                    path="Settings" element={<Settings />}
+                    path="settings/*"
+                    element={<Settings />}
                 />
             </Routes>
         </div>
