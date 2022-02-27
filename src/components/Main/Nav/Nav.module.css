@@ -17,6 +17,7 @@
 }
 
 .nav > div > a:hover {
+    text-decoration: underline;
     background: mediumslateblue;
     transition: 0.3s;
 }
@@ -33,6 +34,6 @@
     padding-top: 20px;
 }
 
-a:visited {
-
+.active {
+    background: mediumslateblue;
 }
