@@ -1,17 +1,24 @@
 import React from 'react';
 import s from "./Nav.module.css";
-import Messages from "./Messages/Messages";
 
 function Nav() {
     return (
         <div className={s.nav}>
-            <div>Profile</div>
-            <Messages
-                name='Messages'
-            />
-            <div>News</div>
-            <div>Music</div>
-            <div>Settings</div>
+            <div>
+                <a href='/profile'>Profile</a>
+            </div>
+            <div>
+                <a href='/messages'>Messages</a>
+            </div>
+            <div>
+                <a href='/news'>News</a>
+            </div>
+            <div>
+                <a href='/music'>Music</a>
+            </div>
+            <div>
+                <a href='/settings'>Settings</a>
+            </div>
         </div>
     )
 }

@@ -7,8 +7,9 @@ function Main() {
     return (
         <div className={s.main}>
 
-            <Nav />
-            <Content />
+            <Nav/>
+            <Content/>
+
         </div>
     )
 }
