@@ -19,3 +19,16 @@
 .nav div:nth-child(5) {
     padding-top: 20px;
 }
+
+a:hover {
+    background: mediumslateblue;
+    transition: 0.3s;
+}
+
+a:visited {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
