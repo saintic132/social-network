@@ -12,6 +12,19 @@
     margin: 7px 0 0 10px;
 }
 
+.nav > div > a {
+    text-decoration: none;
+}
+
+.nav > div > a:hover {
+    background: mediumslateblue;
+    transition: 0.3s;
+}
+
+.nav > div > a:visited {
+    color: white;
+}
+
 .nav div:first-child {
     padding-top: 10px;
 }
@@ -20,15 +33,6 @@
     padding-top: 20px;
 }
 
-a:hover {
-    background: mediumslateblue;
-    transition: 0.3s;
-}
-
 a:visited {
-    color: white;
-}
 
-a {
-    text-decoration: none;
 }

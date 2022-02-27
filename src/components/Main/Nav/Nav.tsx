@@ -6,7 +6,7 @@ function Nav() {
     return (
         <div className={s.nav}>
             <div>
-                <NavLink to='/profile'>Profile</NavLink>
+                <NavLink to='/'>Profile</NavLink>
             </div>
             <div>
                 <NavLink to='/messages'>Messages</NavLink>

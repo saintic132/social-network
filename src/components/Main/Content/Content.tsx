@@ -14,7 +14,7 @@ function Content() {
             <MainLogo/>
             <Routes>
                 <Route
-                    path="profile" element={<Profile />}
+                    path="/" element={<Profile />}
                 />
                 <Route
                     path="messages" element={<Messages />}
