@@ -1,0 +1,25 @@
+.headerNameDialogs {
+    display: flex;
+    justify-content: center;
+}
+
+.headerForNameAndMessages {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.headerForNameAndMessages > div:last-child {
+    margin-left: 200px;
+}
+
+.headerName {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.names {
+    margin-top: 20px
+}
