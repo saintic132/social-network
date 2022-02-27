@@ -9,7 +9,9 @@ function Header() {
                 <img
                     className={s.headerImgLogo}
                     src="https://static.vecteezy.com/system/resources/previews/001/188/239/non_2x/heart-logo-png.png"
-                    alt="logo"/>
+                    alt="logo"
+                    title='На главную страницу'
+                />
             </NavLink>
             <div className={s.nameLogo}>
                 Social-Network
