@@ -1,12 +1,12 @@
 import React from "react";
 
 
-function Messages() {
+function Dialogs() {
     return (
         <div>
-            Messages
+            Dialogs
         </div>
     )
 }
 
-export default Messages
+export default Dialogs

@@ -11,7 +11,7 @@ function Nav() {
                 <NavLink to='/' className={setActive}>Profile</NavLink>
             </div>
             <div>
-                <NavLink to='/messages' className={setActive}>Messages</NavLink>
+                <NavLink to='/dialogs' className={setActive}>Dialogs</NavLink>
             </div>
             <div>
                 <NavLink to='/news' className={setActive}>News</NavLink>

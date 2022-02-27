@@ -8,11 +8,11 @@
 }
 
 .nav > div {
-    color: white;
     margin: 7px 0 0 10px;
 }
 
 .nav > div > a {
+    color: white;
     text-decoration: none;
 }
 

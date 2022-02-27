@@ -2,7 +2,7 @@ import React from 'react';
 import s from "./Content.module.css";
 import MainLogo from "./MainLogo/MainLogo";
 import Profile from "./Profile/Profile";
-import Messages from "./Messages/Messages";
+import Dialogs from "./Dialogs/Dialogs";
 import {Route, Routes} from "react-router-dom";
 import News from "./News/News";
 import Music from "./Music/Music";
@@ -17,7 +17,7 @@ function Content() {
                     path="/" element={<Profile />}
                 />
                 <Route
-                    path="messages" element={<Messages />}
+                    path="dialogs" element={<Dialogs />}
                 />
                 <Route
                     path="news" element={<News />}
