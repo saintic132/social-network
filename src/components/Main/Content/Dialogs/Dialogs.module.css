@@ -13,13 +13,6 @@
     margin-left: 200px;
 }
 
-.headerName {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
-
-.names {
+.usersDialogsNameAndMessage {
     margin-top: 20px
 }

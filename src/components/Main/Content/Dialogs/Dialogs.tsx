@@ -1,6 +1,7 @@
 import React from "react";
 import s from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
+import DialogsName from "./DialogsName/DialogsName";
+import DialogsMessage from "./DialogsMessage/DialogsMessage";
 
 function Dialogs() {
     return (
@@ -9,29 +10,22 @@ function Dialogs() {
                 <h2>Dialogs</h2>
             </div>
             <div className={s.headerForNameAndMessages}>
-                <div className={s.headerName}>
+                <div>
                     Name:
-                    <div className={s.names}>
-                        <div>
-                            <NavLink to='/dialogs/1'>Masha</NavLink>
-                        </div>
-
-                        <div>
-                            Pasha
-                        </div>
-
-                        <div>
-                            Petya
-                        </div>
+                    <div className={s.usersDialogsNameAndMessage}>
+                        <DialogsName name='Masha' id={1}/>
+                        <DialogsName name='Pasha' id={2}/>
+                        <DialogsName name='Vitya' id={3}/>
+                        <DialogsName name='Dima' id={4}/>
                     </div>
                 </div>
                 <div>
                     Messages:
-                    <div className={s.names}>
-                        <div>
-                            Hello, how are u ?
-                        </div>
-
+                    <div className={s.usersDialogsNameAndMessage}>
+                        <DialogsMessage message='Hello' />
+                        <DialogsMessage message='How' />
+                        <DialogsMessage message='Are' />
+                        <DialogsMessage message='You' />
                     </div>
                 </div>
             </div>

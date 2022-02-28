@@ -1,0 +1,12 @@
+a {
+    text-decoration: none;
+}
+
+.names > a:visited{
+    color: mediumslateblue;
+}
+
+.names > a:hover{
+    text-decoration: underline;
+    transition: 0.3s;
+}
