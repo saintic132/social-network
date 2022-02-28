@@ -2,11 +2,11 @@ a {
     text-decoration: none;
 }
 
-.names > a:visited{
+.names > div > a:visited{
     color: mediumslateblue;
 }
 
-.names > a:hover{
+.names > div > a:hover{
     text-decoration: underline;
     transition: 0.3s;
 }

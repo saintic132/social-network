@@ -8,9 +8,10 @@ function AboutProfile() {
                 src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile.png"
                 alt="avatarLogo"/>
             <div className={s.myProfile}>
-                <div>Akhremchyk I.</div>
+                <div>Name: Akhremchyk I.</div>
                 <div>Date of Birth: 17 December</div>
                 <div>City: Minsk</div>
+                <div>Education: IT-Incubator</div>
                 <div>Web Site: https://saintic132.github.io/social-network/</div>
             </div>
         </div>

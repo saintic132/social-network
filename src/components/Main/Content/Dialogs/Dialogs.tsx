@@ -4,6 +4,24 @@ import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
 
 function Dialogs() {
+
+    const dialogsName = [
+        {id:1, name: 'Masha'},
+        {id:2, name: 'Pasha'},
+        {id:3, name: 'Vitya'},
+        {id:4, name: 'Dima'},
+    ]
+
+    const dialogsMessage = [
+        {message: 'Hello'},
+        {message: 'How'},
+        {message: 'Are'},
+        {message: 'You'},
+        {message: 'Today'},
+        {message: '?'},
+    ]
+
+
     return (
         <div>
             <div className={s.headerNameDialogs}>
@@ -13,19 +31,31 @@ function Dialogs() {
                 <div>
                     Name:
                     <div className={s.usersDialogsNameAndMessage}>
-                        <DialogsName name='Masha' id={1}/>
-                        <DialogsName name='Pasha' id={2}/>
-                        <DialogsName name='Vitya' id={3}/>
-                        <DialogsName name='Dima' id={4}/>
+
+                        {
+                            dialogsName.map(el => {
+                                return (
+                                    <DialogsName
+                                        name={el.name}
+                                        id={el.id}/>
+                                )
+                            })
+                        }
+
                     </div>
                 </div>
                 <div>
                     Messages:
                     <div className={s.usersDialogsNameAndMessage}>
-                        <DialogsMessage message='Hello' />
-                        <DialogsMessage message='How' />
-                        <DialogsMessage message='Are' />
-                        <DialogsMessage message='You' />
+
+                        {
+                            dialogsMessage.map(el => {
+                                return (
+                                    <DialogsMessage message={el.message} />
+                                )
+                            })
+                        }
+
                     </div>
                 </div>
             </div>
