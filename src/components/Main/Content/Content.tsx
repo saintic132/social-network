@@ -8,6 +8,7 @@ import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
 import {StateType} from "../../../App";
+import Error404 from "../../../404/Error404";
 
 
 function Content(props: StateType) {
@@ -38,6 +39,10 @@ function Content(props: StateType) {
                 <Route
                     path="settings/*"
                     element={<Settings/>}
+                />
+                <Route
+                    path="*"
+                    element={<Error404 />}
                 />
             </Routes>
         </div>

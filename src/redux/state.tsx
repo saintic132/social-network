@@ -1,6 +1,3 @@
-import React from "react";
-
-
 type dialogPageType = {
     dialogsName: Array<dialogsNameType>
     dialogsMessage: Array<dialogsMessageType>
