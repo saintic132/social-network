@@ -20,4 +20,4 @@ function DialogsName(props: DialogsNameType) {
     )
 }
 
-export default DialogsName
+export default DialogsName;

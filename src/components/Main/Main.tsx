@@ -2,13 +2,16 @@ import React from 'react';
 import s from "./Main.module.css";
 import Nav from "./Nav/Nav";
 import Content from "./Content/Content";
+import {StateType} from "../../App";
 
-function Main() {
+
+function Main (props: StateType) {
     return (
         <div className={s.main}>
-
             <Nav/>
-            <Content/>
+            <Content
+                state={props.state}
+            />
 
         </div>
     )

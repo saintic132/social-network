@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {HashRouter} from "react-router-dom";
+import state from "./redux/state";
 
 ReactDOM.render(
     <React.StrictMode>
         <HashRouter>
-            <App/>
+            <App
+                state={state}
+            />
         </HashRouter>
     </React.StrictMode>,
     document.getElementById('root')

@@ -7,31 +7,37 @@ import {Route, Routes} from "react-router-dom";
 import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
+import {StateType} from "../../../App";
 
-function Content() {
+
+function Content(props: StateType) {
+    debugger
     return (
         <div className={s.content}>
             <MainLogo/>
             <Routes>
                 <Route
                     path="/"
-                    element={<Profile />}
+                    element={<Profile/>}
                 />
                 <Route
-                    path="/dialogs/*"
-                    element={<Dialogs />}
+                    path="dialogs/*"
+                    element={
+                        <Dialogs
+                            state={props.state}
+                        />}
                 />
                 <Route
                     path="news/*"
-                    element={<News />}
+                    element={<News/>}
                 />
                 <Route
                     path="music/*"
-                    element={<Music />}
+                    element={<Music/>}
                 />
                 <Route
                     path="settings/*"
-                    element={<Settings />}
+                    element={<Settings/>}
                 />
             </Routes>
         </div>

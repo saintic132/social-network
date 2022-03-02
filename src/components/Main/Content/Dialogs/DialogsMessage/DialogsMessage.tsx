@@ -1,6 +1,7 @@
 import React from "react";
 
 type DialogsMessageType = {
+    id: number
     message: string
 }
 
@@ -12,4 +13,4 @@ function DialogsMessage(props: DialogsMessageType) {
     )
 }
 
-export default DialogsMessage
+export default DialogsMessage;

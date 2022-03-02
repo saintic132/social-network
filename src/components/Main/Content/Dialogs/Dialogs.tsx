@@ -2,26 +2,11 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
-
-function Dialogs() {
-
-    const dialogsName = [
-        {id:1, name: 'Masha'},
-        {id:2, name: 'Pasha'},
-        {id:3, name: 'Vitya'},
-        {id:4, name: 'Dima'},
-    ]
-
-    const dialogsMessage = [
-        {message: 'Hello'},
-        {message: 'How'},
-        {message: 'Are'},
-        {message: 'You'},
-        {message: 'Today'},
-        {message: '?'},
-    ]
+import {StateType} from "../../../../App";
 
 
+function Dialogs(props: StateType) {
+debugger
     return (
         <div>
             <div className={s.headerNameDialogs}>
@@ -33,11 +18,12 @@ function Dialogs() {
                     <div className={s.usersDialogsNameAndMessage}>
 
                         {
-                            dialogsName.map(el => {
+                            props.state.dialogPage.dialogsName.map(el => {
                                 return (
                                     <DialogsName
+                                        id={el.id}
                                         name={el.name}
-                                        id={el.id}/>
+                                        />
                                 )
                             })
                         }
@@ -49,9 +35,11 @@ function Dialogs() {
                     <div className={s.usersDialogsNameAndMessage}>
 
                         {
-                            dialogsMessage.map(el => {
+                            props.state.dialogPage.dialogsMessage.map(el => {
                                 return (
-                                    <DialogsMessage message={el.message} />
+                                    <DialogsMessage
+                                        id={el.id}
+                                        message={el.message} />
                                 )
                             })
                         }
