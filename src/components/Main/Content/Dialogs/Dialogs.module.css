@@ -1,3 +1,9 @@
+.dialogs {
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+}
+
 .headerNameDialogs {
     display: flex;
     justify-content: center;
@@ -5,8 +11,7 @@
 
 .headerForNameAndMessages {
     display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
+    flex: 1;
 }
 
 .headerForNameAndMessages > div:last-child {
@@ -15,4 +20,19 @@
 
 .usersDialogsNameAndMessage {
     margin-top: 20px
+}
+
+.inputBlockText {
+    display: flex;
+    justify-content: center;
+}
+
+
+.inputTextForMessage {
+    width: 500px;
+    height: 30px;
+}
+
+.inputButtonAddNewMessage {
+    margin: 0 50px 0 10px;
 }

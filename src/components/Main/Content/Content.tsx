@@ -12,7 +12,6 @@ import Error404 from "../../../404/Error404";
 
 
 function Content(props: StateType) {
-    debugger
     return (
         <div className={s.content}>
             <MainLogo/>

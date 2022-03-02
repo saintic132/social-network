@@ -6,9 +6,8 @@ import {StateType} from "../../../../App";
 
 
 function Dialogs(props: StateType) {
-debugger
     return (
-        <div>
+        <div className={s.dialogs}>
             <div className={s.headerNameDialogs}>
                 <h2>Dialogs</h2>
             </div>
@@ -23,7 +22,7 @@ debugger
                                     <DialogsName
                                         id={el.id}
                                         name={el.name}
-                                        />
+                                    />
                                 )
                             })
                         }
@@ -39,13 +38,23 @@ debugger
                                 return (
                                     <DialogsMessage
                                         id={el.id}
-                                        message={el.message} />
+                                        message={el.message}/>
                                 )
                             })
                         }
-
                     </div>
                 </div>
+            </div>
+            <div className={s.inputBlockText}>
+                <input
+                    className={s.inputTextForMessage}
+                    type="text"
+                    placeholder='Enter the text'
+                />
+                <button
+                    className={s.inputButtonAddNewMessage}
+                >Add post
+                </button>
             </div>
         </div>
     )
