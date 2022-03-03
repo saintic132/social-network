@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from "../render";
+
 type dialogPageType = {
     dialogsName: Array<dialogsNameType>
     dialogsMessage: Array<dialogsMessageType>
@@ -32,6 +34,16 @@ const state: RootStateType = {
             {id: 6, message: '?'},
         ],
     }
+}
+
+
+export const addNewMessage = (message: string) => {
+    let newMessage = {
+        id: 7,
+        message: message
+    }
+    state.dialogPage.dialogsMessage.push(newMessage)
+    rerenderEntireTree(state)
 }
 
 export default state;

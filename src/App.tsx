@@ -7,6 +7,7 @@ import {RootStateType} from "./redux/state"
 
 export type StateType = {
     state: RootStateType
+    addNewMessage: (message: string) => void
 }
 
 function App(props:StateType) {
@@ -15,6 +16,7 @@ function App(props:StateType) {
             <Header />
             <Main
                 state={props.state}
+                addNewMessage={props.addNewMessage}
             />
             <Footer />
         </div>

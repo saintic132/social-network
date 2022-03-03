@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import s from './Dialogs.module.css'
 import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
@@ -6,6 +6,20 @@ import {StateType} from "../../../../App";
 
 
 function Dialogs(props: StateType) {
+    
+    let [inputMessage, setInputMessage] = useState<string>('');
+
+    const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputMessage(e.currentTarget.value)
+    }
+
+    const addNewPost = () => {
+        if (inputMessage) {
+            props.addNewMessage(inputMessage)
+            setInputMessage('')
+        }
+    }
+
     return (
         <div className={s.dialogs}>
             <div className={s.headerNameDialogs}>
@@ -38,7 +52,8 @@ function Dialogs(props: StateType) {
                                 return (
                                     <DialogsMessage
                                         id={el.id}
-                                        message={el.message}/>
+                                        message={el.message}
+                                    />
                                 )
                             })
                         }
@@ -48,11 +63,14 @@ function Dialogs(props: StateType) {
             <div className={s.inputBlockText}>
                 <input
                     className={s.inputTextForMessage}
+                    value={inputMessage}
+                    onChange={changeInput}
                     type="text"
                     placeholder='Enter the text'
                 />
                 <button
                     className={s.inputButtonAddNewMessage}
+                    onClick={addNewPost}
                 >Add post
                 </button>
             </div>
