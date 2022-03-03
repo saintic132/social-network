@@ -7,6 +7,7 @@
 .headerNameDialogs {
     display: flex;
     justify-content: center;
+
 }
 
 .headerForNameAndMessages {
@@ -15,16 +16,34 @@
 }
 
 .headerForNameAndMessages > div:last-child {
-    margin-left: 200px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 15px;
 }
 
-.usersDialogsNameAndMessage {
-    margin-top: 20px
+.letterMessage {
+    display: flex;
+    align-items: center;
+    margin-left: 15px
+}
+
+.usersDialogsName {
+    margin-top: 20px;
+    width: 150px;
+}
+
+.usersDialogsMessages {
+    margin-bottom: 10px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .inputBlockText {
     display: flex;
-    justify-content: center;
+    margin-left: 165px;
 }
 
 
@@ -34,5 +53,5 @@
 }
 
 .inputButtonAddNewMessage {
-    margin: 0 50px 0 10px;
+    margin: 0 30px 0 20px;
 }

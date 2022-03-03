@@ -1,4 +1,5 @@
 import React from "react";
+import s from './DialogsMessage.module.css'
 
 type DialogsMessageType = {
     id: number
@@ -7,12 +8,10 @@ type DialogsMessageType = {
 
 function DialogsMessage(props: DialogsMessageType) {
     return (
-        <div>
-            <div>
+            <div className={s.messages}>
                 {props.message}
             </div>
-        </div>
-        
+
     )
 }
 

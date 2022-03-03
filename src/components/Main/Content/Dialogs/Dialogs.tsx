@@ -14,7 +14,7 @@ function Dialogs(props: StateType) {
             <div className={s.headerForNameAndMessages}>
                 <div>
                     Name:
-                    <div className={s.usersDialogsNameAndMessage}>
+                    <div className={s.usersDialogsName}>
 
                         {
                             props.state.dialogPage.dialogsName.map(el => {
@@ -30,8 +30,8 @@ function Dialogs(props: StateType) {
                     </div>
                 </div>
                 <div>
-                    Messages:
-                    <div className={s.usersDialogsNameAndMessage}>
+                    <div className={s.letterMessage}>Messages:</div>
+                    <div className={s.usersDialogsMessages}>
 
                         {
                             props.state.dialogPage.dialogsMessage.map(el => {
