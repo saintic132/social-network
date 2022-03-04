@@ -8,7 +8,7 @@ type dialogsNameType = {
     id: number
     name: string
 }
-type dialogsMessageType = {
+export type dialogsMessageType = {
     id: number
     message: string
 }

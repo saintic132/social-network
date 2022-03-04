@@ -20,6 +20,13 @@ function Dialogs(props: StateType) {
         }
     }
 
+    const addNewPostByKeyPress = (e:  React.KeyboardEvent<HTMLInputElement>) => {
+        if (inputMessage && e.key === 'Enter') {
+            props.addNewMessage(inputMessage)
+            setInputMessage('')
+        }
+    }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__body}>
@@ -41,6 +48,7 @@ function Dialogs(props: StateType) {
                                 props.state.dialogPage.dialogsName.map(el => {
                                     return (
                                         <DialogsName
+                                            key={el.id}
                                             id={el.id}
                                             name={el.name}
                                         />
@@ -62,6 +70,7 @@ function Dialogs(props: StateType) {
                                 props.state.dialogPage.dialogsMessage.map(el => {
                                     return (
                                         <DialogsMessage
+                                            key={el.id}
                                             id={el.id}
                                             message={el.message}
                                         />
@@ -76,6 +85,7 @@ function Dialogs(props: StateType) {
                         className={s.inputTextForMessage}
                         value={inputMessage}
                         onChange={changeInput}
+                        onKeyPress={addNewPostByKeyPress}
                         type="text"
                         placeholder='Enter the text'
                     />
