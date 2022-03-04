@@ -1,11 +1,14 @@
 .messages {
     max-width: 570px;
-    border: 1px solid;
     margin: 2px 0;
-    border-radius: 16px;
 }
 
 .messages__message {
     padding: 2px 4px 2px 4px;
     overflow: auto;
+}
+
+.messages__message img {
+    width: 40px;
+    height: 40px;
 }
