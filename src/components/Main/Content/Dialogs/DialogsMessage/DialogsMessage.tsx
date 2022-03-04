@@ -9,7 +9,9 @@ type DialogsMessageType = {
 function DialogsMessage(props: DialogsMessageType) {
     return (
             <div className={s.messages}>
-                {props.message}
+                <div className={s.messages__message}>
+                    {props.message}
+                </div>
             </div>
 
     )

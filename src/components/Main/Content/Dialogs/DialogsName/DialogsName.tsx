@@ -13,8 +13,12 @@ function DialogsName(props: DialogsNameType) {
 
     return (
         <div className={s.names}>
-            <div>
-                <NavLink to={path}>{props.name}</NavLink>
+            <div className={s.names__columns}>
+                    <NavLink to={path}>
+                        <div className={s.names__text}>
+                            {props.name}
+                        </div>
+                    </NavLink>
             </div>
         </div>
     )

@@ -18,15 +18,18 @@
     flex: 1 0 auto;
 }
 
+.dialogs__names_columns {
+    width: 150px;
+}
+
 .dialogs__propsname {
     margin-top: 20px;
 }
 
 .dialogs__messages_columns {
+    margin-left: 40px;
     display: flex;
     flex-direction: column;
-    margin-left: 150px;
-    flex: 1 0 auto;
 }
 
 .dialogs__propsmessages {
@@ -34,11 +37,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    align-items: flex-start;
     flex: 1 0 auto;
 }
 
 .dialogs__post {
-    margin: 20px 0 0 200px;
+    margin: 20px 0 0 190px;
     justify-self: center;
     display: flex;
 }
