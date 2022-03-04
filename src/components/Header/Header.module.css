@@ -1,24 +1,29 @@
-.header {
+.header__body {
     width: 1000px;
-    height: 100px;
     background: lightseagreen;
     display: flex;
-    align-items: center;
+    margin: 0 auto;
 }
 
-.headerImgLogo {
+.header__img img {
     width: 80px;
     height: 80px;
-    margin-left: 10px;
 }
 
-.nameLogo {
-    margin: auto;
+.header__title {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__text {
     font-size: 25px;
     color: white;
 }
 
-.nameLogo:hover {
+
+.header__title:hover {
     transform: scale(1.5);
     transition: 0.5s;
 }

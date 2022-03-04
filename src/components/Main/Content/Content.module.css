@@ -1,8 +1,5 @@
 .content {
-    width: 850px;
     margin-left: 20px;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-content: flex-start;
 }

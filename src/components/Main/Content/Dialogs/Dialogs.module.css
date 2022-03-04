@@ -1,57 +1,53 @@
 .dialogs {
+    flex: 1 1 auto;
+}
+
+.dialogs__body {
     display: flex;
     flex-direction: column;
-    flex: auto;
+    min-height: 100%;
 }
 
-.headerNameDialogs {
+.dialogs__title {
+    justify-self: center;
+    align-self: center;
+}
+
+.dialogs__columns {
     display: flex;
-    justify-content: center;
-
+    flex: 1 0 auto;
 }
 
-.headerForNameAndMessages {
-    display: flex;
-    flex: 1;
-}
-
-.headerForNameAndMessages > div:last-child {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin-left: 15px;
-}
-
-.letterMessage {
-    display: flex;
-    align-items: center;
-    margin-left: 15px
-}
-
-.usersDialogsName {
+.dialogs__propsname {
     margin-top: 20px;
-    width: 150px;
 }
 
-.usersDialogsMessages {
-    margin-bottom: 10px;
+.dialogs__messages_columns {
     display: flex;
-    flex: 1;
+    flex-direction: column;
+    margin-left: 150px;
+    flex: 1 0 auto;
+}
+
+.dialogs__propsmessages {
+    margin-top: 20px;
+    display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    flex: 1 0 auto;
 }
 
-.inputBlockText {
+.dialogs__post {
+    margin: 20px 0 0 200px;
+    justify-self: center;
     display: flex;
-    margin-left: 165px;
 }
 
-
-.inputTextForMessage {
+.dialogs__post input {
     width: 500px;
-    height: 30px;
+    height: 20px;
 }
 
-.inputButtonAddNewMessage {
-    margin: 0 30px 0 20px;
+.dialogs__post button {
+margin-left: 10px;
 }

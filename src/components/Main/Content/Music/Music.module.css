@@ -1,0 +1,18 @@
+.music {
+    display: flex;
+    flex-direction: column;
+}
+
+.music__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.music__columns {
+    margin-top: 30px;
+}
+
+.music__list li {
+    margin: 10px 0 0 0;
+}

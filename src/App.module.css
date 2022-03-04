@@ -2,10 +2,7 @@
 
 .app {
     font-family: 'Exo 2', sans-serif;
-    width: 1000px;
-    height: 900px;
-    margin: auto;
+    min-height: 100vh;
     display: flex;
-    flex-wrap: wrap;
-    align-content: flex-start;
+    flex-direction: column;
 }

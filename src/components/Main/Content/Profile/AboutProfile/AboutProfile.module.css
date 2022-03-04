@@ -1,16 +1,26 @@
 .aboutProfile {
     margin-top: 20px;
+}
+
+.aboutProfile__body {
     display: flex;
 }
 
-.aboutProfile img {
+.aboutProfile__avatar {
+    margin: 0 5px 0 5px;
+}
+
+.aboutProfile__img  img{
     width: 100px;
     height: 100px;
 }
 
-.myProfile {
+.aboutProfile__description {
     margin-left: 40px;
+}
+
+.aboutProfile__about {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    flex-wrap: wrap;
 }
