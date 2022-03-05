@@ -1,5 +1,3 @@
-import {rerenderEntireTree} from "../render";
-
 type dialogPageType = {
     dialogsName: Array<dialogsNameType>
     dialogsMessage: Array<dialogsMessageType>
@@ -15,6 +13,11 @@ export type dialogsMessageType = {
 
 export type RootStateType = {
     dialogPage: dialogPageType
+}
+
+
+let render: (state: RootStateType) => void = () => {
+
 }
 
 const state: RootStateType = {
@@ -36,14 +39,17 @@ const state: RootStateType = {
     }
 }
 
-
 export const addNewMessage = (message: string) => {
     let newMessage = {
         id: 7,
         message: message
     }
     state.dialogPage.dialogsMessage.push(newMessage)
-    rerenderEntireTree(state)
+    render(state)
+}
+
+export const subcribe = (observer: (state: RootStateType) => void) => {
+    render = observer
 }
 
 export default state;
