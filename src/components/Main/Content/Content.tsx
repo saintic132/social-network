@@ -7,8 +7,8 @@ import {Route, Routes} from "react-router-dom";
 import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
-import {StateType} from "../../../App";
 import Error404 from "../../../404/Error404";
+import {StateType} from "../Main";
 
 
 function Content(props: StateType) {

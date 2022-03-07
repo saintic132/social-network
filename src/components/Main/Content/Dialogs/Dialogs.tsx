@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import s from './Dialogs.module.css'
 import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
-import {StateType} from "../../../../App";
+import {StateType} from "../../Main";
 
 
 function Dialogs(props: StateType) {
