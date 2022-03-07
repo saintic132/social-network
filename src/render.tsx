@@ -2,16 +2,16 @@ import ReactDOM from "react-dom";
 import React from "react";
 import {HashRouter} from "react-router-dom";
 import App from "./App";
-import {addNewMessage, RootStateType} from "./redux/state";
+import {StoreType} from "./redux/state";
 
 
-export const rerenderEntireTree = (state: RootStateType) => {
+export const rerenderEntireTree = (store: StoreType) => {
     ReactDOM.render(
         <React.StrictMode>
             <HashRouter>
                 <App
-                    state={state}
-                    addNewMessage={addNewMessage}
+                    state={store.getState()}
+                    addNewMessage={store.addNewMessage.bind(store)}
                 />
             </HashRouter>
         </React.StrictMode>,
