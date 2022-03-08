@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import s from './DialogsName.module.css'
 
 type DialogsNameType = {
-    id: number
+    id: string
     name: string
 }
 

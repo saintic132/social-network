@@ -2,12 +2,15 @@ import React, {useState} from "react";
 import s from './Dialogs.module.css'
 import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
-import {StateType} from "../../Main";
+import {StateType} from "../../../../App";
 
 
 function Dialogs(props: StateType) {
 
     let [inputMessage, setInputMessage] = useState<string>('');
+    let today = new Date()
+    let time = today.getHours() + ':' + today.getMinutes()
+
 
     const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputMessage(e.currentTarget.value)
@@ -15,14 +18,14 @@ function Dialogs(props: StateType) {
 
     const addNewPost = () => {
         if (inputMessage) {
-            props.addNewMessage(inputMessage)
+            props.addNewMessage(inputMessage, time)
             setInputMessage('')
         }
     }
 
-    const addNewPostByKeyPress = (e:  React.KeyboardEvent<HTMLInputElement>) => {
+    const addNewPostByKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (inputMessage && e.key === 'Enter') {
-            props.addNewMessage(inputMessage)
+            props.addNewMessage(inputMessage, time)
             setInputMessage('')
         }
     }
@@ -72,6 +75,7 @@ function Dialogs(props: StateType) {
                                         <DialogsMessage
                                             key={el.id}
                                             id={el.id}
+                                            time={el.time}
                                             message={el.message}
                                         />
                                     )
@@ -81,7 +85,7 @@ function Dialogs(props: StateType) {
                     </div>
                 </div>
                 <div className={s.dialogs__post}>
-                        <input
+                    <input
                         className={s.inputTextForMessage}
                         value={inputMessage}
                         onChange={changeInput}
@@ -89,11 +93,11 @@ function Dialogs(props: StateType) {
                         type="text"
                         placeholder='Enter the text'
                     />
-                        <button
-                            className={s.inputButtonAddNewMessage}
-                            onClick={addNewPost}
-                        >Add post
-                        </button>
+                    <button
+                        className={s.inputButtonAddNewMessage}
+                        onClick={addNewPost}
+                    >Add post
+                    </button>
                 </div>
             </div>
         </div>

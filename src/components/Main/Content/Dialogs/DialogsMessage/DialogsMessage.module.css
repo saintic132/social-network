@@ -3,12 +3,29 @@
     margin: 2px 0;
 }
 
-.messages__message {
+.messages__body {
     padding: 2px 4px 2px 4px;
     overflow: auto;
+    display: flex;
 }
 
-.messages__message img {
+.messages__avatar img {
     width: 40px;
     height: 40px;
+}
+
+.messages__content {
+ padding-left: 7px;
+    display: flex;
+    flex-direction: column;
+}
+
+.messages__time {
+    font-size: 10px;
+    opacity: 0.5;
+}
+
+.messages__message {
+    padding: 7px 0 0 0;
+    text-align:justify;
 }

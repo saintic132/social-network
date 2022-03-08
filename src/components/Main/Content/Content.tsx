@@ -8,7 +8,7 @@ import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
 import Error404 from "../../../404/Error404";
-import {StateType} from "../Main";
+import {StateType} from "../../../App";
 
 
 function Content(props: StateType) {
