@@ -10,7 +10,7 @@ const rerenderEntireTree = (state: RootStateType) => {
             <HashRouter>
                 <App
                     state={state}
-                    addNewMessage={store.addNewMessage.bind(store)}
+                    dispatch={store.dispatch.bind(store)}
                 />
             </HashRouter>
         </React.StrictMode>,

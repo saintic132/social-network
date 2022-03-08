@@ -18,14 +18,14 @@ function Dialogs(props: StateType) {
 
     const addNewPost = () => {
         if (inputMessage) {
-            props.addNewMessage(inputMessage, time)
+            props.dispatch({type: 'ADD-NEW-MESSAGE', time: time, message: inputMessage})
             setInputMessage('')
         }
     }
 
     const addNewPostByKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (inputMessage && e.key === 'Enter') {
-            props.addNewMessage(inputMessage, time)
+            props.dispatch({type: 'ADD-NEW-MESSAGE', time: time, message: inputMessage})
             setInputMessage('')
         }
     }

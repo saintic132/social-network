@@ -12,7 +12,7 @@ function Main (props: StateType) {
             <Nav/>
             <Content
                 state={props.state}
-                addNewMessage={props.addNewMessage}
+                dispatch={props.dispatch}
             />
 
         </div>

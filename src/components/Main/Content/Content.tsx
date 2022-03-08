@@ -25,7 +25,7 @@ function Content(props: StateType) {
                         element={
                             <Dialogs
                                 state={props.state}
-                                addNewMessage={props.addNewMessage}
+                                dispatch={props.dispatch}
                             />}
                     />
                     <Route

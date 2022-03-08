@@ -13,16 +13,23 @@ type DialogsPageType = {
     dialogsName: DialogsNameType[]
     dialogsMessage: DialogsMessageType[]
 }
+
+export type AddNewMessageActionType = {
+    type: 'ADD-NEW-MESSAGE'
+    time: string
+    message: string
+}
 export type RootStateType = {
     dialogPage: DialogsPageType
 }
 
+
 export type StoreType = {
     _state: RootStateType,
     // _render: (_state: RootStateType) => void
-    addNewMessage: (message: string, time: string) => void
     // subscribe: (observer: () => void) => void
     getState: () => RootStateType
+    dispatch: (action: AddNewMessageActionType) => void
 }
 
 // Для лучшего отображения времени, время уменьшено на 2 минуты
@@ -53,15 +60,22 @@ export const store: StoreType = {
     },
     // _render () {
     // },
-    addNewMessage(message: string, time: string) {
-        let newMessage = {
-            id: v1(),
-            time: time,
-            message: message
+    dispatch(action) {
+        switch (action.type) {
+            case 'ADD-NEW-MESSAGE':
+                let newMessage = {
+                    id: v1(),
+                    time: action.time,
+                    message: action.message
+                }
+                this._state.dialogPage.dialogsMessage.push(newMessage)
+                // this._render(this._state)
+                break;
+            default:
+                return this.getState()
         }
-        this._state.dialogPage.dialogsMessage.push(newMessage)
-        // this._render(this._state)
-    },
+    }
+
     // subscribe (observer: () => void) {
     //     this._render = observer
     // },

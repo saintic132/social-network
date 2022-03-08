@@ -3,11 +3,11 @@ import s from './App.module.css';
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import {RootStateType} from "./redux/state";
+import {AddNewMessageActionType, RootStateType} from "./redux/state";
 
 export type StateType = {
     state: RootStateType
-    addNewMessage: (message: string, time: string) => void
+    dispatch: (action: AddNewMessageActionType) => void
 }
 
 function App(props: StateType) {
@@ -18,7 +18,7 @@ function App(props: StateType) {
             <Header />
             <Main
                 state={props.state}
-                addNewMessage={props.addNewMessage}
+                dispatch={props.dispatch}
             />
             <Footer />
         </div>
