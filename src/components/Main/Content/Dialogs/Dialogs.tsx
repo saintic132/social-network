@@ -1,34 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import s from './Dialogs.module.css'
 import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
 import {StateType} from "../../../../App";
+import {InputNewMessage} from "./DialogsMessage/InputNewMessage/InputNewMessage";
 
 
 function Dialogs(props: StateType) {
-
-    let [inputMessage, setInputMessage] = useState<string>('');
-    let today = new Date()
-    let time = today.getHours() + ':' + today.getMinutes()
-
-
-    const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputMessage(e.currentTarget.value)
-    }
-
-    const addNewPost = () => {
-        if (inputMessage) {
-            props.dispatch({type: 'ADD-NEW-MESSAGE', time: time, message: inputMessage})
-            setInputMessage('')
-        }
-    }
-
-    const addNewPostByKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (inputMessage && e.key === 'Enter') {
-            props.dispatch({type: 'ADD-NEW-MESSAGE', time: time, message: inputMessage})
-            setInputMessage('')
-        }
-    }
 
     return (
         <div className={s.dialogs}>
@@ -74,7 +52,6 @@ function Dialogs(props: StateType) {
                                     return (
                                         <DialogsMessage
                                             key={el.id}
-                                            id={el.id}
                                             time={el.time}
                                             message={el.message}
                                         />
@@ -84,21 +61,11 @@ function Dialogs(props: StateType) {
                         </div>
                     </div>
                 </div>
-                <div className={s.dialogs__post}>
-                    <input
-                        className={s.inputTextForMessage}
-                        value={inputMessage}
-                        onChange={changeInput}
-                        onKeyPress={addNewPostByKeyPress}
-                        type="text"
-                        placeholder='Enter the text'
-                    />
-                    <button
-                        className={s.inputButtonAddNewMessage}
-                        onClick={addNewPost}
-                    >Add post
-                    </button>
-                </div>
+
+                <InputNewMessage
+                    dispatch={props.dispatch}
+                />
+
             </div>
         </div>
     )

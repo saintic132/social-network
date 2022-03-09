@@ -1,13 +1,33 @@
-import React, {useRef} from 'react';
+import React, {useState} from 'react';
 import s from "./NewPosts.module.css";
+import {ActionsType, addPostMessageAC} from "../../../../../../redux/state";
 
-function NewPosts() {
+type NewPostType = {
+    dispatch: (action: ActionsType) => void
+}
 
-    let messagePostRef = useRef<any>(null)
+function NewPosts(props: NewPostType) {
 
-    const addPost = () => {
-        let text = messagePostRef.current?.value
-        console.log(text)
+    let [inputPost, setInputPost] = useState<string>('');
+    let today = new Date()
+    let time = today.getHours() + ':' + today.getMinutes()
+
+    const addNewPostMessage = () => {
+        if (inputPost) {
+            props.dispatch(addPostMessageAC(time, inputPost))
+            setInputPost('')
+        }
+    }
+
+    const addNewPostByKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (inputPost && e.key === 'Enter') {
+            props.dispatch(addPostMessageAC(time, inputPost))
+            setInputPost('')
+        }
+    }
+
+    const newInputPost = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputPost(e.currentTarget.value)
     }
 
     return (
@@ -18,13 +38,16 @@ function NewPosts() {
             <div
                 className={s.writePosts}>
                 <input
-                    ref={messagePostRef}
                     className={s.inputForNewPost}
+                    value={inputPost}
+                    onChange={newInputPost}
+                    onKeyPress={addNewPostByKeyPress}
                     type="text"
-                    placeholder='Enter the text'/>
+                    placeholder='Enter the text'
+                />
                 <button
                     className={s.submitInputButtonForPost}
-                    onClick={addPost}
+                    onClick={addNewPostMessage}
                 >Add post
                 </button>
             </div>

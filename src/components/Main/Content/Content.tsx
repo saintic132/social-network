@@ -18,7 +18,10 @@ function Content(props: StateType) {
                 <Routes>
                     <Route
                         path="/"
-                        element={<Profile/>}
+                        element={<Profile
+                            state={props.state}
+                            dispatch={props.dispatch}
+                        />}
                     />
                     <Route
                         path="dialogs/*"

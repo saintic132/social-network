@@ -2,3 +2,52 @@
     margin-top: 50px;
     font-size: 25px;
 }
+
+.profileposts__body {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileposts__container {
+    display: flex;
+
+}
+
+.profileposts__avatar img {
+    width: 40px;
+    height: 40px;
+}
+
+.profileposts__content {
+    padding-left: 7px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profileposts__time {
+    font-size: 10px;
+    opacity: 0.5;
+}
+
+.profileposts__message {
+    padding: 7px 0 0 0;
+    text-align: justify;
+}
+
+.profileposts__dipslaylikes {
+    margin: 5px 0 0 0;
+}
+
+.profileposts__likes {
+    display: flex;
+    font-size: 14px;
+}
+
+.profileposts__likes_title {
+
+}
+
+.profileposts__countlikes {
+padding: 0 0 0 3px;
+}

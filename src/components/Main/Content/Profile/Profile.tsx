@@ -1,12 +1,16 @@
 import React from 'react';
 import AboutProfile from "./AboutProfile/AboutProfile";
 import Posts from "./Posts/Posts";
+import {StateType} from "../../../../App";
 
-function Profile() {
+function Profile(props: StateType) {
     return (
         <div>
             <AboutProfile/>
-            <Posts/>
+            <Posts
+                state={props.state}
+                dispatch={props.dispatch}
+            />
         </div>
     )
 }

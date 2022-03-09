@@ -5,6 +5,10 @@
     margin: 0 auto;
 }
 
+.header__img {
+    padding-left: 10px;
+}
+
 .header__img img {
     width: 80px;
     height: 80px;
@@ -23,7 +27,7 @@
 }
 
 
-.header__title:hover {
+.header__text:hover {
     transform: scale(1.5);
     transition: 0.5s;
 }
