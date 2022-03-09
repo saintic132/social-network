@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import dialogReducer, {AddNewMessageActionType} from "./dialog-reducer";
+import profileReducer, {AddNewPostMessageActionType} from "./profile-reducer";
 
 type DialogsNameType = {
     id: string
@@ -9,7 +11,7 @@ type DialogsMessageType = {
     time: string
     message: string
 }
-type DialogsPageType = {
+export type DialogsPageType = {
     dialogsName: DialogsNameType[]
     dialogsMessage: DialogsMessageType[]
 }
@@ -19,16 +21,11 @@ type PostMessagesType = {
     postMessage: string
     counterLike: number
 }
-type ProfilePageType = {
+export type ProfilePageType = {
     postMessages: PostMessagesType[]
 }
 
-export type AddNewMessageActionType = ReturnType<typeof addDialogMessageAC>
-export type AddNewPostMessageActionType = ReturnType<typeof addPostMessageAC>
-
-
 export type ActionsType = AddNewMessageActionType | AddNewPostMessageActionType
-
 
 export type RootStateType = {
     dialogPage: DialogsPageType
@@ -79,37 +76,14 @@ export const store: StoreType = {
     _render(_state: RootStateType) {
     },
     dispatch(action) {
-        switch (action.type) {
-            case 'ADD-NEW-MESSAGE':
-                let newMessage = {
-                    id: v1(),
-                    time: action.time,
-                    message: action.message,
-                }
-                this._state.dialogPage.dialogsMessage.push(newMessage)
-                this._render(this._state)
-                break;
-            case 'ADD-NEW-POST-MESSAGE':
-                let newPostMessage = {
-                    id: v1(),
-                    time: action.time,
-                    postMessage: action.message,
-                    counterLike: 0,
-                }
-                this._state.profilePage.postMessages.push(newPostMessage)
-                this._render(this._state)
-                break;
-            default:
-                return this.getState()
-        }
+        this._state.dialogPage = dialogReducer(this._state.dialogPage, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._render(this._state)
     },
     subscribe (observer: (state: RootStateType) => void) {
         this._render = observer
     },
 }
-
-export const addDialogMessageAC = (time: string, inputMessage: string)  => ({type: 'ADD-NEW-MESSAGE', time: time, message: inputMessage} as const)
-export const addPostMessageAC = (time: string, inputMessage: string)  => ({type: 'ADD-NEW-POST-MESSAGE', time: time, message: inputMessage} as const)
 
 
 // @ts-ignore

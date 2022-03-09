@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import s from "./NewPosts.module.css";
-import {ActionsType, addPostMessageAC} from "../../../../../../redux/state";
+import {ActionsType} from "../../../../../../redux/state";
+import {addPostMessageAC} from "../../../../../../redux/profile-reducer";
 
 type NewPostType = {
     dispatch: (action: ActionsType) => void
