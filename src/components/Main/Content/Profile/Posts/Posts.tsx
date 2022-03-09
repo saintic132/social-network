@@ -6,7 +6,7 @@ import {StateType} from "../../../../../App";
 
 function Posts(props: StateType) {
     return (
-        <div className={s.posts}>
+        <div className={s.posts__body}>
             <NewPosts
                 dispatch={props.dispatch}
             />

@@ -108,8 +108,8 @@ export const store: StoreType = {
     },
 }
 
-export const addDialogMessageAC = (time: string, inputMessage: string)  => ({type: 'ADD-NEW-MESSAGE', time: time, message: inputMessage})
-export const addPostMessageAC = (time: string, inputMessage: string)  => ({type: 'ADD-NEW-POST-MESSAGE', time: time, message: inputMessage})
+export const addDialogMessageAC = (time: string, inputMessage: string)  => ({type: 'ADD-NEW-MESSAGE', time: time, message: inputMessage} as const)
+export const addPostMessageAC = (time: string, inputMessage: string)  => ({type: 'ADD-NEW-POST-MESSAGE', time: time, message: inputMessage} as const)
 
 
 // @ts-ignore
