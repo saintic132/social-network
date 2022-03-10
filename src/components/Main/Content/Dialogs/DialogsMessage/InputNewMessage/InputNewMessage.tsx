@@ -1,7 +1,7 @@
 import s from "../../Dialogs.module.css";
 import React, {useState} from "react";
-import {ActionsType} from "../../../../../../redux/state";
 import {addDialogMessageAC} from "../../../../../../redux/dialog-reducer";
+import {ActionsType} from "../../../../../../redux/redux-store";
 
 type InputNewMessageType = {
     dispatch: (action: ActionsType) => void

@@ -2,7 +2,7 @@ import ReactDOM from "react-dom";
 import React from "react";
 import {HashRouter} from "react-router-dom";
 import App from "./App";
-import {RootStateType, store} from './redux/state'
+import store, {RootStateType} from "./redux/redux-store";
 
 const rerenderEntireTree = (state: RootStateType) => {
     ReactDOM.render(
@@ -20,4 +20,7 @@ const rerenderEntireTree = (state: RootStateType) => {
 
 rerenderEntireTree(store.getState())
 
-store.subscribe(rerenderEntireTree)
+store.subscribe(() => {
+    let state = store.getState()
+    rerenderEntireTree(state)
+})

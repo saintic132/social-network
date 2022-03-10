@@ -7,7 +7,6 @@ import {InputNewMessage} from "./DialogsMessage/InputNewMessage/InputNewMessage"
 
 
 function Dialogs(props: StateType) {
-
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__body}>
