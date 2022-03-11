@@ -2,11 +2,17 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
-import {StateType} from "../../../../App";
 import {InputNewMessage} from "./DialogsMessage/InputNewMessage/InputNewMessage";
+import {DialogsMessageType, DialogsNameType} from "../../../../redux/dialog-reducer";
 
+type DialogsType = {
+    dialogsName: DialogsNameType[]
+    dialogsMessage: DialogsMessageType[]
+    addNewPost: (inputMessage: string) => void
+    addNewMessageByKeyPress: (e: string, inputMessage: string) => void
+}
 
-function Dialogs(props: StateType) {
+function Dialogs(props: DialogsType) {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__body}>
@@ -24,11 +30,9 @@ function Dialogs(props: StateType) {
                         </div>
                         <div className={s.dialogs__propsname}>
 
-
-                                        <DialogsName
-                                            dialogsName={props.state.dialogPage.dialogsName}
-                                        />
-
+                            <DialogsName
+                                dialogsName={props.dialogsName}
+                            />
 
                         </div>
                     </div>
@@ -41,16 +45,16 @@ function Dialogs(props: StateType) {
                         <div className={s.dialogs__propsmessages}>
 
                             <DialogsMessage
-                                dialogsMessage={props.state.dialogPage.dialogsMessage}
+                                dialogsMessage={props.dialogsMessage}
                             />
-
 
                         </div>
                     </div>
                 </div>
 
                 <InputNewMessage
-                    dispatch={props.dispatch}
+                    addNewPost={props.addNewPost}
+                    addNewMessageByKeyPress={props.addNewMessageByKeyPress}
                 />
 
             </div>
