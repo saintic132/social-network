@@ -7,7 +7,7 @@ let minTime = ((today.getMinutes() -2 ) < 0 ? '0' : (today.getMinutes() -2 ))
 let time = today.getHours() + (minTime < 10 ? ':0' : ':') + today.getMinutes();
 
 export type AddNewPostMessageActionType = ReturnType<typeof addPostMessageAC>
-type PostMessagesType = {
+export type PostMessagesType = {
     id: string
     time: string
     postMessage: string

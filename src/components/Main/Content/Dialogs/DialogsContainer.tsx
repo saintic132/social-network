@@ -13,10 +13,8 @@ function DialogsContainer(props: StateType) {
             props.dispatch(addDialogMessageAC(time, inputMessage))
     }
 
-    const addNewMessageByKeyPress = (e: string, inputMessage: string) => {
-        if (inputMessage && e === 'Enter') {
+    const addNewMessageByKeyPress = (inputMessage: string) => {
             props.dispatch(addDialogMessageAC(time, inputMessage))
-        }
     }
 
     return (

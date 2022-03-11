@@ -1,9 +1,9 @@
-import s from "../../Dialogs.module.css";
 import React, {useState} from "react";
+import s from "../Dialogs.module.css";
 
 type InputNewMessageType = {
     addNewPost: (inputMessage: string) => void
-    addNewMessageByKeyPress: (e: string, inputMessage: string) => void
+    addNewMessageByKeyPress: (inputMessage: string) => void
 }
 
 export function InputNewMessage(props: InputNewMessageType) {
@@ -23,7 +23,7 @@ export function InputNewMessage(props: InputNewMessageType) {
 
     const addNewMessageByKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (inputMessage && e.key === 'Enter') {
-            props.addNewMessageByKeyPress('Enter', inputMessage)
+            props.addNewMessageByKeyPress(inputMessage)
             setInputMessage('')
         }
     }

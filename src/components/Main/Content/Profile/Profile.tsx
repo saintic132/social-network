@@ -1,13 +1,13 @@
 import React from 'react';
 import AboutProfile from "./AboutProfile/AboutProfile";
-import Posts from "./Posts/Posts";
 import {StateType} from "../../../../App";
+import PostsContainer from "./Posts/PostsContainer";
 
 function Profile(props: StateType) {
     return (
         <div>
             <AboutProfile/>
-            <Posts
+            <PostsContainer
                 state={props.state}
                 dispatch={props.dispatch}
             />

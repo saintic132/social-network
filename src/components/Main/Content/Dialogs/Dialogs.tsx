@@ -2,14 +2,14 @@ import React from "react";
 import s from './Dialogs.module.css'
 import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
-import {InputNewMessage} from "./DialogsMessage/InputNewMessage/InputNewMessage";
+import {InputNewMessage} from "./InputNewMessage/InputNewMessage";
 import {DialogsMessageType, DialogsNameType} from "../../../../redux/dialog-reducer";
 
 type DialogsType = {
     dialogsName: DialogsNameType[]
     dialogsMessage: DialogsMessageType[]
     addNewPost: (inputMessage: string) => void
-    addNewMessageByKeyPress: (e: string, inputMessage: string) => void
+    addNewMessageByKeyPress: (inputMessage: string) => void
 }
 
 function Dialogs(props: DialogsType) {

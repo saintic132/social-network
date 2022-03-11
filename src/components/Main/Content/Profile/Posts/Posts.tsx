@@ -2,25 +2,27 @@ import React from 'react';
 import s from "./Posts.module.css";
 import ProfilePosts from "./ProfilePosts/ProfilePosts";
 import NewPosts from "./NewPosts/NewPosts";
-import {StateType} from "../../../../../App";
+import {PostMessagesType} from "../../../../../redux/profile-reducer";
 
-function Posts(props: StateType) {
+type PostType = {
+    postMessages: PostMessagesType[]
+    addNewPostMessage: (inputPost: string) => void
+    addNewPostByKeyPress: (inputPost: string) => void
+}
+
+function Posts(props: PostType) {
+
     return (
         <div className={s.posts__body}>
             <NewPosts
-                dispatch={props.dispatch}
+                addNewPostMessage={props.addNewPostMessage}
+                addNewPostByKeyPress={props.addNewPostByKeyPress}
             />
 
-            {
-                props.state.profilePage.postMessages.map(el => {
-                    return (
-                        <ProfilePosts
-                            key={el.id}
-                            {...el}
-                        />
-                    )
-                })
-            }
+            <ProfilePosts
+                postMessages={props.postMessages}
+            />
+
 
         </div>
     )

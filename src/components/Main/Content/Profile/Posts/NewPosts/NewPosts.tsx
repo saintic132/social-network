@@ -1,28 +1,25 @@
 import React, {useState} from 'react';
 import s from "./NewPosts.module.css";
-import {addPostMessageAC} from "../../../../../../redux/profile-reducer";
-import {ActionsType} from "../../../../../../redux/redux-store";
 
 type NewPostType = {
-    dispatch: (action: ActionsType) => void
+    addNewPostMessage: (inputPost: string) => void
+    addNewPostByKeyPress: (inputPost: string) => void
 }
 
 function NewPosts(props: NewPostType) {
 
     let [inputPost, setInputPost] = useState<string>('');
-    let today = new Date()
-    let time = today.getHours() + ':' + today.getMinutes()
 
     const addNewPostMessage = () => {
         if (inputPost) {
-            props.dispatch(addPostMessageAC(time, inputPost))
+            props.addNewPostMessage(inputPost)
             setInputPost('')
         }
     }
 
     const addNewPostByKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (inputPost && e.key === 'Enter') {
-            props.dispatch(addPostMessageAC(time, inputPost))
+            props.addNewPostByKeyPress(inputPost)
             setInputPost('')
         }
     }
