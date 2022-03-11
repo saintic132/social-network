@@ -6,11 +6,11 @@ let today = new Date()
 let minTime = ((today.getMinutes() - 2) < 0 ? '0' : (today.getMinutes() - 2))
 let time = today.getHours() + (minTime < 10 ? ':0' : ':') + today.getMinutes();
 
-type DialogsNameType = {
+export type DialogsNameType = {
     id: string
     name: string
 }
-type DialogsMessageType = {
+export type DialogsMessageType = {
     id: string
     time: string
     message: string

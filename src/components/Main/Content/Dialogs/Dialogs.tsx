@@ -24,17 +24,11 @@ function Dialogs(props: StateType) {
                         </div>
                         <div className={s.dialogs__propsname}>
 
-                            {
-                                props.state.dialogPage.dialogsName.map(el => {
-                                    return (
+
                                         <DialogsName
-                                            key={el.id}
-                                            id={el.id}
-                                            name={el.name}
+                                            dialogsName={props.state.dialogPage.dialogsName}
                                         />
-                                    )
-                                })
-                            }
+
 
                         </div>
                     </div>
@@ -46,17 +40,11 @@ function Dialogs(props: StateType) {
                         </div>
                         <div className={s.dialogs__propsmessages}>
 
-                            {
-                                props.state.dialogPage.dialogsMessage.map(el => {
-                                    return (
-                                        <DialogsMessage
-                                            key={el.id}
-                                            time={el.time}
-                                            message={el.message}
-                                        />
-                                    )
-                                })
-                            }
+                            <DialogsMessage
+                                dialogsMessage={props.state.dialogPage.dialogsMessage}
+                            />
+
+
                         </div>
                     </div>
                 </div>

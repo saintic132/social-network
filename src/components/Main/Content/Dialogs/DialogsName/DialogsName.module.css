@@ -11,7 +11,7 @@ a {
     transition: 0.3s;
 }
 
-.names:last-child > div{
+.names > div:last-child{
     border-bottom: ridge black;
 }
 
@@ -24,8 +24,4 @@ a {
     margin: 5px auto;
     border: 1px solid transparent;
     border-top: ridge black;
-}
-
-.names__text {
-
 }
