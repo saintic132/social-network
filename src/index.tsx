@@ -10,7 +10,7 @@ const rerenderEntireTree = (store: Store<ReduxStateType, ActionsType>) => {
     ReactDOM.render(
         <React.StrictMode>
             <HashRouter>
-                <Provider>
+                <Provider store={store}>
                     <App
                     />
                 </Provider>

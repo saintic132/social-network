@@ -4,8 +4,7 @@ import dialogReducer, {AddNewMessageActionType} from "./dialog-reducer";
 
 export type ActionsType = AddNewMessageActionType | AddNewPostMessageActionType
 
-type RootStateReducers = typeof reducers;
-export type ReduxStateType = ReturnType<RootStateReducers>
+export type ReduxStateType = ReturnType<typeof reducers>
 
 let reducers = combineReducers({
     dialogPage: dialogReducer,
