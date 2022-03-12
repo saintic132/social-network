@@ -1,30 +1,42 @@
 import React from "react";
-import {StateType} from "../../../../App";
 import Dialogs from "./Dialogs";
 import {addDialogMessageAC} from "../../../../redux/dialog-reducer";
+import StoreContext from "../../../../redux/store-context";
 
 
-function DialogsContainer(props: StateType) {
-
-    let state = props.store.getState()
-    let today = new Date()
-    let time = today.getHours() + (today.getMinutes() < 10 ? ':0' : ':') + today.getMinutes()
-
-    const addNewPost = (inputMessage: string) => {
-            props.store.dispatch(addDialogMessageAC(time, inputMessage))
-    }
-
-    const addNewMessageByKeyPress = (inputMessage: string) => {
-            props.store.dispatch(addDialogMessageAC(time, inputMessage))
-    }
+function DialogsContainer() {
 
     return (
-        <Dialogs
-            dialogsName={state.dialogPage.dialogsName}
-            dialogsMessage={state.dialogPage.dialogsMessage}
-            addNewPost={addNewPost}
-            addNewMessageByKeyPress={addNewMessageByKeyPress}
-        />
+        <StoreContext.Consumer>
+            {
+                (store) => {
+
+                    let state = store.getState()
+                    let today = new Date()
+                    let time = today.getHours() + (today.getMinutes() < 10 ? ':0' : ':') + today.getMinutes()
+
+                    const addNewPost = (inputMessage: string) => {
+                        store.dispatch(addDialogMessageAC(time, inputMessage))
+                    }
+
+                    const addNewMessageByKeyPress = (inputMessage: string) => {
+                        store.dispatch(addDialogMessageAC(time, inputMessage))
+                    }
+
+
+                    return (
+                        <Dialogs
+                            dialogsName={state.dialogPage.dialogsName}
+                            dialogsMessage={state.dialogPage.dialogsMessage}
+                            addNewPost={addNewPost}
+                            addNewMessageByKeyPress={addNewMessageByKeyPress}
+                        />
+                    )
+                }
+            }
+
+
+        </StoreContext.Consumer>
     )
 }
 

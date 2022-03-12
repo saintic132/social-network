@@ -7,11 +7,10 @@ import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
 import Error404 from "../../../404/Error404";
-import {StateType} from "../../../App";
 import DialogsContainer from "./Dialogs/DialogsContainer";
 
 
-function Content(props: StateType) {
+function Content() {
     return (
         <div className={s.content}>
                 <MainLogo/>
@@ -19,14 +18,14 @@ function Content(props: StateType) {
                     <Route
                         path="/"
                         element={<Profile
-                            store={props.store}
+
                         />}
                     />
                     <Route
                         path="dialogs/*"
                         element={
                             <DialogsContainer
-                                store={props.store}
+
                             />}
                     />
                     <Route
