@@ -3,11 +3,11 @@ import s from './App.module.css';
 import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import {ActionsType, RootStateType} from "./redux/redux-store";
+import {ActionsType, ReduxStateType} from "./redux/redux-store";
+import {Store} from "redux";
 
 export type StateType = {
-    state: RootStateType
-    dispatch: (action: ActionsType) => void
+    store: Store<ReduxStateType, ActionsType>
 }
 
 function App(props: StateType) {
@@ -15,12 +15,11 @@ function App(props: StateType) {
     return (
 
         <div className={s.app}>
-            <Header />
+            <Header/>
             <Main
-                state={props.state}
-                dispatch={props.dispatch}
+                store={props.store}
             />
-            <Footer />
+            <Footer/>
         </div>
     );
 }

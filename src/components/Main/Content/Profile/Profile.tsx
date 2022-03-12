@@ -8,8 +8,7 @@ function Profile(props: StateType) {
         <div>
             <AboutProfile/>
             <PostsContainer
-                state={props.state}
-                dispatch={props.dispatch}
+                store={props.store}
             />
         </div>
     )

@@ -11,8 +11,7 @@ function Main (props: StateType) {
         <div className={s.main}>
             <Nav/>
             <Content
-                state={props.state}
-                dispatch={props.dispatch}
+                store={props.store}
             />
 
         </div>

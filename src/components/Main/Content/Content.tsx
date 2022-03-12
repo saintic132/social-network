@@ -19,16 +19,14 @@ function Content(props: StateType) {
                     <Route
                         path="/"
                         element={<Profile
-                            state={props.state}
-                            dispatch={props.dispatch}
+                            store={props.store}
                         />}
                     />
                     <Route
                         path="dialogs/*"
                         element={
                             <DialogsContainer
-                                state={props.state}
-                                dispatch={props.dispatch}
+                                store={props.store}
                             />}
                     />
                     <Route

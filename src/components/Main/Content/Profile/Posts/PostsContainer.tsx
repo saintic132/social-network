@@ -6,22 +6,25 @@ import {addPostMessageAC} from "../../../../../redux/profile-reducer";
 
 function PostsContainer(props: StateType) {
 
+    let state = props.store.getState()
     let today = new Date()
     let time = today.getHours() + ':' + today.getMinutes()
 
+
+
     const addNewPostMessage = (inputPost: string) => {
-            props.dispatch(addPostMessageAC(time, inputPost))
+            props.store.dispatch(addPostMessageAC(time, inputPost))
     }
 
     const addNewPostByKeyPress = (inputPost: string) => {
-            props.dispatch(addPostMessageAC(time, inputPost))
+            props.store.dispatch(addPostMessageAC(time, inputPost))
     }
 
 
     return (
 
         <Posts
-            postMessages={props.state.profilePage.postMessages}
+            postMessages={state.profilePage.postMessages}
             addNewPostMessage={addNewPostMessage}
             addNewPostByKeyPress={addNewPostByKeyPress}
         />
