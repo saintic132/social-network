@@ -5,7 +5,7 @@ import {ActionsType, ReduxStateType} from "./redux/redux-store";
 
 type ProviderType = {
     store: Store<ReduxStateType, ActionsType>
-    children: any
+    children: React.ReactNode
 }
 
 const Provider = (props: ProviderType) => {
