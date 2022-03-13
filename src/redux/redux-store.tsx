@@ -14,7 +14,4 @@ let reducers = combineReducers({
 
 let store: Store<ReduxStateType, ActionsType> = createStore(reducers)
 
-//@ts-ignore
-window.store = store
-
 export default store
