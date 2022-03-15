@@ -33,8 +33,9 @@ const profileReducer = (state: initialProfileStateType = initialState, action: A
                 postMessage: action.message,
                 counterLike: 0,
             }
-            state.postMessages.push(newPostMessage)
-            return state
+            let copyStateAddNewPost = {...state, postMessages: [...state.postMessages]}
+            copyStateAddNewPost.postMessages.push(newPostMessage)
+            return copyStateAddNewPost
         default:
             return state
     }

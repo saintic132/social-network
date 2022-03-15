@@ -1,43 +1,29 @@
-import React from "react";
 import Dialogs from "./Dialogs";
 import {addDialogMessageAC} from "../../../../redux/dialog-reducer";
-import StoreContext from "../../../../redux/store-context";
+import {connect} from "react-redux";
 
 
-function DialogsContainer() {
+   let today = new Date()
+    let time = today.getHours() + (today.getMinutes() < 10 ? ':0' : ':') + today.getMinutes()
 
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
+    let mapStateToProps = (state: any) => {
+        return {
+            dialogsName: state.dialogPage.dialogsName,
+            dialogsMessage: state.dialogPage.dialogsMessage
+        }
+    }
 
-                    let state = store.getState()
-                    let today = new Date()
-                    let time = today.getHours() + (today.getMinutes() < 10 ? ':0' : ':') + today.getMinutes()
-
-                    const addNewPost = (inputMessage: string) => {
-                        store.dispatch(addDialogMessageAC(time, inputMessage))
-                    }
-
-                    const addNewMessageByKeyPress = (inputMessage: string) => {
-                        store.dispatch(addDialogMessageAC(time, inputMessage))
-                    }
-
-
-                    return (
-                        <Dialogs
-                            dialogsName={state.dialogPage.dialogsName}
-                            dialogsMessage={state.dialogPage.dialogsMessage}
-                            addNewPost={addNewPost}
-                            addNewMessageByKeyPress={addNewMessageByKeyPress}
-                        />
-                    )
-                }
+    let mapDispatchToProps = (dispatch: any) => {
+        return {
+            addNewPost: (inputMessage: string) => {
+                dispatch(addDialogMessageAC(time, inputMessage))
+            },
+            addNewMessageByKeyPress: (inputMessage: string) => {
+                addDialogMessageAC(time, inputMessage)
             }
+        }
+    }
 
-
-        </StoreContext.Consumer>
-    )
-}
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer

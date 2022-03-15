@@ -48,8 +48,9 @@ const dialogReducer = (state: initialDialogStateType = initialState, action: Act
                 time: action.time,
                 message: action.message,
             }
-            state.dialogsMessage.push(newMessage)
-            return state
+            let copyStateForAddPost = {...state, dialogsMessage: [...state.dialogsMessage]}
+            copyStateForAddPost.dialogsMessage.push(newMessage)
+            return copyStateForAddPost
         default:
             return state
     }
