@@ -28,7 +28,7 @@
     padding-top: 10px;
 }
 
-.nav div:nth-child(5) {
+.nav div:last-child {
     padding-top: 20px;
 }
 

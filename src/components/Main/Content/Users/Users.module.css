@@ -1,0 +1,77 @@
+.users {
+    max-width: 850px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.users__body {
+    display: flex;
+    flex: 0 1 48.3%;
+    margin: 30px 0 0 0;
+    border: 1px solid cadetblue;
+    border-radius: 3px;
+}
+
+.users__body:nth-child(even) {
+    margin-left: 10px;
+}
+
+.users__location {
+    width: 200px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 5px 0 0 15px;
+}
+
+.users__country, .users__city {
+    display: flex;
+    align-items: center;
+    padding: 2px 0 2px 0;
+}
+
+.users__profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 0 auto;
+    margin-right: 70px;
+    padding: 5px 0;
+}
+
+.users__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.users__name, .users__status {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 0 2px 0;
+}
+
+.users__country_title, .users__city_title, .users__name_title, .users__status_title {
+    font-size: 14px;
+}
+
+.users__country_name, .users__city_name, .users__name_name, .users__status_name {
+    text-decoration: underline;
+    padding-left: 5px;
+}
+
+.users__avatar img {
+    width: 100px;
+    height: 100px;
+}
+
+.users__button {
+    padding: 5px 0 5px 0;
+}
+
+.users__button button {
+    width: 68px;
+    height: 22px;
+}

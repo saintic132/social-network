@@ -20,7 +20,9 @@ export type initialProfileStateType = {
 
 let initialState: initialProfileStateType = {
     postMessages: [
-        {id: v1(), time: time, postMessage: 'My first post message', counterLike: 0}
+        {
+            id: v1(), time: time, postMessage: 'My first post message', counterLike: 0
+        }
     ]
 }
 
@@ -33,9 +35,10 @@ const profileReducer = (state: initialProfileStateType = initialState, action: A
                 postMessage: action.message,
                 counterLike: 0,
             }
-            let copyStateAddNewPost = {...state, postMessages: [...state.postMessages]}
-            copyStateAddNewPost.postMessages.push(newPostMessage)
-            return copyStateAddNewPost
+            return {
+                ...state,
+                postMessages: [...state.postMessages, newPostMessage]
+            }
         default:
             return state
     }
