@@ -19,7 +19,9 @@ function Users(props: UsersPropsType) {
                 props.users.map(el => {
 
                     return (
-                        <div className={s.users__body}>
+                        <div
+                            key={el.id}
+                            className={s.users__body}>
                             <div className={s.users__location}>
                                 <div className={s.users__country}>
                                     <div className={s.users__country_title}>

@@ -14,7 +14,9 @@ function DialogsMessage(props: MessageType) {
 
                 props.dialogsMessage.map(el => {
                     return (
-                        <div className={s.messages__body}>
+                        <div
+                            key={el.id}
+                            className={s.messages__body}>
                             <div className={s.messages__avatar}>
                                 <img src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile.png"
                                      alt="avatar"/>

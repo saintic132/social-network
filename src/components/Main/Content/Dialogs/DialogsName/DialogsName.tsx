@@ -19,7 +19,9 @@ function DialogsName(props: NamesType) {
                     const path = '/dialogs/' + el.id
 
                     return (
-                        <div className={s.names__columns}>
+                        <div
+                            key={el.id}
+                            className={s.names__columns}>
                             <NavLink to={path}>
                                 <div className={s.names__text}>
                                     {el.name}
