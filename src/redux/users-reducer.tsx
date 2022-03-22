@@ -1,9 +1,10 @@
 import {ActionsType} from "./redux-store";
 
-export type UsersActionType = FollowACType | UnfollowACType | SetUsersAC
+export type UsersActionType = FollowACType | UnfollowACType | SetUsersACType | setCurrentPageACType
 export type FollowACType = ReturnType<typeof followAC>
 export type UnfollowACType = ReturnType<typeof unfollowAC>
-export type SetUsersAC = ReturnType<typeof setUsersAC>
+export type SetUsersACType = ReturnType<typeof setUsersAC>
+export type setCurrentPageACType = ReturnType<typeof setCurrentPageAC>
 
 
 type PhotosType = {
@@ -19,40 +20,17 @@ export type UsersType = {
     followed: boolean
 }
 export type InitialUserStateType = {
-    users: UsersType[]
+    users: UsersType[],
+    allUsers: number,
+    usersCountOnPage: number,
+    currentPageNumber: number
 }
 
 let initialState: InitialUserStateType = {
-    users: [
-        // {
-        //     id: v1(),
-        //     avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector-PNG-Image.png',
-        //     followed: true,
-        //     fullName: 'Ivansk',
-        //     status: 'Hello world',
-        //     location: {city: 'Minsk', country: 'Belarus'}
-        // },
-        // {
-        //     id: v1(),
-        //     avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-Vector.png',
-        //     followed: false,
-        //     fullName: 'Mixa',
-        //     status: 'Mi gracia',
-        //     location: {
-        //         city: 'Kiev', country: 'Ukraine'
-        //     }
-        // },
-        // {
-        //     id: v1(),
-        //     avatar: 'https://www.pngall.com/wp-content/uploads/12/Avatar.png',
-        //     followed: false,
-        //     fullName: 'Lexa',
-        //     status: 'Lololo',
-        //     location: {
-        //         city: 'Moscow', country: 'Russia'
-        //     }
-        // }
-    ]
+    users: [],
+    allUsers: 60,
+    usersCountOnPage: 6,
+    currentPageNumber: 1
 };
 
 const usersReducer = (state: InitialUserStateType = initialState, action: ActionsType): InitialUserStateType => {
@@ -84,6 +62,11 @@ const usersReducer = (state: InitialUserStateType = initialState, action: Action
                 ...state,
                 users: [...action.setUsers]
             }
+        case 'SET-CURRENT-PAGE':
+            return {
+                ...state,
+                currentPageNumber: action.currentPage
+            }
         default:
             return state
     }
@@ -92,5 +75,6 @@ const usersReducer = (state: InitialUserStateType = initialState, action: Action
 export const followAC = (id: string) => ({type: 'FOLLOW', userId: id} as const)
 export const unfollowAC = (id: string) => ({type: 'UNFOLLOW', userId: id} as const)
 export const setUsersAC = (users: UsersType[]) => ({type: 'SET-USERS', setUsers: users} as const)
+export const setCurrentPageAC = (page: number) => ({type: 'SET-CURRENT-PAGE', currentPage: page} as const)
 
 export default usersReducer

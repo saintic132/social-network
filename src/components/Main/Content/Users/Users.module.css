@@ -1,28 +1,33 @@
 .users {
     max-width: 850px;
     display: flex;
+    flex-direction: column;
+}
+
+.users__container {
+    display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
 .users__body {
     display: flex;
-    flex: 0 1 48.3%;
-    margin: 30px 0 0 0;
+    flex: 0 1 48.8%;
+    margin: 15px 0 0 0;
     border: 1px solid cadetblue;
     border-radius: 3px;
 }
 
 .users__body:nth-child(even) {
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 .users__location {
-    width: 200px;
+    max-width: 200px;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    padding: 5px 0 0 15px;
+    padding: 5px 5px 5px 10px;
 }
 
 .users__country, .users__city {
@@ -53,10 +58,12 @@
 }
 
 .users__country_title, .users__city_title, .users__name_title, .users__status_title {
+    align-self: flex-start;
     font-size: 14px;
 }
 
 .users__country_name, .users__city_name, .users__name_name, .users__status_name {
+    max-width: 150px;
     text-decoration: underline;
     padding-left: 5px;
 }
@@ -73,4 +80,25 @@
 .users__button button {
     width: 68px;
     height: 22px;
+}
+
+.users__pages {
+    margin-top: 20px;
+    justify-self: center;
+    align-self: center;
+}
+
+.users__page_bold {
+    color: #0033ff;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.users__count > span {
+    margin: 0 2px;
+    padding: 0 5px;
+}
+
+.users__count:hover {
+    cursor: pointer;
 }

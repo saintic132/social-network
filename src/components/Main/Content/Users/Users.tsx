@@ -6,27 +6,42 @@ import imgPhoto from '../../../../assets/img/no-avatar.png'
 
 type UsersPropsType = {
     users: UsersType[]
+    allUsers: number,
+    usersCountOnPage: number,
+    currentPageNumber: number
     follow: (id: string) => void
     unfollow: (id: string) => void
     setUsers: (users: UsersType[]) => void
+    setCurrentPage: (page: number) => void
 }
 
 function Users(props: UsersPropsType) {
 
-    const getUsers = () => {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    if (props.users.length === 0) {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}`)
             .then(response => {
                 props.setUsers(response.data.items)
             })
     }
 
 
+    const pagesRender = Math.ceil(props.allUsers / props.usersCountOnPage)
+    let count = []
+    for (let i = 1; i <= pagesRender; i++) {
+        count.push(i)
+    }
+
+    const setNewPage = (page: number) => {
+        props.setCurrentPage(page)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}&page=${page}`)
+            .then(response => {
+                props.setUsers(response.data.items)
+            })
+    }
+
     return (
-        <div>
-            <div>
-                <button onClick={getUsers}>Get users</button>
-            </div>
-            <div className={s.users}>
+        <div className={s.users}>
+            <div className={s.users__container}>
 
                 {
                     props.users.map(el => {
@@ -86,6 +101,22 @@ function Users(props: UsersPropsType) {
                     })
                 }
 
+            </div>
+            <div className={s.users__pages}>
+                    <span className={s.users__count}>
+                        {
+                            count.map(el => {
+                                return (
+                                    <span
+                                        className={props.currentPageNumber === el ? s.users__page_bold : ''}
+                                        onClick={() => setNewPage(el)}
+                                    >
+                                        {el}
+                                    </span>
+                                )
+                            })
+                        }
+                    </span>
             </div>
         </div>
 
