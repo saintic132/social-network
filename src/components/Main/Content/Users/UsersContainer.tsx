@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {
     followAC,
     InitialUserStateType,
-    setCurrentPageAC,
+    setCurrentPageAC, setIsFetchingAC,
     setUsersAC,
     unfollowAC,
     UsersType
@@ -16,7 +16,8 @@ let mapStateToProps = (state: ReduxStateType): InitialUserStateType => {
         users: state.usersPage.users,
         allUsers: state.usersPage.allUsers,
         usersCountOnPage: state.usersPage.usersCountOnPage,
-        currentPageNumber: state.usersPage.currentPageNumber
+        currentPageNumber: state.usersPage.currentPageNumber,
+        isFetching: state.usersPage.isFetching
     }
 }
 
@@ -25,6 +26,7 @@ type MapDispatchPropsType = {
     unfollow: (id: string) => void
     setUsers: (users: UsersType[]) => void
     setCurrentPage: (page: number) => void
+    setIsFetching: (fetching: boolean) => void
 }
 
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
@@ -40,6 +42,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         },
         setCurrentPage: (page: number) => {
             dispatch(setCurrentPageAC(page))
+        },
+        setIsFetching: (fetching: boolean) => {
+            dispatch(setIsFetchingAC(fetching))
         }
     }
 }

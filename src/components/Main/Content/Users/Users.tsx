@@ -3,6 +3,7 @@ import s from './Users.module.css'
 import {UsersType} from "../../../../redux/users-reducer";
 import axios from "axios";
 import imgPhoto from '../../../../assets/img/no-avatar.png'
+import Preloader from "../../../../common/Preloader/Preloader";
 
 type UsersPropsType = {
     users: UsersType[]
@@ -13,13 +14,17 @@ type UsersPropsType = {
     unfollow: (id: string) => void
     setUsers: (users: UsersType[]) => void
     setCurrentPage: (page: number) => void
+    isFetching: boolean
+    setIsFetching: (fetching: boolean) => void
 }
 
 function Users(props: UsersPropsType) {
 
     if (props.users.length === 0) {
+        props.setIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}`)
             .then(response => {
+                props.setIsFetching(false)
                 props.setUsers(response.data.items)
             })
     }
@@ -32,15 +37,20 @@ function Users(props: UsersPropsType) {
     }
 
     const setNewPage = (page: number) => {
+        props.setIsFetching(true)
         props.setCurrentPage(page)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}&page=${page}`)
             .then(response => {
+                props.setIsFetching(false)
                 props.setUsers(response.data.items)
             })
     }
 
     return (
         <div className={s.users}>
+            <div>
+                {props.isFetching && <Preloader />}
+            </div>
             <div className={s.users__container}>
 
                 {
@@ -50,24 +60,6 @@ function Users(props: UsersPropsType) {
                             <div
                                 key={el.id}
                                 className={s.users__body}>
-                                <div className={s.users__location}>
-                                    <div className={s.users__country}>
-                                        <div className={s.users__country_title}>
-                                            Country:
-                                        </div>
-                                        <div className={s.users__country_name}>
-                                            {'el.location.country'}
-                                        </div>
-                                    </div>
-                                    <div className={s.users__city}>
-                                        <div className={s.users__city_title}>
-                                            City:
-                                        </div>
-                                        <div className={s.users__city_name}>
-                                            {'el.location.city'}
-                                        </div>
-                                    </div>
-                                </div>
                                 <div className={s.users__profile}>
                                     <div className={s.users__avatar}>
                                         <img src={el.photos.small ? el.photos.small : imgPhoto} alt="avatar"/>
@@ -93,6 +85,24 @@ function Users(props: UsersPropsType) {
                                             {el.followed
                                                 ? <button onClick={() => props.unfollow(el.id)}>Unfollow</button>
                                                 : <button onClick={() => props.follow(el.id)}>Follow</button>}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={s.users__location}>
+                                    <div className={s.users__country}>
+                                        <div className={s.users__country_title}>
+                                            Country:
+                                        </div>
+                                        <div className={s.users__country_name}>
+                                            {'location.country'}
+                                        </div>
+                                    </div>
+                                    <div className={s.users__city}>
+                                        <div className={s.users__city_title}>
+                                            City:
+                                        </div>
+                                        <div className={s.users__city_name}>
+                                            {'location.city'}
                                         </div>
                                     </div>
                                 </div>

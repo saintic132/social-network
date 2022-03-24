@@ -1,10 +1,11 @@
 import {ActionsType} from "./redux-store";
 
-export type UsersActionType = FollowACType | UnfollowACType | SetUsersACType | setCurrentPageACType
+export type UsersActionType = FollowACType | UnfollowACType | SetUsersACType | setCurrentPageACType | setIsFetchingACType
 export type FollowACType = ReturnType<typeof followAC>
 export type UnfollowACType = ReturnType<typeof unfollowAC>
 export type SetUsersACType = ReturnType<typeof setUsersAC>
 export type setCurrentPageACType = ReturnType<typeof setCurrentPageAC>
+export type setIsFetchingACType = ReturnType<typeof setIsFetchingAC>
 
 
 type PhotosType = {
@@ -24,13 +25,15 @@ export type InitialUserStateType = {
     allUsers: number,
     usersCountOnPage: number,
     currentPageNumber: number
+    isFetching: boolean
 }
 
 let initialState: InitialUserStateType = {
     users: [],
     allUsers: 60,
     usersCountOnPage: 6,
-    currentPageNumber: 1
+    currentPageNumber: 1,
+    isFetching: false
 };
 
 const usersReducer = (state: InitialUserStateType = initialState, action: ActionsType): InitialUserStateType => {
@@ -67,6 +70,11 @@ const usersReducer = (state: InitialUserStateType = initialState, action: Action
                 ...state,
                 currentPageNumber: action.currentPage
             }
+        case 'SET-FETCHING-PAGE':
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
         default:
             return state
     }
@@ -76,5 +84,6 @@ export const followAC = (id: string) => ({type: 'FOLLOW', userId: id} as const)
 export const unfollowAC = (id: string) => ({type: 'UNFOLLOW', userId: id} as const)
 export const setUsersAC = (users: UsersType[]) => ({type: 'SET-USERS', setUsers: users} as const)
 export const setCurrentPageAC = (page: number) => ({type: 'SET-CURRENT-PAGE', currentPage: page} as const)
+export const setIsFetchingAC = (fetching: boolean) => ({type: 'SET-FETCHING-PAGE', isFetching: fetching} as const)
 
 export default usersReducer
