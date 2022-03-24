@@ -4,6 +4,7 @@ import {UsersType} from "../../../../redux/users-reducer";
 import axios from "axios";
 import imgPhoto from '../../../../assets/img/no-avatar.png'
 import Preloader from "../../../../common/Preloader/Preloader";
+import {NavLink} from "react-router-dom";
 
 type UsersPropsType = {
     users: UsersType[]
@@ -61,9 +62,13 @@ function Users(props: UsersPropsType) {
                                 key={el.id}
                                 className={s.users__body}>
                                 <div className={s.users__profile}>
-                                    <div className={s.users__avatar}>
-                                        <img src={el.photos.small ? el.photos.small : imgPhoto} alt="avatar"/>
-                                    </div>
+
+                                        <div className={s.users__avatar}>
+                                            <NavLink to={'/profile/' + el.id}>
+                                            <img src={el.photos.small ? el.photos.small : imgPhoto} alt="avatar"/>
+                                            </NavLink>
+                                        </div>
+
                                     <div className={s.users__info}>
                                         <div className={s.users__name}>
                                             <div className={s.users__name_title}>
@@ -118,6 +123,7 @@ function Users(props: UsersPropsType) {
                             count.map(el => {
                                 return (
                                     <span
+                                        key={el}
                                         className={props.currentPageNumber === el ? s.users__page_bold : ''}
                                         onClick={() => setNewPage(el)}
                                     >

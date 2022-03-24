@@ -1,9 +1,9 @@
 import {combineReducers, createStore, Store} from "redux";
-import profileReducer, {AddNewPostMessageActionType} from "./profile-reducer";
+import profileReducer, {ProfileReducersActionType} from "./profile-reducer";
 import dialogReducer, {AddNewMessageActionType} from "./dialog-reducer";
 import usersReducer, {UsersActionType} from "./users-reducer";
 
-export type ActionsType = AddNewMessageActionType | AddNewPostMessageActionType | UsersActionType
+export type ActionsType = AddNewMessageActionType | ProfileReducersActionType | UsersActionType
 
 export type ReduxStateType = ReturnType<typeof rootReducer>
 

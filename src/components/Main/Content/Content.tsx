@@ -1,7 +1,7 @@
 import React from 'react';
 import s from "./Content.module.css";
 import MainLogo from "./MainLogo/MainLogo";
-import Profile from "./Profile/Profile";
+import SelfProfile from "./SelfProfile/SelfProfile";
 import {Route, Routes} from "react-router-dom";
 import News from "./News/News";
 import Music from "./Music/Music";
@@ -9,6 +9,7 @@ import Settings from "./Settings/Settings";
 import Error404 from "../../../404/Error404";
 import DialogsContainer from "./Dialogs/DialogsContainer";
 import UsersContainer from "./Users/UsersContainer";
+import ProfileContainer from "./Profile/ProfileContainer";
 
 
 function Content() {
@@ -18,7 +19,11 @@ function Content() {
             <Routes>
                 <Route
                     path="/"
-                    element={<Profile/>}
+                    element={<SelfProfile/>}
+                />
+                <Route
+                    path="profile/*"
+                    element={<ProfileContainer/>}
                 />
                 <Route
                     path="dialogs/*"

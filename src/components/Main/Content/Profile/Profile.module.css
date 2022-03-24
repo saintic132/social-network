@@ -1,0 +1,80 @@
+.profile {
+    max-width: 850px;
+    margin-top: 50px;
+}
+
+.profile__avatar img{
+    height: 150px;
+    width: 150px;
+    border-radius: 15px;
+}
+
+.profile__profile {
+    display: flex;
+}
+
+.profile__aboutprofile {
+    padding-left: 50px;
+}
+
+.profile__name, .profile__about {
+    display: flex;
+}
+
+.profile__about {
+    padding-top: 20px;
+}
+
+.profile__name_title, .profile__about_title {
+    text-decoration: underline;
+}
+
+.profile__name_name, .profile__about_name {
+    padding-left: 10px;
+}
+
+.profile__status {
+    padding-left: 20px;
+}
+
+.profile__jobStatus_body {
+    margin-top: 30px;
+}
+
+.profile__jobStatus {
+    display: flex;
+}
+
+.profile__jobstatus_true {
+    color: green;
+}
+
+.profile__jobstatus_false {
+    color: red;
+}
+
+.profile__jobstatus_descr {
+    display: flex;
+    padding-top: 10px;
+}
+
+.profile__jobstatus_descr > div:last-child {
+    color: green;
+    padding-left: 10px;
+}
+
+.profile__contacts {
+    display: flex;
+    margin-top: 60px;
+}
+
+.profile__contacts_title {
+    align-self: center;
+}
+
+.profile__contacts_img img {
+    padding: 0 2px;
+    width: 30px;
+    height: 30px;
+}
+
