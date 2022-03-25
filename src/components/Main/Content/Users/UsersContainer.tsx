@@ -25,8 +25,8 @@ let mapStateToProps = (state: ReduxStateType): InitialUserStateType => {
 }
 
 type MapDispatchPropsType = {
-    follow: (id: string) => void
-    unfollow: (id: string) => void
+    follow: (id: number) => void
+    unfollow: (id: number) => void
     setUsers: (users: UsersType[]) => void
     setCurrentPage: (page: number) => void
     setIsFetching: (fetching: boolean) => void
@@ -34,10 +34,10 @@ type MapDispatchPropsType = {
 
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        follow: (id: string) => {
+        follow: (id: number) => {
             dispatch(followAC(id))
         },
-        unfollow: (id: string) => {
+        unfollow: (id: number) => {
             dispatch(unfollowAC(id))
         },
         setUsers: (users: UsersType[]) => {
@@ -57,8 +57,8 @@ export type UsersPropsType = {
     allUsers: number,
     usersCountOnPage: number,
     currentPageNumber: number
-    follow: (id: string) => void
-    unfollow: (id: string) => void
+    follow: (id: number) => void
+    unfollow: (id: number) => void
     setUsers: (users: UsersType[]) => void
     setCurrentPage: (page: number) => void
     isFetching: boolean
@@ -81,12 +81,10 @@ function UsersRequest(props: UsersPropsType) {
                 })
         }
     }, [])
-
-
-
     const setCurrentPage = (page: number) => {
         props.setIsFetching(true)
         props.setCurrentPage(page)
+
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}&page=${page}`, {
             withCredentials: true,
             headers: {
@@ -97,14 +95,43 @@ function UsersRequest(props: UsersPropsType) {
                 props.setUsers(response.data.items)
             })
     }
+    const setUserFollow = (id: number) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '73140186-6c0b-4d93-85fb-13e7b368f254'
+            }
+        })
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    props.follow(id)
+                }
+            })
+    }
+
+    const setUserUnFollow = (id: number) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '73140186-6c0b-4d93-85fb-13e7b368f254'
+            }
+        })
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    props.unfollow(id)
+                }
+            })
+    }
 
     if (props.isFetching) {
-        return <Preloader/>
+        return <Preloader />
     }
 
     return <Users
         {...props}
         setCurrentPage={setCurrentPage}
+        setUserFollow={setUserFollow}
+        setUserUnFollow={setUserUnFollow}
     />
 }
 

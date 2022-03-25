@@ -14,7 +14,7 @@ type PhotosType = {
 }
 export type UsersType = {
     name: string
-    id: string
+    id: number
     uniqueUrlName: string | null
     photos: PhotosType
     status: string | null
@@ -80,8 +80,8 @@ const usersReducer = (state: InitialUserStateType = initialState, action: Action
     }
 }
 
-export const followAC = (id: string) => ({type: 'FOLLOW', userId: id} as const)
-export const unfollowAC = (id: string) => ({type: 'UNFOLLOW', userId: id} as const)
+export const followAC = (id: number) => ({type: 'FOLLOW', userId: id} as const)
+export const unfollowAC = (id: number) => ({type: 'UNFOLLOW', userId: id} as const)
 export const setUsersAC = (users: UsersType[]) => ({type: 'SET-USERS', setUsers: users} as const)
 export const setCurrentPageAC = (page: number) => ({type: 'SET-CURRENT-PAGE', currentPage: page} as const)
 export const setIsFetchingAC = (fetching: boolean) => ({type: 'SET-FETCHING-PAGE', isFetching: fetching} as const)

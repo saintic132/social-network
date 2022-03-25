@@ -4,8 +4,14 @@ import imgPhoto from '../../../../assets/img/no-avatar.png'
 import {NavLink} from "react-router-dom";
 import {UsersPropsType} from "./UsersContainer";
 
+type RequestUserType = {
+    setUserFollow: (id: number) => void
+    setUserUnFollow: (id: number) => void
+}
 
-function Users(props: UsersPropsType) {
+type UsersComponentType = UsersPropsType & RequestUserType
+
+function Users(props: UsersComponentType) {
 
     const pagesRender = Math.ceil(props.allUsers / props.usersCountOnPage)
     let count = []
@@ -51,8 +57,8 @@ function Users(props: UsersPropsType) {
                                         </div>
                                         <div className={s.users__button}>
                                             {el.followed
-                                                ? <button onClick={() => props.unfollow(el.id)}>Unfollow</button>
-                                                : <button onClick={() => props.follow(el.id)}>Follow</button>}
+                                                ? <button onClick={() => props.setUserUnFollow(el.id)}>Unfollow</button>
+                                                : <button onClick={() => props.setUserFollow(el.id)}>Follow</button>}
                                         </div>
                                     </div>
                                 </div>
