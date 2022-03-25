@@ -70,7 +70,11 @@ function UsersRequest(props: UsersPropsType) {
     useEffect(() => {
         if (props.users.length === 0) {
             props.setIsFetching(true)
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}`)
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}`, {
+                withCredentials: true,
+                headers: {
+                    'API-KEY': '73140186-6c0b-4d93-85fb-13e7b368f254'
+                }})
                 .then(response => {
                     props.setIsFetching(false)
                     props.setUsers(response.data.items)
@@ -83,7 +87,11 @@ function UsersRequest(props: UsersPropsType) {
     const setCurrentPage = (page: number) => {
         props.setIsFetching(true)
         props.setCurrentPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}&page=${page}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}&page=${page}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '73140186-6c0b-4d93-85fb-13e7b368f254'
+            }})
             .then(response => {
                 props.setIsFetching(false)
                 props.setUsers(response.data.items)

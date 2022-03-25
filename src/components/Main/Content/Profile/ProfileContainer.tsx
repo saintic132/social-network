@@ -36,7 +36,11 @@ function ProfileRequest(props: ProfilePropsType) {
     let {userId} = useParams()
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`,{
+            withCredentials: true,
+            headers: {
+                'API-KEY': '73140186-6c0b-4d93-85fb-13e7b368f254'
+            }})
             .then(response => {
                 props.setProfile(response.data)
             })

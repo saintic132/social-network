@@ -35,7 +35,10 @@ function HeaderRequest(props: HeaderPropsType) {
 
     useEffect(() => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true
+            withCredentials: true,
+            headers: {
+                'API-KEY': '73140186-6c0b-4d93-85fb-13e7b368f254'
+            }
         })
             .then(response => {
                 if (response.data.resultCode === 0) {
