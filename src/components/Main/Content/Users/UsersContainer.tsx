@@ -11,6 +11,7 @@ import Users from "./Users";
 import {ReduxStateType} from "../../../../redux/redux-store";
 import {Dispatch} from "redux";
 import axios from "axios";
+import {useEffect} from "react";
 
 let mapStateToProps = (state: ReduxStateType): InitialUserStateType => {
     return {
@@ -65,14 +66,18 @@ export type UsersPropsType = {
 
 function UsersRequest(props: UsersPropsType) {
 
-    if (props.users.length === 0) {
-        props.setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}`)
-            .then(response => {
-                props.setIsFetching(false)
-                props.setUsers(response.data.items)
-            })
-    }
+    useEffect(() => {
+        if (props.users.length === 0) {
+            props.setIsFetching(true)
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}`)
+                .then(response => {
+                    props.setIsFetching(false)
+                    props.setUsers(response.data.items)
+                })
+        }
+    }, [])
+
+
 
     const setCurrentPage = (page: number) => {
         props.setIsFetching(true)

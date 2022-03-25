@@ -5,7 +5,7 @@ import {ReduxStateType} from "../../../../redux/redux-store";
 import {Dispatch} from "redux";
 import axios from "axios";
 import {useParams} from "react-router-dom";
-import React from "react";
+import React, {useEffect} from "react";
 import Preloader from "../../../../common/Preloader/Preloader";
 
 
@@ -35,10 +35,12 @@ export type ProfilePropsType = {
 function ProfileRequest(props: ProfilePropsType) {
     let {userId} = useParams()
 
+    useEffect(() => {
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
                 props.setProfile(response.data)
             })
+    }, [])
 
 
     if (!props.profile)
