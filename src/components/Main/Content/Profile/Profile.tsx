@@ -9,29 +9,13 @@ import instagramLogo from '../../../../assets/img/social/instagram.png'
 import youtubeLogo from '../../../../assets/img/social/youtube.png'
 import githubLogo from '../../../../assets/img/social/gh.png'
 import mailLink from '../../../../assets/img/social/mail.png'
-import axios from "axios";
-import {ProfileType} from "../../../../redux/profile-reducer";
-import Preloader from "../../../../common/Preloader/Preloader";
-
-type ProfilePropsType = {
-    profile: ProfileType | null
-    setProfile: (profile: ProfileType) => void
-}
+import {ProfilePropsType} from "./ProfileContainer";
 
 
 function Profile(props: ProfilePropsType) {
-    if (props.profile === null) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/profile/2')
-            .then(response => {
-                props.setProfile(response.data)
-            })
-    }
 
     return (
         <div className={s.profile}>
-            <div>
-                {props.profile === null && <Preloader />}
-            </div>
             <div className={s.profile__profile}>
                 <div className={s.profile__avatar}>
                     {props.profile?.photos.small

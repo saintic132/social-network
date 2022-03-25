@@ -22,11 +22,11 @@ function Content() {
                     element={<SelfProfile/>}
                 />
                 <Route
-                    path="profile/*"
+                    path="profile/:userId"
                     element={<ProfileContainer/>}
                 />
                 <Route
-                    path="dialogs/*"
+                    path="dialogs"
                     element={
                         <DialogsContainer/>}
                 />
@@ -36,15 +36,15 @@ function Content() {
                         <UsersContainer/>}
                 />
                 <Route
-                    path="news/*"
+                    path="news"
                     element={<News/>}
                 />
                 <Route
-                    path="music/*"
+                    path="music"
                     element={<Music/>}
                 />
                 <Route
-                    path="settings/*"
+                    path="settings"
                     element={<Settings/>}
                 />
                 <Route

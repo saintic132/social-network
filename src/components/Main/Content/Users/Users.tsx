@@ -1,50 +1,17 @@
 import React from "react";
 import s from './Users.module.css'
-import {UsersType} from "../../../../redux/users-reducer";
-import axios from "axios";
 import imgPhoto from '../../../../assets/img/no-avatar.png'
 import Preloader from "../../../../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
+import {UsersPropsType} from "./UsersContainer";
 
-type UsersPropsType = {
-    users: UsersType[]
-    allUsers: number,
-    usersCountOnPage: number,
-    currentPageNumber: number
-    follow: (id: string) => void
-    unfollow: (id: string) => void
-    setUsers: (users: UsersType[]) => void
-    setCurrentPage: (page: number) => void
-    isFetching: boolean
-    setIsFetching: (fetching: boolean) => void
-}
 
 function Users(props: UsersPropsType) {
-
-    if (props.users.length === 0) {
-        props.setIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}`)
-            .then(response => {
-                props.setIsFetching(false)
-                props.setUsers(response.data.items)
-            })
-    }
-
 
     const pagesRender = Math.ceil(props.allUsers / props.usersCountOnPage)
     let count = []
     for (let i = 1; i <= pagesRender; i++) {
         count.push(i)
-    }
-
-    const setNewPage = (page: number) => {
-        props.setIsFetching(true)
-        props.setCurrentPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}&page=${page}`)
-            .then(response => {
-                props.setIsFetching(false)
-                props.setUsers(response.data.items)
-            })
     }
 
     return (
@@ -125,7 +92,7 @@ function Users(props: UsersPropsType) {
                                     <span
                                         key={el}
                                         className={props.currentPageNumber === el ? s.users__page_bold : ''}
-                                        onClick={() => setNewPage(el)}
+                                        onClick={() => props.setCurrentPage(el)}
                                     >
                                         {el}
                                     </span>

@@ -10,6 +10,7 @@ import {
 import Users from "./Users";
 import {ReduxStateType} from "../../../../redux/redux-store";
 import {Dispatch} from "redux";
+import axios from "axios";
 
 let mapStateToProps = (state: ReduxStateType): InitialUserStateType => {
     return {
@@ -49,4 +50,44 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export type UsersPropsType = {
+    users: UsersType[]
+    allUsers: number,
+    usersCountOnPage: number,
+    currentPageNumber: number
+    follow: (id: string) => void
+    unfollow: (id: string) => void
+    setUsers: (users: UsersType[]) => void
+    setCurrentPage: (page: number) => void
+    isFetching: boolean
+    setIsFetching: (fetching: boolean) => void
+}
+
+function UsersRequest(props: UsersPropsType) {
+
+    if (props.users.length === 0) {
+        props.setIsFetching(true)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}`)
+            .then(response => {
+                props.setIsFetching(false)
+                props.setUsers(response.data.items)
+            })
+    }
+
+    const setCurrentPage = (page: number) => {
+        props.setIsFetching(true)
+        props.setCurrentPage(page)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${props.usersCountOnPage}&page=${page}`)
+            .then(response => {
+                props.setIsFetching(false)
+                props.setUsers(response.data.items)
+            })
+    }
+
+    return <Users
+        {...props}
+        setCurrentPage={setCurrentPage}
+    />
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UsersRequest)

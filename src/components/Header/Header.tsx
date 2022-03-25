@@ -1,8 +1,9 @@
 import React from 'react';
 import s from "./Header.module.css";
 import {NavLink} from "react-router-dom";
+import {HeaderPropsType} from "./HeaderContainer";
 
-function Header() {
+function Header(props: HeaderPropsType) {
     return (
         <div className={s.header__body}>
             <div className={s.header__img}>
@@ -16,8 +17,23 @@ function Header() {
             </div>
             <div className={s.header__title}>
                 <div className={s.header__text}>
-                    Social-Network
+                    <h1>Social-Network</h1>
                 </div>
+            </div>
+            <div className={s.login}>
+
+                {props.isAuth ?
+                    <div className={s.login__name}>
+                        {props.login}
+                    </div>
+
+                    :
+                    <NavLink to='login' title='Login'>
+                        <div className={s.login__name}>
+                            Login
+                        </div>
+                    </NavLink>
+                }
             </div>
         </div>
     )
