@@ -1,7 +1,6 @@
 import React from "react";
 import s from './Users.module.css'
 import imgPhoto from '../../../../assets/img/no-avatar.png'
-import Preloader from "../../../../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
 import {UsersPropsType} from "./UsersContainer";
 
@@ -16,9 +15,6 @@ function Users(props: UsersPropsType) {
 
     return (
         <div className={s.users}>
-            <div>
-                {props.isFetching && <Preloader />}
-            </div>
             <div className={s.users__container}>
 
                 {

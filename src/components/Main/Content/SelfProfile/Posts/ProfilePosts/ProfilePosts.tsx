@@ -12,7 +12,9 @@ function ProfilePosts(props: ProfilePostPropsType) {
         {
             props.postMessages.map(el => {
                 return (
-                    <div className={s.profileposts__body}>
+                    <div
+                        key={el.id}
+                        className={s.profileposts__body}>
                         <div className={s.profileposts__container}>
                             <div className={s.profileposts__avatar}>
                                 <img src="https://www.pngall.com/wp-content/uploads/12/Avatar-Profile.png" alt="avatar"/>

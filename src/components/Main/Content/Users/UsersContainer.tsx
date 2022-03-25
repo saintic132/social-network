@@ -11,7 +11,8 @@ import Users from "./Users";
 import {ReduxStateType} from "../../../../redux/redux-store";
 import {Dispatch} from "redux";
 import axios from "axios";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
+import Preloader from "../../../../common/Preloader/Preloader";
 
 let mapStateToProps = (state: ReduxStateType): InitialUserStateType => {
     return {
@@ -87,6 +88,10 @@ function UsersRequest(props: UsersPropsType) {
                 props.setIsFetching(false)
                 props.setUsers(response.data.items)
             })
+    }
+
+    if (props.isFetching) {
+        return <Preloader/>
     }
 
     return <Users
