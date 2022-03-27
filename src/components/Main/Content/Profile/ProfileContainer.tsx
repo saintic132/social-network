@@ -3,10 +3,10 @@ import {connect} from "react-redux";
 import {ProfileType, setProfileAC} from "../../../../redux/profile-reducer";
 import {ReduxStateType} from "../../../../redux/redux-store";
 import {Dispatch} from "redux";
-import axios from "axios";
 import {useParams} from "react-router-dom";
 import React, {useEffect} from "react";
 import Preloader from "../../../../common/Preloader/Preloader";
+import {profileAPI} from "../../../../common/API/API";
 
 
 type MapDispatchToPropsType = {
@@ -33,16 +33,12 @@ export type ProfilePropsType = {
 }
 
 function ProfileRequest(props: ProfilePropsType) {
-    let {userId} = useParams()
+    let {userId} = useParams<'userId'>()
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`,{
-            withCredentials: true,
-            headers: {
-                'API-KEY': '73140186-6c0b-4d93-85fb-13e7b368f254'
-            }})
-            .then(response => {
-                props.setProfile(response.data)
+        profileAPI.setProfile(userId)
+            .then(data => {
+                props.setProfile(data)
             })
     }, [])
 

@@ -4,7 +4,7 @@ import Header from "./Header";
 import {setAuthUserAC} from "../../redux/auth-reducer";
 import {Dispatch} from "redux";
 import {ReduxStateType} from "../../redux/redux-store";
-import axios from "axios";
+import {authAPI} from "../../common/API/API";
 
 let mapStateToProps = (state: ReduxStateType) => {
     return {
@@ -34,15 +34,10 @@ export type HeaderPropsType = {
 function HeaderRequest(props: HeaderPropsType) {
 
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials: true,
-            headers: {
-                'API-KEY': '73140186-6c0b-4d93-85fb-13e7b368f254'
-            }
-        })
-            .then(response => {
-                if (response.data.resultCode === 0) {
-                    let {id, login, email} = response.data.data
+        authAPI.setAuthUser()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    let {id, login, email} = data.data
                     props.setAuthUser(id, login, email)
                 }
             })
