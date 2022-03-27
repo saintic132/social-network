@@ -2,16 +2,21 @@ import React from "react";
 import s from './Users.module.css'
 import imgPhoto from '../../../../assets/img/no-avatar.png'
 import {NavLink} from "react-router-dom";
-import {UsersPropsType} from "./UsersContainer";
+import {UsersType} from "../../../../redux/users-reducer";
 
-type RequestUserType = {
+type UsersPropsType = {
+    users: UsersType[]
+    allUsers: number,
+    usersCountOnPage: number,
+    currentPageNumber: number
+    isFetching: boolean
+    disableFollowButton: number[]
+    setCurrentPage: (page: number) => void
     setUserFollow: (id: number) => void
     setUserUnFollow: (id: number) => void
 }
 
-type UsersComponentType = UsersPropsType & RequestUserType
-
-function Users(props: UsersComponentType) {
+function Users(props: UsersPropsType) {
 
     const pagesRender = Math.ceil(props.allUsers / props.usersCountOnPage)
     let count = []
@@ -57,8 +62,12 @@ function Users(props: UsersComponentType) {
                                         </div>
                                         <div className={s.users__button}>
                                             {el.followed
-                                                ? <button onClick={() => props.setUserUnFollow(el.id)}>Unfollow</button>
-                                                : <button onClick={() => props.setUserFollow(el.id)}>Follow</button>}
+                                                ? <button
+                                                    disabled={props.disableFollowButton.some(userId => userId === el.id)}
+                                                    onClick={() => props.setUserUnFollow(el.id)}>Unfollow</button>
+                                                : <button
+                                                    disabled={props.disableFollowButton.some(userId => userId === el.id)}
+                                                    onClick={() => props.setUserFollow(el.id)}>Follow</button>}
                                         </div>
                                     </div>
                                 </div>

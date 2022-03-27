@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {
     followAC,
     InitialUserStateType,
-    setCurrentPageAC, setIsFetchingAC,
+    setCurrentPageAC, setDisableFollowButtonAC, setIsFetchingAC,
     setUsersAC,
     unfollowAC,
     UsersType
@@ -20,7 +20,8 @@ let mapStateToProps = (state: ReduxStateType): InitialUserStateType => {
         allUsers: state.usersPage.allUsers,
         usersCountOnPage: state.usersPage.usersCountOnPage,
         currentPageNumber: state.usersPage.currentPageNumber,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        disableFollowButton: state.usersPage.disableFollowButton
     }
 }
 
@@ -30,6 +31,7 @@ type MapDispatchPropsType = {
     setUsers: (users: UsersType[]) => void
     setCurrentPage: (page: number) => void
     setIsFetching: (fetching: boolean) => void
+    setDisableFollowButton: (status: boolean, id: number) => void
 }
 
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
@@ -48,24 +50,23 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         },
         setIsFetching: (fetching: boolean) => {
             dispatch(setIsFetchingAC(fetching))
+        },
+        setDisableFollowButton: (status: boolean, id: number) => {
+            dispatch(setDisableFollowButtonAC(status, id))
         }
     }
 }
 
-export type UsersPropsType = {
+export type RequestUserType = {
     users: UsersType[]
     allUsers: number,
     usersCountOnPage: number,
     currentPageNumber: number
-    follow: (id: number) => void
-    unfollow: (id: number) => void
-    setUsers: (users: UsersType[]) => void
-    setCurrentPage: (page: number) => void
     isFetching: boolean
-    setIsFetching: (fetching: boolean) => void
-}
+    disableFollowButton: number[]
+} & MapDispatchPropsType
 
-function UsersRequest(props: UsersPropsType) {
+function UsersRequest(props: RequestUserType) {
 
     useEffect(() => {
         if (props.users.length === 0) {
@@ -89,26 +90,32 @@ function UsersRequest(props: UsersPropsType) {
                 props.setUsers(data.items)
             })
     }
+
+
     const setUserFollow = (id: number) => {
+        props.setDisableFollowButton(true, id)
         userAPI.setUserFollow(id)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.follow(id)
                 }
+                props.setDisableFollowButton(false, id)
             })
     }
 
     const setUserUnFollow = (id: number) => {
-       userAPI.setUserUnFollow(id)
+        props.setDisableFollowButton(true, id)
+        userAPI.setUserUnFollow(id)
             .then(data => {
                 if (data.resultCode === 0) {
                     props.unfollow(id)
                 }
+                props.setDisableFollowButton(false, id)
             })
     }
 
     if (props.isFetching) {
-        return <Preloader />
+        return <Preloader/>
     }
 
     return <Users

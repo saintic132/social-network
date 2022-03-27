@@ -1,11 +1,18 @@
 import {ActionsType} from "./redux-store";
 
-export type UsersActionType = FollowACType | UnfollowACType | SetUsersACType | setCurrentPageACType | setIsFetchingACType
+export type UsersActionType =
+    FollowACType
+    | UnfollowACType
+    | SetUsersACType
+    | setCurrentPageACType
+    | setIsFetchingACType
+    | setDisableFollowButtonACType
 export type FollowACType = ReturnType<typeof followAC>
 export type UnfollowACType = ReturnType<typeof unfollowAC>
 export type SetUsersACType = ReturnType<typeof setUsersAC>
 export type setCurrentPageACType = ReturnType<typeof setCurrentPageAC>
 export type setIsFetchingACType = ReturnType<typeof setIsFetchingAC>
+export type setDisableFollowButtonACType = ReturnType<typeof setDisableFollowButtonAC>
 
 
 type PhotosType = {
@@ -26,6 +33,7 @@ export type InitialUserStateType = {
     usersCountOnPage: number,
     currentPageNumber: number
     isFetching: boolean
+    disableFollowButton: number[]
 }
 
 let initialState: InitialUserStateType = {
@@ -33,7 +41,8 @@ let initialState: InitialUserStateType = {
     allUsers: 60,
     usersCountOnPage: 6,
     currentPageNumber: 1,
-    isFetching: false
+    isFetching: false,
+    disableFollowButton: []
 };
 
 const usersReducer = (state: InitialUserStateType = initialState, action: ActionsType): InitialUserStateType => {
@@ -75,6 +84,13 @@ const usersReducer = (state: InitialUserStateType = initialState, action: Action
                 ...state,
                 isFetching: action.isFetching
             }
+        case 'SET-DISABLE-FOLLOWING-BUTTON':
+            return {
+                ...state,
+                disableFollowButton: action.status
+                    ? [...state.disableFollowButton, action.id]
+                    : state.disableFollowButton.filter(userId => userId !== action.id)
+            }
         default:
             return state
     }
@@ -85,5 +101,10 @@ export const unfollowAC = (id: number) => ({type: 'UNFOLLOW', userId: id} as con
 export const setUsersAC = (users: UsersType[]) => ({type: 'SET-USERS', setUsers: users} as const)
 export const setCurrentPageAC = (page: number) => ({type: 'SET-CURRENT-PAGE', currentPage: page} as const)
 export const setIsFetchingAC = (fetching: boolean) => ({type: 'SET-FETCHING-PAGE', isFetching: fetching} as const)
+export const setDisableFollowButtonAC = (status: boolean, id: number) => ({
+    type: 'SET-DISABLE-FOLLOWING-BUTTON',
+    status,
+    id
+} as const)
 
 export default usersReducer
