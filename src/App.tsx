@@ -5,7 +5,6 @@ import Footer from "./components/Footer/Footer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 
 function App() {
-
     return (
 
         <div className={s.app}>
