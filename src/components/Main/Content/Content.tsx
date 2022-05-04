@@ -8,8 +8,8 @@ import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
 import Error404 from "../../../404/Error404";
 import DialogsContainer from "./Dialogs/DialogsContainer";
-import UsersContainer from "./Users/UsersContainer";
-import ProfileContainer from "./Profile/ProfileContainer";
+import Profile from "./Profile/Profile";
+import Users from "./Users/Users";
 
 
 function Content() {
@@ -23,7 +23,7 @@ function Content() {
                 />
                 <Route
                     path="profile/:userId"
-                    element={<ProfileContainer/>}
+                    element={<Profile/>}
                 />
                 <Route
                     path="dialogs"
@@ -33,7 +33,7 @@ function Content() {
                 <Route
                     path="users/*"
                     element={
-                        <UsersContainer/>}
+                        <Users/>}
                 />
                 <Route
                     path="news"

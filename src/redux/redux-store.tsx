@@ -1,4 +1,5 @@
-import {combineReducers, createStore, Store} from "redux";
+import {applyMiddleware, combineReducers, createStore, Store} from "redux";
+import thunk from 'redux-thunk'
 import profileReducer, {ProfileReducersActionType} from "./profile-reducer";
 import dialogReducer, {AddNewMessageActionType} from "./dialog-reducer";
 import usersReducer, {UsersActionType} from "./users-reducer";
@@ -16,6 +17,6 @@ let rootReducer = combineReducers({
 })
 
 
-let store: Store<ReduxStateType, ActionsType> = createStore(rootReducer)
+let store: Store<ReduxStateType, ActionsType> = createStore(rootReducer, applyMiddleware(thunk))
 
 export default store

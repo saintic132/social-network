@@ -2,16 +2,15 @@ import React from 'react';
 import s from './App.module.css';
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import Header from "./components/Header/Header";
 
 function App() {
     return (
 
         <div className={s.app}>
-            <HeaderContainer/>
-            <Main
-            />
-            <Footer/>
+            <Header />
+            <Main />
+            <Footer />
         </div>
     );
 }

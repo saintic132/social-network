@@ -1,10 +1,12 @@
 import {ActionsType} from "./redux-store";
+import {Dispatch} from "redux";
+import {authAPI} from "../common/API/API";
 
 export type AuthReducerType = setAuthUserACType
 
 type setAuthUserACType = ReturnType<typeof setAuthUserAC>
 
-type InitialAuthStateType = {
+export type InitialAuthStateType = {
     id: null | number
     login: null | string
     email: null | string
@@ -32,6 +34,22 @@ const authReducer = (state: InitialAuthStateType = initialState, action: Actions
     }
 }
 
-export const setAuthUserAC = (id: number, login: string, email: string) => ({type: 'SET-AUTH-USER', data: {id, login, email}} as const)
+export const setAuthUserAC = (id: number, login: string, email: string) => ({
+    type: 'SET-AUTH-USER',
+    data: {id, login, email}
+} as const)
+
+export const authThunk = () => {
+    return (dispatch: Dispatch) => {
+        authAPI.setAuthUser()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    let {id, login, email} = data.data
+                    dispatch(setAuthUserAC(id, login, email))
+                }
+            })
+    }
+}
+
 
 export default authReducer

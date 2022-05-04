@@ -1,5 +1,7 @@
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
+import {profileAPI} from "../common/API/API";
+import { Dispatch } from "redux";
 
 // Для лучшего отображения времени, время уменьшено на 2 минуты
 let today = new Date()
@@ -81,5 +83,14 @@ const profileReducer = (state: initialProfileStateType = initialState, action: A
 
 export const addPostMessageAC = (time: string, inputMessage: string)  => ({type: 'ADD-NEW-POST-MESSAGE', time: time, message: inputMessage} as const)
 export const setProfileAC = (profile: ProfileType)  => ({type: 'SET-NEW-PROFILE', profile} as const)
+
+export const setProfileThunk = (userId: string) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.setProfile(userId)
+            .then(data => {
+                dispatch(setProfileAC(data))
+            })
+    }
+}
 
 export default profileReducer

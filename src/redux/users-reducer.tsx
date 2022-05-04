@@ -1,4 +1,6 @@
 import {ActionsType} from "./redux-store";
+import {Dispatch} from "redux";
+import {userAPI} from "../common/API/API";
 
 export type UsersActionType =
     FollowACType
@@ -106,5 +108,45 @@ export const setDisableFollowButtonAC = (status: boolean, id: number) => ({
     status,
     id
 } as const)
+
+
+export const setUsersThunk = (page: number) => {
+    return (dispatch: Dispatch) => {
+        if (initialState.users.length === 0) {
+            dispatch(setIsFetchingAC(true))
+            userAPI.setUsers(initialState.usersCountOnPage, page)
+                .then(data => {
+                    dispatch(setIsFetchingAC(false))
+                    dispatch(setUsersAC(data.items))
+                    dispatch(setCurrentPageAC(page))
+                })
+        }
+    }
+}
+
+export const followUserThunk = (id: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setDisableFollowButtonAC(true, id))
+        userAPI.setUserFollow(id)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(followAC(id))
+                }
+                dispatch(setDisableFollowButtonAC(false, id))
+            })
+    }
+}
+export const unFollowUserThunk = (id: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setDisableFollowButtonAC(true, id))
+        userAPI.setUserUnFollow(id)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(unfollowAC(id))
+                }
+                dispatch(setDisableFollowButtonAC(false, id))
+            })
+    }
+}
 
 export default usersReducer
