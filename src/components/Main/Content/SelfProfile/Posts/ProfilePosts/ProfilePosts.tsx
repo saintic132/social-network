@@ -7,6 +7,8 @@ type ProfilePostPropsType = {
 }
 
 function ProfilePosts(props: ProfilePostPropsType) {
+
+
     return (
         <div className={s.profileposts}>
         {

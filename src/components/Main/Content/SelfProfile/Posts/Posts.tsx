@@ -2,25 +2,24 @@ import React from 'react';
 import s from "./Posts.module.css";
 import ProfilePosts from "./ProfilePosts/ProfilePosts";
 import NewPosts from "./NewPosts/NewPosts";
-import {PostMessagesType} from "../../../../../redux/profile-reducer";
+import {initialProfileStateType} from "../../../../../redux/profile-reducer";
+import {useSelector} from "react-redux";
+import {ReduxStateType} from "../../../../../redux/redux-store";
 
-type PostType = {
-    postMessages: PostMessagesType[]
-    addNewPostMessage: (inputPost: string) => void
-    addNewPostByKeyPress: (inputPost: string) => void
-}
+function Posts() {
 
-function Posts(props: PostType) {
+    let postsState = useSelector<ReduxStateType, initialProfileStateType>(state => state.profilePage)
+
+
+
 
     return (
         <div className={s.posts__body}>
             <NewPosts
-                addNewPostMessage={props.addNewPostMessage}
-                addNewPostByKeyPress={props.addNewPostByKeyPress}
             />
 
             <ProfilePosts
-                postMessages={props.postMessages}
+                postMessages={postsState.postMessages}
             />
 
 

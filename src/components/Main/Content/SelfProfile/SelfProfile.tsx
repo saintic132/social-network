@@ -1,15 +1,12 @@
 import React from 'react';
 import AboutProfile from "./AboutProfile/AboutProfile";
-
-import PostsContainer from "./Posts/PostsContainer";
+import Posts from "./Posts/Posts";
 
 function SelfProfile() {
     return (
         <div>
-            <AboutProfile/>
-            <PostsContainer
-
-            />
+            <AboutProfile />
+            <Posts />
         </div>
     )
 }

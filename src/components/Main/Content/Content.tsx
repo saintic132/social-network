@@ -7,9 +7,9 @@ import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./Settings/Settings";
 import Error404 from "../../../404/Error404";
-import DialogsContainer from "./Dialogs/DialogsContainer";
 import Profile from "./Profile/Profile";
 import Users from "./Users/Users";
+import Dialogs from "./Dialogs/Dialogs";
 
 
 function Content() {
@@ -28,7 +28,7 @@ function Content() {
                 <Route
                     path="dialogs"
                     element={
-                        <DialogsContainer/>}
+                        <Dialogs/>}
                 />
                 <Route
                     path="users/*"

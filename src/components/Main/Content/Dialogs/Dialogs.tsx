@@ -3,16 +3,15 @@ import s from './Dialogs.module.css'
 import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
 import {InputNewMessage} from "./InputNewMessage/InputNewMessage";
-import {DialogsMessageType, DialogsNameType} from "../../../../redux/dialog-reducer";
+import {initialDialogStateType} from "../../../../redux/dialog-reducer";
+import {useSelector} from "react-redux";
+import {ReduxStateType} from "../../../../redux/redux-store";
 
-type DialogsType = {
-    dialogsName: DialogsNameType[]
-    dialogsMessage: DialogsMessageType[]
-    addNewPost: (inputMessage: string) => void
-    addNewMessageByKeyPress: (inputMessage: string) => void
-}
 
-function Dialogs(props: DialogsType) {
+function Dialogs() {
+
+    let dialogsState = useSelector<ReduxStateType, initialDialogStateType>(state => state.dialogPage)
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs__body}>
@@ -31,7 +30,7 @@ function Dialogs(props: DialogsType) {
                         <div className={s.dialogs__propsname}>
 
                             <DialogsName
-                                dialogsName={props.dialogsName}
+                                dialogsName={dialogsState.dialogsName}
                             />
 
                         </div>
@@ -45,7 +44,7 @@ function Dialogs(props: DialogsType) {
                         <div className={s.dialogs__propsmessages}>
 
                             <DialogsMessage
-                                dialogsMessage={props.dialogsMessage}
+                                dialogsMessage={dialogsState.dialogsMessage}
                             />
 
                         </div>
@@ -53,8 +52,6 @@ function Dialogs(props: DialogsType) {
                 </div>
 
                 <InputNewMessage
-                    addNewPost={props.addNewPost}
-                    addNewMessageByKeyPress={props.addNewMessageByKeyPress}
                 />
 
             </div>

@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 import s from "../Dialogs.module.css";
+import {useDispatch} from "react-redux";
+import {addDialogMessageAC} from "../../../../../redux/dialog-reducer";
 
-type InputNewMessageType = {
-    addNewPost: (inputMessage: string) => void
-    addNewMessageByKeyPress: (inputMessage: string) => void
-}
+export function InputNewMessage() {
 
-export function InputNewMessage(props: InputNewMessageType) {
-
+    let today = new Date()
+    let time = today.getHours() + (today.getMinutes() < 10 ? ':0' : ':') + today.getMinutes()
     let [inputMessage, setInputMessage] = useState<string>('');
+    let dispatch = useDispatch()
 
     const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputMessage(e.currentTarget.value)
@@ -16,14 +16,14 @@ export function InputNewMessage(props: InputNewMessageType) {
 
     const addNewPost = () => {
         if (inputMessage) {
-            props.addNewPost(inputMessage)
+            dispatch(addDialogMessageAC(time, inputMessage))
             setInputMessage('')
         }
     }
 
     const addNewMessageByKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (inputMessage && e.key === 'Enter') {
-            props.addNewMessageByKeyPress(inputMessage)
+            dispatch(addDialogMessageAC(time, inputMessage))
             setInputMessage('')
         }
     }
