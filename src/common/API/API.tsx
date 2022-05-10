@@ -8,11 +8,25 @@ const instance = axios.create({
     }
 })
 
+export const selfProfile = {
+    setStatusProfile(status: string) {
+        return (
+            instance.put(`/profile/status`, {status})
+                .then(response => response.data)
+        )
+    }
+}
 
 export const profileAPI = {
     setProfile(userId: string | undefined) {
         return (
             instance.get(`/profile/${userId}`)
+                .then(response => response.data)
+        )
+    },
+    getProfileStatusUser(id: number) {
+        return (
+            instance.get(`/profile/status/${id}`)
                 .then(response => response.data)
         )
     }
@@ -33,7 +47,7 @@ export const userAPI = {
     },
     setUserUnFollow(id: number) {
         return (
-            instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`)
+            instance.delete(`/follow/${id}`)
                 .then(response => response.data)
         )
     }

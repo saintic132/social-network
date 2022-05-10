@@ -1,6 +1,7 @@
 import {ActionsType} from "./redux-store";
 import {Dispatch} from "redux";
-import {authAPI} from "../common/API/API";
+import {authAPI, profileAPI} from "../common/API/API";
+import {setStatusToProfileAC} from "./profile-reducer";
 
 export type AuthReducerType = setAuthUserACType
 
@@ -46,6 +47,10 @@ export const authThunk = () => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
                     dispatch(setAuthUserAC(id, login, email))
+                    profileAPI.getProfileStatusUser(id)
+                        .then(data => {
+                            dispatch(setStatusToProfileAC(data))
+                        })
                 }
             })
     }

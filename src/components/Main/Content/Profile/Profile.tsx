@@ -11,7 +11,7 @@ import githubLogo from '../../../../assets/img/social/gh.png'
 import mailLink from '../../../../assets/img/social/mail.png'
 import {useDispatch, useSelector} from "react-redux";
 import {ReduxStateType} from "../../../../redux/redux-store";
-import {initialProfileStateType, setProfileThunk} from "../../../../redux/profile-reducer";
+import {getProfileStatusUserThunk, initialProfileStateType, setProfileThunk} from "../../../../redux/profile-reducer";
 import {useParams} from "react-router-dom";
 import Preloader from "../../../../common/Preloader/Preloader";
 
@@ -23,9 +23,12 @@ function Profile() {
     let dispatch = useDispatch()
 
     useEffect(() => {
-        if (userId)
+        if (userId) {
             dispatch(setProfileThunk(userId))
-    }, [userId])
+            dispatch(getProfileStatusUserThunk(+userId))
+        }
+    }, [dispatch, userId])
+
 
     return (
         !profileState.profile
@@ -55,6 +58,14 @@ function Profile() {
                                 {profileState.profile?.aboutMe}
                             </div>
                         </div>
+                        <div className={s.profile__status}>
+                            <div className={s.profile__status_title}>
+                                Status:
+                            </div>
+                            <div className={s.profile__status_name}>
+                                {profileState.status}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className={s.profile__jobStatus_body}>
@@ -62,13 +73,13 @@ function Profile() {
                         <div className={s.profile__title}>
                             Job status:
                         </div>
-                        <div className={s.profile__status}>
+                        <div className={s.profile__jobStatus}>
                             {
                                 profileState.profile?.lookingForAJob
-                                    ? <div className={s.profile__jobstatus_true}>
+                                    ? <div className={s.profile__jobStatus_true}>
                                         Looking for a gob !
                                     </div>
-                                    : <div className={s.profile__jobstatus_false}>
+                                    : <div className={s.profile__jobStatus_false}>
                                         Not now !
                                     </div>
                             }

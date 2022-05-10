@@ -136,6 +136,7 @@ export const followUserThunk = (id: number) => {
             })
     }
 }
+
 export const unFollowUserThunk = (id: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setDisableFollowButtonAC(true, id))
@@ -148,5 +149,6 @@ export const unFollowUserThunk = (id: number) => {
             })
     }
 }
+
 
 export default usersReducer

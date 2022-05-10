@@ -1,0 +1,18 @@
+.noneStatus {
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.noneStatus:hover {
+    background-color: #d1d7ee;
+}
+
+.status {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.editStatus {
+    margin-top: 7px;
+}

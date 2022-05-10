@@ -17,24 +17,20 @@
     padding-left: 50px;
 }
 
-.profile__name, .profile__about {
+.profile__name, .profile__about, .profile__status {
     display: flex;
 }
 
-.profile__about {
+.profile__about, .profile__status {
     padding-top: 20px;
 }
 
-.profile__name_title, .profile__about_title {
+.profile__name_title, .profile__about_title, .profile__status_title {
     text-decoration: underline;
 }
 
-.profile__name_name, .profile__about_name {
+.profile__name_name, .profile__about_name, .profile__status_name {
     padding-left: 10px;
-}
-
-.profile__status {
-    padding-left: 20px;
 }
 
 .profile__jobStatus_body {
@@ -45,11 +41,13 @@
     display: flex;
 }
 
-.profile__jobstatus_true {
+.profile__jobStatus_true {
+    padding-left: 10px;
     color: green;
 }
 
-.profile__jobstatus_false {
+.profile__jobStatus_false {
+    padding-left: 10px;
     color: red;
 }
 

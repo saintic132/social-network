@@ -1,17 +1,22 @@
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
-import {profileAPI} from "../common/API/API";
-import { Dispatch } from "redux";
+import {profileAPI, selfProfile} from "../common/API/API";
+import {Dispatch} from "redux";
 
 // Для лучшего отображения времени, время уменьшено на 2 минуты
 let today = new Date()
-let minTime = ((today.getMinutes() -2 ) < 0 ? '0' : (today.getMinutes() -2 ))
+let minTime = ((today.getMinutes() - 2) < 0 ? '0' : (today.getMinutes() - 2))
 let time = today.getHours() + (minTime < 10 ? ':0' : ':') + today.getMinutes();
 
-export type ProfileReducersActionType = AddNewPostMessageActionType | SetProfileActionType
+export type ProfileReducersActionType =
+    AddNewPostMessageActionType
+    | SetProfileActionType
+    | SetStatusToProfileActionType
 
 type AddNewPostMessageActionType = ReturnType<typeof addPostMessageAC>
 type SetProfileActionType = ReturnType<typeof setProfileAC>
+type SetStatusToProfileActionType = ReturnType<typeof setStatusToProfileAC>
+
 export type PostMessagesType = {
     id: string
     time: string
@@ -47,6 +52,7 @@ export type ProfileType = {
 export type initialProfileStateType = {
     postMessages: PostMessagesType[]
     profile: null | ProfileType
+    status: string | null
 }
 
 
@@ -56,7 +62,8 @@ let initialState: initialProfileStateType = {
             id: v1(), time: time, postMessage: 'My first post message', counterLike: 0
         }
     ],
-    profile: null
+    profile: null,
+    status: null
 }
 
 const profileReducer = (state: initialProfileStateType = initialState, action: ActionsType): initialProfileStateType => {
@@ -73,22 +80,54 @@ const profileReducer = (state: initialProfileStateType = initialState, action: A
                 postMessages: [...state.postMessages, newPostMessage]
             }
         case 'SET-NEW-PROFILE': {
-            return {...state,
-                profile: action.profile}
+            return {
+                ...state,
+                profile: action.profile
+            }
+        }
+        case "SET-NEW-STATUS": {
+            return {
+                ...state,
+                status: action.status
+            }
         }
         default:
             return state
     }
 }
 
-export const addPostMessageAC = (time: string, inputMessage: string)  => ({type: 'ADD-NEW-POST-MESSAGE', time: time, message: inputMessage} as const)
-export const setProfileAC = (profile: ProfileType)  => ({type: 'SET-NEW-PROFILE', profile} as const)
+export const addPostMessageAC = (time: string, inputMessage: string) => ({
+    type: 'ADD-NEW-POST-MESSAGE',
+    time: time,
+    message: inputMessage
+} as const)
+export const setProfileAC = (profile: ProfileType) => ({type: 'SET-NEW-PROFILE', profile} as const)
+export const setStatusToProfileAC = (status: string) => ({type: 'SET-NEW-STATUS', status} as const)
 
 export const setProfileThunk = (userId: string) => {
     return (dispatch: Dispatch) => {
         profileAPI.setProfile(userId)
             .then(data => {
                 dispatch(setProfileAC(data))
+            })
+    }
+}
+
+export const setStatusThunk = (status: string) => {
+    return (dispatch: Dispatch) => {
+        selfProfile.setStatusProfile(status)
+            .then(data => {
+                if (data.resultCode === 0)
+                    dispatch(setStatusToProfileAC(status))
+            })
+    }
+}
+
+export const getProfileStatusUserThunk = (id: number) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.getProfileStatusUser(id)
+            .then(data => {
+                dispatch(setStatusToProfileAC(data))
             })
     }
 }
