@@ -11,6 +11,7 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {ReduxStateType} from "../../../../redux/redux-store";
 import Preloader from "../../../../common/Preloader/Preloader";
+import {Redirect} from "../../../../common/redirect/Redirect";
 
 
 function Users() {
@@ -42,6 +43,7 @@ function Users() {
         if (idUnFollowUser)
             dispatch(unFollowUserThunk(idUnFollowUser))
     }, [dispatch, idUnFollowUser])
+
 
 
     return (
@@ -140,4 +142,4 @@ function Users() {
     )
 }
 
-export default Users
+export default Redirect(Users)

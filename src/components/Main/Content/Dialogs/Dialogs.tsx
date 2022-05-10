@@ -6,6 +6,7 @@ import {InputNewMessage} from "./InputNewMessage/InputNewMessage";
 import {initialDialogStateType} from "../../../../redux/dialog-reducer";
 import {useSelector} from "react-redux";
 import {ReduxStateType} from "../../../../redux/redux-store";
+import {Redirect} from "../../../../common/redirect/Redirect";
 
 
 function Dialogs() {
@@ -59,4 +60,4 @@ function Dialogs() {
     )
 }
 
-export default Dialogs
+export default Redirect(Dialogs)
