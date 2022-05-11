@@ -5,7 +5,6 @@ import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 
 function SelfProfile() {
     return (
-        <div>
             <div>
                 <AboutProfile/>
 
@@ -14,7 +13,6 @@ function SelfProfile() {
                 <Posts/>
             </div>
 
-        </div>
     )
 }
 

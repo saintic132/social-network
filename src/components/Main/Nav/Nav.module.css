@@ -1,8 +1,9 @@
 .nav {
-    width: 150px;
+    width: 130px;
     background: lightseagreen;
     display: flex;
     flex-direction: column;
+    flex: 0 0 auto;
 }
 
 .nav > div {

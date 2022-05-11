@@ -6,46 +6,48 @@ import {setStatusThunk} from "../../../../../redux/profile-reducer";
 
 
 export function ProfileStatus() {
-    let [inputStatusValue, setInputStatusValue] = useState<string>();
+    let [inputStatusValue, setInputStatusValue] = useState<string>('');
     let [toggleChangeStatus, setToggleChangeStatus] = useState<boolean>(false);
+    let [errorMaxLength, setErrorMaxLength] = useState<boolean>(false);
     let status = useSelector<ReduxStateType, string | null>(state => state.profilePage.status)
     let dispatch = useDispatch()
 
     const onClickChangeToEditStatus = () => {
         setToggleChangeStatus(true)
         if (status)
-        setInputStatusValue(status)
+            setInputStatusValue(status)
     }
 
     const onChangeStatusValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.currentTarget.value.length <= 300) {
             setInputStatusValue(e.currentTarget.value)
+            setErrorMaxLength(false)
+        } else {
+            setErrorMaxLength(true)
+        }
     }
 
     const onBlurEditStatus = () => {
         setToggleChangeStatus(false)
-        if (inputStatusValue) {
-            dispatch(setStatusThunk(inputStatusValue))
-        }
+        setErrorMaxLength(false)
     }
 
     const onEnterClickToChangeStatus = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            if (inputStatusValue) {
-                dispatch(setStatusThunk(inputStatusValue))
-            }
+            dispatch(setStatusThunk(inputStatusValue))
             setToggleChangeStatus(false)
         }
     }
 
     return (
-        <div>
+        <div className={s.profileStatusContainer}>
             {
-                !toggleChangeStatus &&
                 status
                     ? <div className={s.status} onClick={onClickChangeToEditStatus}>Status: {status}</div>
                     : <div
                         className={s.noneStatus}
-                        onClick={onClickChangeToEditStatus}>
+                        onClick={onClickChangeToEditStatus}
+                    >
                         установить статус
                     </div>
             }
@@ -61,6 +63,16 @@ export function ProfileStatus() {
                     onBlur={onBlurEditStatus}
                     onKeyPress={onEnterClickToChangeStatus}
                 />
+            }
+            {
+                toggleChangeStatus &&
+                <div className={s.maxLength}>
+                    {
+                        !errorMaxLength
+                            ? <span><span>Max length - 300. Now</span><span> {inputStatusValue.length}</span></span>
+                            : <span className={errorMaxLength ? s.errorLength : ''}>Max length !!!</span>
+                    }
+                </div>
             }
 
         </div>
