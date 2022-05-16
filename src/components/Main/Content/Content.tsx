@@ -18,48 +18,53 @@ import {ReduxStateType} from "../../../redux/redux-store";
 function Content() {
 
     let isAuth = useSelector<ReduxStateType, boolean>(state => state.auth.isAuth)
+    let initializedContent = useSelector<ReduxStateType, boolean>(state => state.content.initialized)
 
     return (
         <div className={s.content}>
             <MainLogo/>
-            <Routes>
-                <Route
-                    path="/"
-                    element={<SelfProfile/>}
-                />
-                <Route
-                    path="login"
-                    element={<LoginPage/>}
-                />
-                <Route
-                    path="profile/:userId"
-                    element={<Profile/>}
-                />
-                <Route
-                    path="dialogs"
-                    element={<Dialogs isAuth={isAuth}/>}
-                />
-                <Route
-                    path="users/*"
-                    element={<Users isAuth={isAuth}/>}
-                />
-                <Route
-                    path="news"
-                    element={<News/>}
-                />
-                <Route
-                    path="music"
-                    element={<Music/>}
-                />
-                <Route
-                    path="settings"
-                    element={<Settings/>}
-                />
-                <Route
-                    path="*"
-                    element={<Error404/>}
-                />
-            </Routes>
+            {
+                initializedContent &&
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<SelfProfile/>}
+                    />
+                    <Route
+                        path="login"
+                        element={<LoginPage/>}
+                    />
+                    <Route
+                        path="profile/:userId"
+                        element={<Profile/>}
+                    />
+                    <Route
+                        path="dialogs"
+                        element={<Dialogs isAuth={isAuth}/>}
+                    />
+                    <Route
+                        path="users/*"
+                        element={<Users/>}
+                    />
+                    <Route
+                        path="news"
+                        element={<News/>}
+                    />
+                    <Route
+                        path="music"
+                        element={<Music/>}
+                    />
+                    <Route
+                        path="settings"
+                        element={<Settings/>}
+                    />
+                    <Route
+                        path="*"
+                        element={<Error404/>}
+                    />
+                </Routes>
+            }
+
         </div>
     )
 }

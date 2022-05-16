@@ -4,9 +4,9 @@ import profileReducer, {ProfileReducersActionType} from "./profile-reducer";
 import dialogReducer, {AddNewMessageActionType} from "./dialog-reducer";
 import usersReducer, {UsersActionType} from "./users-reducer";
 import authReducer, {AuthReducerType} from "./auth-reducer";
-import contentReducer from "./content-reducer";
+import contentReducer, {ContentActionsType} from "./content-reducer";
 
-export type ActionsType = AddNewMessageActionType | ProfileReducersActionType | UsersActionType | AuthReducerType
+export type ActionsType = AddNewMessageActionType | ProfileReducersActionType | UsersActionType | AuthReducerType | ContentActionsType
 
 export type ReduxStateType = ReturnType<typeof rootReducer>
 

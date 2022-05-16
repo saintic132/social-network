@@ -1,3 +1,7 @@
+export type ContentActionsType = setInitializedContentACType
+
+type setInitializedContentACType = ReturnType<typeof setInitializedContentAC>
+
 type InitialContentStateType = {
     initialized: boolean
 }
@@ -5,13 +9,12 @@ let initialContentState: InitialContentStateType = {
     initialized: false
 };
 
-const contentReducer = (state: InitialContentStateType = initialContentState, action: any): InitialContentStateType => {
+const contentReducer = (state: InitialContentStateType = initialContentState, action: ContentActionsType): InitialContentStateType => {
     switch (action.type) {
-        case 'SET-AUTH-USER': {
+        case 'SET-INITIALIZED-CONTENT': {
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                initialized: true
             }
         }
         default:
@@ -19,26 +22,9 @@ const contentReducer = (state: InitialContentStateType = initialContentState, ac
     }
 }
 
-// export const setAuthUserAC = (id: number, login: string, email: string) => ({
-//     type: 'SET-AUTH-USER',
-//     data: {id, login, email}
-// } as const)
-//
-// export const authThunk = () => {
-//     return (dispatch: Dispatch) => {
-//         authAPI.setAuthUser()
-//             .then(data => {
-//                 if (data.resultCode === 0) {
-//                     let {id, login, email} = data.data
-//                     dispatch(setAuthUserAC(id, login, email))
-//                     profileAPI.getProfileStatusUser(id)
-//                         .then(data => {
-//                             dispatch(setStatusToProfileAC(data))
-//                         })
-//                 }
-//             })
-//     }
-// }
+export const setInitializedContentAC = () => ({
+    type: 'SET-INITIALIZED-CONTENT',
+} as const)
 
 
 export default contentReducer

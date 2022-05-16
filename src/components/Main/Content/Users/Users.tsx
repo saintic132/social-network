@@ -11,7 +11,6 @@ import {
 import {useDispatch, useSelector} from "react-redux";
 import {ReduxStateType} from "../../../../redux/redux-store";
 import Preloader from "../../../../common/Preloader/Preloader";
-import {Redirect} from "../../../../common/redirect/Redirect";
 
 
 function Users() {
@@ -142,4 +141,4 @@ function Users() {
     )
 }
 
-export default Redirect(Users)
+export default Users

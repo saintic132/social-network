@@ -43,9 +43,9 @@ export function LoginForm() {
                 onSubmit={onSubmit}
             >
                 <Form className={s.loginForm}>
-                    <Field type="email" name="email"/>
+                    <Field type="email" name="email" placeholder={'Enter the email'}/>
                     <ErrorMessage name="email" component="div"/>
-                    <Field type="password" name="password"/>
+                    <Field type="password" name="password" placeholder={'Enter the password'}/>
                     <ErrorMessage name="password" component="div"/>
                     <div className={s.checkBoxFiled}>
                         <Field type="checkbox" name="rememberMe"/>Remember Me

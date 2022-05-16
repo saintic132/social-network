@@ -21,7 +21,9 @@ function Header() {
     }
 
     useEffect(() => {
-        dispatch(authThunk())
+        if (!headerState.isAuth) {
+            dispatch(authThunk())
+        }
     }, [dispatch, headerState.isAuth])
 
     return (
@@ -36,35 +38,35 @@ function Header() {
                 </NavLink>
             </div>
             <div className={s.header__title}>
-                    <h1>Social-Network</h1>
+                <h1>Social-Network</h1>
             </div>
             <div className={s.login}>
 
                 {
                     headerState.isAuth ?
-                    <div className={s.login__container}>
-                        <div className={s.login__name}
-                             onClick={clickToToggleLoginMenu}
-                             onBlur={clickToToggleLoginMenu}
-                             onFocus={clickToToggleLoginMenu}
-                        >
-                            {headerState.login}
-                        </div>
-                        {
-                            showOptionUser &&
-                            <div style={{fontSize:'12px', marginTop:'5px'}}>
-                                <button onClick={clockToLogOut}>Logout</button>
+                        <div className={s.login__container}>
+                            <div className={s.login__name}
+                                 onClick={clickToToggleLoginMenu}
+                                 onBlur={clickToToggleLoginMenu}
+                                 onFocus={clickToToggleLoginMenu}
+                            >
+                                {headerState.login}
                             </div>
-                        }
+                            {
+                                showOptionUser &&
+                                <div style={{fontSize: '12px', marginTop: '5px'}}>
+                                    <button onClick={clockToLogOut}>Logout</button>
+                                </div>
+                            }
 
-                    </div>
-
-                    :
-                    <NavLink to='login' title='Login'>
-                        <div className={s.login__name}>
-                            Login
                         </div>
-                    </NavLink>
+
+                        :
+                        <NavLink to='login' title='Login'>
+                            <div className={s.login__name}>
+                                Login
+                            </div>
+                        </NavLink>
                 }
             </div>
         </div>

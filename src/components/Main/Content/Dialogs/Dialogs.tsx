@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import s from './Dialogs.module.css'
 import DialogsName from "./DialogsName/DialogsName";
 import DialogsMessage from "./DialogsMessage/DialogsMessage";
@@ -9,7 +9,7 @@ import {ReduxStateType} from "../../../../redux/redux-store";
 import {Redirect} from "../../../../common/redirect/Redirect";
 
 
-function Dialogs() {
+const Dialogs = memo(() => {
 
     let dialogsState = useSelector<ReduxStateType, initialDialogStateType>(state => state.dialogPage)
 
@@ -58,6 +58,6 @@ function Dialogs() {
             </div>
         </div>
     )
-}
+})
 
 export default Redirect(Dialogs)
