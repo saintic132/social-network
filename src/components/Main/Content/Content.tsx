@@ -10,7 +10,7 @@ import Error404 from "../../../404/Error404";
 import Profile from "./Profile/Profile";
 import Users from "./Users/Users";
 import Dialogs from "./Dialogs/Dialogs";
-import {LoginPage} from "../../../common/LoginPage/LoginPage";
+import {LoginPage} from "../../LoginPage/LoginPage";
 import {useSelector} from "react-redux";
 import {ReduxStateType} from "../../../redux/redux-store";
 

@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import s from './ProfileStatus.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {ReduxStateType} from "../../../../../redux/redux-store";
-import {setStatusThunk} from "../../../../../redux/profile-reducer";
+import {setSelfStatusThunk} from "../../../../../redux/profile-reducer";
 
 
 export function ProfileStatus() {
+
     let [inputStatusValue, setInputStatusValue] = useState<string>('');
     let [toggleChangeStatus, setToggleChangeStatus] = useState<boolean>(false);
     let [errorMaxLength, setErrorMaxLength] = useState<boolean>(false);
-    let status = useSelector<ReduxStateType, string | null>(state => state.profilePage.status)
+    let status = useSelector<ReduxStateType, string | null>(state => state.profilePage.selfStatus)
     let dispatch = useDispatch()
 
     const onClickChangeToEditStatus = () => {
@@ -34,7 +35,7 @@ export function ProfileStatus() {
 
     const onEnterClickToChangeStatus = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
-            dispatch(setStatusThunk(inputStatusValue))
+            dispatch(setSelfStatusThunk(inputStatusValue))
             setToggleChangeStatus(false)
         }
     }

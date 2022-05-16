@@ -4,6 +4,7 @@ import profileReducer, {ProfileReducersActionType} from "./profile-reducer";
 import dialogReducer, {AddNewMessageActionType} from "./dialog-reducer";
 import usersReducer, {UsersActionType} from "./users-reducer";
 import authReducer, {AuthReducerType} from "./auth-reducer";
+import contentReducer from "./content-reducer";
 
 export type ActionsType = AddNewMessageActionType | ProfileReducersActionType | UsersActionType | AuthReducerType
 
@@ -13,7 +14,8 @@ let rootReducer = combineReducers({
     dialogPage: dialogReducer,
     profilePage: profileReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    content: contentReducer
 })
 
 

@@ -14,6 +14,7 @@ import {ReduxStateType} from "../../../../redux/redux-store";
 import {getProfileStatusUserThunk, initialProfileStateType, setProfileThunk} from "../../../../redux/profile-reducer";
 import {useParams} from "react-router-dom";
 import Preloader from "../../../../common/Preloader/Preloader";
+import {CheckHttpOrHttps} from "../../../../common/Helpers/CheckHttpOrHttps";
 
 
 function Profile() {
@@ -21,6 +22,16 @@ function Profile() {
     let {userId} = useParams<'userId'>()
     let profileState = useSelector<ReduxStateType, initialProfileStateType>(state => state.profilePage)
     let dispatch = useDispatch()
+
+
+    let facebookCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.facebook)
+    let websiteCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.website)
+    let vkCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.vk)
+    let twitterCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.twitter)
+    let instagramCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.instagram)
+    let youtubeCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.youtube)
+    let githubCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.github)
+    let mainLinkCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.mainLink)
 
     useEffect(() => {
         if (userId) {
@@ -105,7 +116,7 @@ function Profile() {
                         {
                             profileState.profile?.contacts.facebook &&
                             <a
-                                href={profileState.profile.contacts.facebook}
+                                href={facebookCheckHttpOrHttps}
                                 target='_blank'
                                 rel="noreferrer"
                                 title='Facebook'
@@ -116,18 +127,19 @@ function Profile() {
                         {
                             profileState.profile?.contacts.website &&
                             <a
-                                href={profileState.profile.contacts.website}
+                                href={websiteCheckHttpOrHttps}
                                 target='_blank'
                                 rel="noreferrer"
                                 title='Website'
                             >
                                 <img src={websiteLogo} alt="websiteLogo"/>
                             </a>
+
                         }
                         {
                             profileState.profile?.contacts.vk &&
                             <a
-                                href={profileState.profile.contacts.vk}
+                                href={vkCheckHttpOrHttps}
                                 target='_blank'
                                 rel="noreferrer"
                                 title='Vk'>
@@ -137,7 +149,7 @@ function Profile() {
                         {
                             profileState.profile?.contacts.twitter &&
                             <a
-                                href={profileState.profile.contacts.twitter}
+                                href={twitterCheckHttpOrHttps}
                                 target='_blank'
                                 rel="noreferrer"
                                 title='Twitter'>
@@ -147,7 +159,7 @@ function Profile() {
                         {
                             profileState.profile?.contacts.instagram &&
                             <a
-                                href={profileState.profile.contacts.instagram}
+                                href={instagramCheckHttpOrHttps}
                                 target='_blank'
                                 rel="noreferrer"
                                 title='Instagram'>
@@ -157,7 +169,7 @@ function Profile() {
                         {
                             profileState.profile?.contacts.youtube &&
                             <a
-                                href={profileState.profile.contacts.youtube}
+                                href={youtubeCheckHttpOrHttps}
                                 target='_blank'
                                 rel="noreferrer"
                                 title='Youtube'>
@@ -167,7 +179,7 @@ function Profile() {
                         {
                             profileState.profile?.contacts.github &&
                             <a
-                                href={profileState.profile.contacts.github}
+                                href={githubCheckHttpOrHttps}
                                 target='_blank'
                                 rel="noreferrer"
                                 title='Github'>
@@ -177,7 +189,7 @@ function Profile() {
                         {
                             profileState.profile?.contacts.mainLink &&
                             <a
-                                href={profileState.profile.contacts.mainLink}
+                                href={mainLinkCheckHttpOrHttps}
                                 target='_blank'
                                 rel="noreferrer"
                                 title='Mail'>

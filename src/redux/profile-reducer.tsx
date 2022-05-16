@@ -8,15 +8,6 @@ let today = new Date()
 let minTime = ((today.getMinutes() - 2) < 0 ? '0' : (today.getMinutes() - 2))
 let time = today.getHours() + (minTime < 10 ? ':0' : ':') + today.getMinutes();
 
-export type ProfileReducersActionType =
-    AddNewPostMessageActionType
-    | SetProfileActionType
-    | SetStatusToProfileActionType
-
-type AddNewPostMessageActionType = ReturnType<typeof addPostMessageAC>
-type SetProfileActionType = ReturnType<typeof setProfileAC>
-type SetStatusToProfileActionType = ReturnType<typeof setStatusToProfileAC>
-
 export type PostMessagesType = {
     id: string
     time: string
@@ -25,14 +16,14 @@ export type PostMessagesType = {
 }
 
 type ProfileContactType = {
-    facebook: string | null
-    website: string | null
-    vk: string | null
-    twitter: string | null
-    instagram: string | null
-    youtube: string | null
-    github: string | null
-    mainLink: string | null
+    facebook: string | undefined
+    website: string | undefined
+    vk: string | undefined
+    twitter: string | undefined
+    instagram: string | undefined
+    youtube: string | undefined
+    github: string | undefined
+    mainLink: string | undefined
 }
 
 type ProfilePhotosType = {
@@ -53,6 +44,7 @@ export type initialProfileStateType = {
     postMessages: PostMessagesType[]
     profile: null | ProfileType
     status: string | null
+    selfStatus: string | null
 }
 
 
@@ -63,7 +55,8 @@ let initialState: initialProfileStateType = {
         }
     ],
     profile: null,
-    status: null
+    status: null,
+    selfStatus: null
 }
 
 const profileReducer = (state: initialProfileStateType = initialState, action: ActionsType): initialProfileStateType => {
@@ -91,6 +84,12 @@ const profileReducer = (state: initialProfileStateType = initialState, action: A
                 status: action.status
             }
         }
+        case "SET-NEW-SELF-STATUS": {
+            return {
+                ...state,
+                selfStatus: action.status
+            }
+        }
         default:
             return state
     }
@@ -103,6 +102,19 @@ export const addPostMessageAC = (time: string, inputMessage: string) => ({
 } as const)
 export const setProfileAC = (profile: ProfileType) => ({type: 'SET-NEW-PROFILE', profile} as const)
 export const setStatusToProfileAC = (status: string) => ({type: 'SET-NEW-STATUS', status} as const)
+export const setSelfStatusToProfileAC = (status: string) => ({type: 'SET-NEW-SELF-STATUS', status} as const)
+
+export type ProfileReducersActionType =
+    AddNewPostMessageActionType
+    | SetProfileActionType
+    | SetStatusToProfileActionType
+    | SetSelfStatusToProfileActionType
+
+type AddNewPostMessageActionType = ReturnType<typeof addPostMessageAC>
+type SetProfileActionType = ReturnType<typeof setProfileAC>
+type SetStatusToProfileActionType = ReturnType<typeof setStatusToProfileAC>
+type SetSelfStatusToProfileActionType = ReturnType<typeof setSelfStatusToProfileAC>
+
 
 export const setProfileThunk = (userId: string) => {
     return (dispatch: Dispatch) => {
@@ -113,12 +125,12 @@ export const setProfileThunk = (userId: string) => {
     }
 }
 
-export const setStatusThunk = (status: string) => {
+export const setSelfStatusThunk = (status: string) => {
     return (dispatch: Dispatch) => {
         selfProfile.setStatusProfile(status)
             .then(data => {
                 if (data.resultCode === 0)
-                    dispatch(setStatusToProfileAC(status))
+                    dispatch(setSelfStatusToProfileAC(status))
             })
     }
 }
