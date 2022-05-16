@@ -1,54 +1,61 @@
 import {ErrorMessage, Field, Form, Formik} from 'formik';
+import s from './LoginForm.module.css'
 import React from 'react';
+import {useDispatch} from "react-redux";
+import {loginThunk} from "../../../redux/auth-reducer";
 
-type ErrorTypes = {
-    email: string | null
+type FormikErrorsType = {
+    email: string
+    password: string
 }
 
 export function LoginForm() {
+
+    const dispatch = useDispatch()
+
+    const initialValues = {
+        email: '',
+        password: ''
+    }
+
+    const onSubmit = (values: any) => {
+        let {email, password, rememberMe} = values
+        dispatch(loginThunk(email, password, rememberMe))
+    }
+
+    const validate = (values: { email: string, password: string }) => {
+        const errors: FormikErrorsType = {} as FormikErrorsType
+        if (!values.email) {
+            errors.email = 'Required'
+        } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+            errors.email = 'Invalid email address'
+        }
+        return errors;
+    }
+
     return (
         <div>
             <Formik
-                initialValues={{email: '', password: ''}}
-                validate={values => {
-                    const errors: ErrorTypes = {
-                        email: null
-                    };
-                    if (!values.email) {
-                        errors.email = 'Required';
-                    } else if (
-                        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                    ) {
-                        errors.email = 'Invalid email address';
-                    }
-                    return errors;
-                }}
-                onSubmit={(values, {setSubmitting}) => {
-                    setTimeout(() => {
-                        alert(JSON.stringify(values, null, 2));
-                        setSubmitting(false);
-                    }, 400);
-                }}
+                initialValues={initialValues}
+                validate={validate}
+                onSubmit={onSubmit}
             >
-                {({isSubmitting}) => (
-                    <Form>
-                        <div>
-                            <Field type="email" name="email"/>
-                            <ErrorMessage name="email" component="div"/>
-                        </div>
-                        <div>
-                            <Field type="password" name="password"/>
-                            <ErrorMessage name="password" component="div"/>
-                        </div>
-                        <div>
-                            <button type="submit" disabled={isSubmitting}>
-                                Submit
-                            </button>
-                        </div>
-
-                    </Form>
-                )}
+                <Form className={s.loginForm}>
+                    <Field type="email" name="email"/>
+                    <ErrorMessage name="email" component="div"/>
+                    <Field type="password" name="password"/>
+                    <ErrorMessage name="password" component="div"/>
+                    <div className={s.checkBoxFiled}>
+                        <Field type="checkbox" name="rememberMe"/>Remember Me
+                    </div>
+                    <button type="submit">
+                        Submit
+                    </button>
+                </Form>
             </Formik>
         </div>
+
     )
 }

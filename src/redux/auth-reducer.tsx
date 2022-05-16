@@ -1,11 +1,11 @@
-import {ActionsType} from "./redux-store";
 import {Dispatch} from "redux";
 import {authAPI, profileAPI} from "../common/API/API";
 import {setSelfStatusToProfileAC} from "./profile-reducer";
 
-export type AuthReducerType = setAuthUserACType
+export type AuthReducerType = setAuthUserACType | loginUserACType
 
 type setAuthUserACType = ReturnType<typeof setAuthUserAC>
+type loginUserACType = ReturnType<typeof loginUserAC>
 
 export type InitialAuthStateType = {
     id: null | number
@@ -21,12 +21,18 @@ let initialState: InitialAuthStateType = {
     isAuth: false
 };
 
-const authReducer = (state: InitialAuthStateType = initialState, action: ActionsType): InitialAuthStateType => {
+const authReducer = (state: InitialAuthStateType = initialState, action: AuthReducerType): InitialAuthStateType => {
     switch (action.type) {
         case 'SET-AUTH-USER': {
             return {
                 ...state,
                 ...action.data,
+            }
+        }
+        case "SET-LOGIN-USER": {
+            return {
+                ...state,
+                isAuth: action.isAuth
             }
         }
         default:
@@ -37,6 +43,11 @@ const authReducer = (state: InitialAuthStateType = initialState, action: Actions
 export const setAuthUserAC = (id: number | null, login: string | null, email: string | null, isAuth: boolean = false) => ({
     type: 'SET-AUTH-USER',
     data: {id, login, email, isAuth}
+} as const)
+
+export const loginUserAC = (isAuth: boolean) => ({
+    type: 'SET-LOGIN-USER',
+    isAuth
 } as const)
 
 export const authThunk = () => {
@@ -50,6 +61,17 @@ export const authThunk = () => {
                         .then(data => {
                             dispatch(setSelfStatusToProfileAC(data))
                         })
+                }
+            })
+    }
+}
+
+export const loginThunk = (email: string, password: string, rememberMe: boolean) => {
+    return (dispatch: Dispatch) => {
+        authAPI.setLogin(email, password, rememberMe)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(loginUserAC(true))
                 }
             })
     }

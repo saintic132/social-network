@@ -22,7 +22,7 @@ function Header() {
 
     useEffect(() => {
         dispatch(authThunk())
-    }, [dispatch])
+    }, [dispatch, headerState.isAuth])
 
     return (
         <div className={s.header__body}>
