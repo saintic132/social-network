@@ -58,5 +58,11 @@ export const authAPI = {
             instance.get(`/auth/me`)
                 .then(response => response.data)
         )
+    },
+    setLogout() {
+        return (
+            instance.delete(`/auth/login`)
+                .then(response => response.data)
+        )
     }
 }

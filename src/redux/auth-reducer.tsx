@@ -27,7 +27,6 @@ const authReducer = (state: InitialAuthStateType = initialState, action: Actions
             return {
                 ...state,
                 ...action.data,
-                isAuth: true
             }
         }
         default:
@@ -35,9 +34,9 @@ const authReducer = (state: InitialAuthStateType = initialState, action: Actions
     }
 }
 
-export const setAuthUserAC = (id: number, login: string, email: string) => ({
+export const setAuthUserAC = (id: number | null, login: string | null, email: string | null, isAuth: boolean = false) => ({
     type: 'SET-AUTH-USER',
-    data: {id, login, email}
+    data: {id, login, email, isAuth}
 } as const)
 
 export const authThunk = () => {
@@ -46,11 +45,22 @@ export const authThunk = () => {
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
-                    dispatch(setAuthUserAC(id, login, email))
+                    dispatch(setAuthUserAC(id, login, email, true))
                     profileAPI.getProfileStatusUser(id)
                         .then(data => {
                             dispatch(setSelfStatusToProfileAC(data))
                         })
+                }
+            })
+    }
+}
+
+export const logoutThunk = () => {
+    return (dispatch: Dispatch) => {
+        authAPI.setLogout()
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setAuthUserAC(null, null, null, false))
                 }
             })
     }

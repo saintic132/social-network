@@ -2,6 +2,7 @@
     width: 1000px;
     background: lightseagreen;
     display: flex;
+    justify-content: space-between;
     margin: 0 auto;
 }
 
@@ -16,16 +17,12 @@
 
 .header__title {
     display: flex;
-    flex: 1 1 auto;
     align-items: center;
     justify-content: center;
-}
-
-.header__text h1{
     color: white;
 }
 
-.header__text h1:hover{
+.header__title h1:hover{
     transform: scale(1.5);
     transition: 1.5s;
 }
@@ -34,6 +31,13 @@
     display: flex;
     align-items: center;
     padding-right: 20px;
+}
+
+.login__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .login__name {

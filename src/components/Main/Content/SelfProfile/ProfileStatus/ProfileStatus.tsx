@@ -11,6 +11,7 @@ export function ProfileStatus() {
     let [toggleChangeStatus, setToggleChangeStatus] = useState<boolean>(false);
     let [errorMaxLength, setErrorMaxLength] = useState<boolean>(false);
     let status = useSelector<ReduxStateType, string | null>(state => state.profilePage.selfStatus)
+    let isAuth = useSelector<ReduxStateType, boolean>(state => state.auth.isAuth)
     let dispatch = useDispatch()
 
     const onClickChangeToEditStatus = () => {
@@ -39,6 +40,8 @@ export function ProfileStatus() {
             setToggleChangeStatus(false)
         }
     }
+
+    if (!isAuth) return <></>
 
     return (
         <div className={s.profileStatusContainer}>

@@ -26,3 +26,9 @@
 .errorLength {
     color: red
 }
+
+.noneStatus {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: justify;
+}
