@@ -25,6 +25,7 @@ export function LoginForm() {
 
     const validate = (values: { email: string, password: string }) => {
         const errors: FormikErrorsType = {} as FormikErrorsType
+
         if (!values.email) {
             errors.email = 'Required'
         } else if (
@@ -32,6 +33,12 @@ export function LoginForm() {
         ) {
             errors.email = 'Invalid email address'
         }
+
+        if (values.password.length < 5) {
+            errors.password = 'Min length is 5'
+        } else if (values.password.length > 20)
+            errors.password = 'Max length is 20'
+
         return errors;
     }
 

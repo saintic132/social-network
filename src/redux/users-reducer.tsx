@@ -1,6 +1,6 @@
 import {ActionsType} from "./redux-store";
 import {Dispatch} from "redux";
-import {userAPI} from "../common/API/API";
+import {ItemUsersType, userAPI} from "../common/API/API";
 
 export type UsersActionType =
     FollowACType
@@ -17,20 +17,8 @@ export type setIsFetchingACType = ReturnType<typeof setIsFetchingAC>
 export type setDisableFollowButtonACType = ReturnType<typeof setDisableFollowButtonAC>
 
 
-type PhotosType = {
-    small: string
-    large: string
-}
-export type UsersType = {
-    name: string
-    id: number
-    uniqueUrlName: string | null
-    photos: PhotosType
-    status: string | null
-    followed: boolean
-}
-export type InitialUserStateType = {
-    users: UsersType[],
+export type InitialUserStateType =  {
+    users: ItemUsersType[]
     allUsers: number,
     usersCountOnPage: number,
     currentPageNumber: number
@@ -100,7 +88,7 @@ const usersReducer = (state: InitialUserStateType = initialState, action: Action
 
 export const followAC = (id: number) => ({type: 'FOLLOW', userId: id} as const)
 export const unfollowAC = (id: number) => ({type: 'UNFOLLOW', userId: id} as const)
-export const setUsersAC = (users: UsersType[]) => ({type: 'SET-USERS', setUsers: users} as const)
+export const setUsersAC = (users: ItemUsersType[]) => ({type: 'SET-USERS', setUsers: users} as const)
 export const setCurrentPageAC = (page: number) => ({type: 'SET-CURRENT-PAGE', currentPage: page} as const)
 export const setIsFetchingAC = (fetching: boolean) => ({type: 'SET-FETCHING-PAGE', isFetching: fetching} as const)
 export const setDisableFollowButtonAC = (status: boolean, id: number) => ({
@@ -117,7 +105,7 @@ export const setUsersThunk = (page: number) => {
             userAPI.setUsers(initialState.usersCountOnPage, page)
                 .then(data => {
                     dispatch(setIsFetchingAC(false))
-                    dispatch(setUsersAC(data.items))
+                    dispatch(setUsersAC(data.users))
                     dispatch(setCurrentPageAC(page))
                 })
         }

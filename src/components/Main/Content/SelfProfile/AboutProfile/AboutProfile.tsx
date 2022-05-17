@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {memo} from 'react';
 import s from "./AboutProfile.module.css";
 
-function AboutProfile() {
+export const AboutProfile = memo(() => {
     return (
         <div className={s.aboutProfile}>
             <div className={s.aboutProfile__body}>
@@ -24,6 +24,4 @@ function AboutProfile() {
             </div>
         </div>
     )
-}
-
-export default AboutProfile;
+})

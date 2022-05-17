@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
-import {profileAPI, selfProfile} from "../common/API/API";
+import {profileAPI, profileAPISetProfileType, selfProfile} from "../common/API/API";
 import {Dispatch} from "redux";
 
 // Для лучшего отображения времени, время уменьшено на 2 минуты
@@ -15,30 +15,7 @@ export type PostMessagesType = {
     counterLike: number
 }
 
-type ProfileContactType = {
-    facebook: string | undefined
-    website: string | undefined
-    vk: string | undefined
-    twitter: string | undefined
-    instagram: string | undefined
-    youtube: string | undefined
-    github: string | undefined
-    mainLink: string | undefined
-}
-
-type ProfilePhotosType = {
-    small: string | null
-    large: string | null
-}
-export type ProfileType = {
-    aboutMe: string | null
-    lookingForAJob: boolean
-    lookingForAJobDescription: string | null
-    fullName: string
-    userId: number
-    contacts: ProfileContactType
-    photos: ProfilePhotosType
-}
+export type ProfileType = profileAPISetProfileType
 
 export type initialProfileStateType = {
     postMessages: PostMessagesType[]
@@ -121,6 +98,15 @@ export const setProfileThunk = (userId: string) => {
         profileAPI.setProfile(userId)
             .then(data => {
                 dispatch(setProfileAC(data))
+            })
+    }
+}
+
+export const getSelfStatusThunk = (id: number) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.getProfileStatusUser(id)
+            .then(data => {
+                dispatch(setSelfStatusToProfileAC(data))
             })
     }
 }

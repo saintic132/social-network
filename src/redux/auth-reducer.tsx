@@ -1,6 +1,5 @@
 import {Dispatch} from "redux";
-import {authAPI, profileAPI} from "../common/API/API";
-import {setSelfStatusToProfileAC} from "./profile-reducer";
+import {authAPI} from "../common/API/API";
 import {setInitializedContentAC} from "./content-reducer";
 
 export type AuthReducerType = setAuthUserACType | loginUserACType
@@ -54,16 +53,11 @@ export const loginUserAC = (isAuth: boolean) => ({
 
 export const authThunk = () => {
     return (dispatch: Dispatch) => {
-
-        return authAPI.setAuthUser()
+        authAPI.setAuthUser()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
                     dispatch(setAuthUserAC(id, login, email, true))
-                    profileAPI.getProfileStatusUser(id)
-                        .then(data => {
-                            dispatch(setSelfStatusToProfileAC(data))
-                        })
                 }
             })
             .then(() => {

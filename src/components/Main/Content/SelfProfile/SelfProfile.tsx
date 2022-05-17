@@ -1,19 +1,20 @@
-import React from 'react';
-import AboutProfile from "./AboutProfile/AboutProfile";
+import React, {memo} from 'react';
 import Posts from "./Posts/Posts";
 import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
+import {AboutProfile} from "./AboutProfile/AboutProfile";
 
-function SelfProfile() {
+const SelfProfile = memo(() => {
+
     return (
-            <div>
-                <AboutProfile/>
+        <div>
+            <AboutProfile/>
 
-                <ProfileStatus />
+            <ProfileStatus/>
 
-                <Posts/>
-            </div>
+            <Posts/>
+        </div>
 
     )
-}
+})
 
 export default SelfProfile;

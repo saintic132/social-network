@@ -1,18 +1,25 @@
-import React, {useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import s from './ProfileStatus.module.css'
 import {useDispatch, useSelector} from "react-redux";
 import {ReduxStateType} from "../../../../../redux/redux-store";
-import {setSelfStatusThunk} from "../../../../../redux/profile-reducer";
+import {getSelfStatusThunk, setSelfStatusThunk} from "../../../../../redux/profile-reducer";
 
 
-export function ProfileStatus() {
-
+export const ProfileStatus = memo(() => {
     let [inputStatusValue, setInputStatusValue] = useState<string>('');
     let [toggleChangeStatus, setToggleChangeStatus] = useState<boolean>(false);
     let [errorMaxLength, setErrorMaxLength] = useState<boolean>(false);
     let status = useSelector<ReduxStateType, string | null>(state => state.profilePage.selfStatus)
     let isAuth = useSelector<ReduxStateType, boolean>(state => state.auth.isAuth)
+    let idForSelfStatus = useSelector<ReduxStateType, number | null>(state => state.auth.id)
+
     let dispatch = useDispatch()
+
+
+    useEffect(() => {
+        if (idForSelfStatus)
+            dispatch(getSelfStatusThunk(idForSelfStatus))
+    }, [dispatch, idForSelfStatus])
 
     const onClickChangeToEditStatus = () => {
         setToggleChangeStatus(true)
@@ -82,4 +89,4 @@ export function ProfileStatus() {
         </div>
 
     )
-}
+})

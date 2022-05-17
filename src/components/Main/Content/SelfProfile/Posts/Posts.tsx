@@ -15,8 +15,7 @@ function Posts() {
 
     return (
         <div className={s.posts__body}>
-            <NewPosts
-            />
+            <NewPosts/>
 
             <ProfilePosts
                 postMessages={postsState.postMessages}
