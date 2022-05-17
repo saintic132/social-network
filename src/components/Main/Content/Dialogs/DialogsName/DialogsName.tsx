@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import {NavLink} from "react-router-dom";
 import s from './DialogsName.module.css'
 import {DialogsNameType} from "../../../../../redux/dialog-reducer";
@@ -7,8 +7,7 @@ type NamesType = {
     dialogsName: DialogsNameType[]
 }
 
-function DialogsName(props: NamesType) {
-
+export const DialogsName = memo((props: NamesType) => {
 
     return (
         <div className={s.names}>
@@ -37,6 +36,5 @@ function DialogsName(props: NamesType) {
     )
 
 
-}
+})
 
-export default DialogsName;

@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 import s from "../Dialogs.module.css";
 import {useDispatch} from "react-redux";
 import {addDialogMessageAC} from "../../../../../redux/dialog-reducer";
 
-export function InputNewMessage() {
+export const InputNewMessage = memo(() => {
 
     let today = new Date()
     let time = today.getHours() + (today.getMinutes() < 10 ? ':0' : ':') + today.getMinutes()
@@ -45,4 +45,4 @@ export function InputNewMessage() {
             </button>
         </div>
     )
-}
+})

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {memo, useEffect, useState} from "react";
 import s from './Users.module.css'
 import imgPhoto from '../../../../assets/img/no-avatar.png'
 import {NavLink} from "react-router-dom";
@@ -13,7 +13,7 @@ import {ReduxStateType} from "../../../../redux/redux-store";
 import Preloader from "../../../../common/Preloader/Preloader";
 
 
-function Users() {
+export const Users = memo(() => {
 
     let usersState = useSelector<ReduxStateType, InitialUserStateType>(state => state.usersPage)
     let dispatch = useDispatch()
@@ -42,7 +42,6 @@ function Users() {
         if (idUnFollowUser)
             dispatch(unFollowUserThunk(idUnFollowUser))
     }, [dispatch, idUnFollowUser])
-
 
 
     return (
@@ -139,6 +138,5 @@ function Users() {
             </div>
 
     )
-}
+})
 
-export default Users

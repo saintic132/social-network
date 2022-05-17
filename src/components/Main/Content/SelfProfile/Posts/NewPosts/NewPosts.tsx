@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import s from "./NewPosts.module.css";
 import {useDispatch} from "react-redux";
 import {addPostMessageAC} from "../../../../../../redux/profile-reducer";
 
-function NewPosts() {
+export const NewPosts = memo(() => {
     let today = new Date()
     let time = today.getHours() + ':' + today.getMinutes()
 
@@ -52,6 +52,5 @@ function NewPosts() {
             </div>
         </div>
     )
-}
+})
 
-export default NewPosts;

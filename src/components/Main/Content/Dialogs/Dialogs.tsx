@@ -1,17 +1,17 @@
 import React, {memo} from "react";
 import s from './Dialogs.module.css'
-import DialogsName from "./DialogsName/DialogsName";
-import DialogsMessage from "./DialogsMessage/DialogsMessage";
 import {InputNewMessage} from "./InputNewMessage/InputNewMessage";
 import {initialDialogStateType} from "../../../../redux/dialog-reducer";
 import {useSelector} from "react-redux";
 import {ReduxStateType} from "../../../../redux/redux-store";
 import {Redirect} from "../../../../common/redirect/Redirect";
+import {DialogsMessage} from "./DialogsMessage/DialogsMessage";
+import {DialogsName} from "./DialogsName/DialogsName";
 
 
 const Dialogs = memo(() => {
 
-    let dialogsState = useSelector<ReduxStateType, initialDialogStateType>(state => state.dialogPage)
+    const dialogsState = useSelector<ReduxStateType, initialDialogStateType>(state => state.dialogPage)
 
     return (
         <div className={s.dialogs}>

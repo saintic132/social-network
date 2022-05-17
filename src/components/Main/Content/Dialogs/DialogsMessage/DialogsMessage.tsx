@@ -1,4 +1,4 @@
-import React from "react";
+import React, {memo} from "react";
 import s from './DialogsMessage.module.css'
 import {DialogsMessageType} from "../../../../../redux/dialog-reducer";
 
@@ -6,7 +6,7 @@ type MessageType = {
     dialogsMessage: DialogsMessageType[]
 }
 
-function DialogsMessage(props: MessageType) {
+export const DialogsMessage = memo((props: MessageType) => {
     return (
         <div className={s.messages}>
 
@@ -37,6 +37,5 @@ function DialogsMessage(props: MessageType) {
         </div>
 
     )
-}
+})
 
-export default DialogsMessage;

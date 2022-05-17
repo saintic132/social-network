@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {memo, useEffect} from 'react';
 import s from "./Profile.module.css";
 import avatar from '../../../../assets/img/no-avatar.png'
 import facebookLogo from '../../../../assets/img/social/facebook.png'
@@ -17,7 +17,7 @@ import Preloader from "../../../../common/Preloader/Preloader";
 import {CheckHttpOrHttps} from "../../../../common/Helpers/CheckHttpOrHttps";
 
 
-function Profile() {
+export const Profile = memo(() => {
 
     let {userId} = useParams<'userId'>()
     let profileState = useSelector<ReduxStateType, initialProfileStateType>(state => state.profilePage)
@@ -200,6 +200,5 @@ function Profile() {
                 </div>
             </div>
     )
-}
+})
 
-export default Profile;
