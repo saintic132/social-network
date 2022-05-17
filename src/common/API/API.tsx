@@ -50,7 +50,7 @@ export type ItemUsersType = {
 export type userAPISetUsersType<D> = {
     totalCount: number
     error: string | null
-    users: D[]
+    items: D[]
 }
 type authAPISetAuthUserType = {
     id: number

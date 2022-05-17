@@ -105,7 +105,7 @@ export const setUsersThunk = (page: number) => {
             userAPI.setUsers(initialState.usersCountOnPage, page)
                 .then(data => {
                     dispatch(setIsFetchingAC(false))
-                    dispatch(setUsersAC(data.users))
+                    dispatch(setUsersAC(data.items))
                     dispatch(setCurrentPageAC(page))
                 })
         }
