@@ -2,24 +2,20 @@
     max-width: 850px;
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
 }
 
 .users__container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 15px;
 }
 
 .users__body {
     display: flex;
-    flex: 0 1 48.8%;
-    margin: 15px 0 0 0;
     border: 1px solid cadetblue;
     border-radius: 3px;
-}
-
-.users__body:nth-child(even) {
-    margin-left: 15px;
 }
 
 .users__location {

@@ -11,7 +11,7 @@ import {Profile} from "./Profile/Profile";
 import {Users} from "./Users/Users";
 import Dialogs from "./Dialogs/Dialogs";
 import {useAppSelector} from "../../../redux/redux-store";
-
+import {LoginForm} from "../../LoginPage/LoginForm";
 
 function Content() {
 
@@ -20,40 +20,44 @@ function Content() {
     return (
         <div className={s.content}>
             <MainLogo/>
-                <Routes>
-                    <Route
-                        path="/"
-                        element={<SelfProfile/>}
-                    />
-                    <Route
-                        path="profile/:userId"
-                        element={<Profile/>}
-                    />
-                    <Route
-                        path="dialogs"
-                        element={<Dialogs isAuth={isAuth}/>}
-                    />
-                    <Route
-                        path="users"
-                        element={<Users/>}
-                    />
-                    <Route
-                        path="news"
-                        element={<News/>}
-                    />
-                    <Route
-                        path="music"
-                        element={<Music/>}
-                    />
-                    <Route
-                        path="settings"
-                        element={<Settings isAuth={isAuth}/>}
-                    />
-                    <Route
-                        path="*"
-                        element={<Error404/>}
-                    />
-                </Routes>
+            <Routes>
+                <Route
+                    path="/"
+                    element={<SelfProfile/>}
+                />
+                <Route
+                    path="profile/:userId"
+                    element={<Profile/>}
+                />
+                <Route
+                    path="dialogs"
+                    element={<Dialogs isAuth={isAuth}/>}
+                />
+                <Route
+                    path="users"
+                    element={<Users/>}
+                />
+                <Route
+                    path="news"
+                    element={<News/>}
+                />
+                <Route
+                    path="music"
+                    element={<Music/>}
+                />
+                <Route
+                    path="settings"
+                    element={<Settings isAuth={isAuth}/>}
+                />
+                <Route
+                    path="login"
+                    element={<LoginForm/>}
+                />
+                <Route
+                    path="*"
+                    element={<Error404/>}
+                />
+            </Routes>
         </div>
     )
 }

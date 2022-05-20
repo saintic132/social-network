@@ -1,5 +1,5 @@
 import React from "react";
-import {Redirect} from "../../../../common/redirect/Redirect";
+import {Redirect} from "../../../../common/redirect/RedirectToLogin/Redirect";
 
 function Settings() {
     return (

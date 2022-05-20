@@ -12,8 +12,8 @@ function App() {
     const initializedContent = useAppSelector(state => state.content.initialized)
     const headerState = useAppSelector(state => state.auth)
 
-    const dispatch = useDispatch()
 
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (!headerState.isAuth) {
@@ -26,8 +26,10 @@ function App() {
             {
                 initializedContent && <div className={s.app}>
 
-                    <Header/>
-                    <Main/>
+                    <Header />
+
+                    <Main />
+
                     <Footer/>
                 </div>
             }

@@ -12,8 +12,6 @@ function Header() {
     const [showOptionUser, setShowOptionUser] = useState<boolean>(false)
     const headerState = useAppSelector(state => state.auth)
     const [modalActive, setModalActive] = useState<boolean>(false);
-
-
     const dispatch = useDispatch()
 
     const clickToToggleLoginMenu = () => {
@@ -69,7 +67,6 @@ function Header() {
                 <Modal active={modalActive} setActive={setModalActive}>
                     <LoginForm />
                 </Modal>
-
             </div>
         </div>
     )

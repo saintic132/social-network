@@ -2,7 +2,7 @@ import React, {memo} from "react";
 import s from './Dialogs.module.css'
 import {InputNewMessage} from "./InputNewMessage/InputNewMessage";
 import {useAppSelector} from "../../../../redux/redux-store";
-import {Redirect} from "../../../../common/redirect/Redirect";
+import {Redirect} from "../../../../common/redirect/RedirectToLogin/Redirect";
 import {DialogsMessage} from "./DialogsMessage/DialogsMessage";
 import {DialogsName} from "./DialogsName/DialogsName";
 

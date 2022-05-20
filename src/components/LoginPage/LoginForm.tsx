@@ -43,7 +43,8 @@ export function LoginForm() {
     }
 
     return (
-        <div>
+        <div className={s.loginForm}>
+            <h1>Login</h1>
             <Formik
                 initialValues={initialValues}
                 validate={validate}

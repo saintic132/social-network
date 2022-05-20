@@ -1,10 +1,6 @@
 .modal {
-    all: initial;
-}
-
-.modal {
     height: 100vh;
-    width: 100vh;
+    width: 100vw;
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
     top: 0;
@@ -15,6 +11,7 @@
     opacity: 0;
     pointer-events: none;
     transition: 0.5s;
+    z-index: 99;
 }
 
 .modal.active {
@@ -33,4 +30,10 @@
 
 .modal__content.active {
     transform: scale(1);
+}
+
+.children {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
