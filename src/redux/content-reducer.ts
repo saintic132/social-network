@@ -1,7 +1,6 @@
-export type ContentActionsType = setInitializedContentACType | setInitializedSelfStatusACType
+export type ContentActionsType = setInitializedContentACType
 
 type setInitializedContentACType = ReturnType<typeof setInitializedContentAC>
-type setInitializedSelfStatusACType = ReturnType<typeof setInitializedSelfStatusAC>
 
 type InitialContentStateType = {
     initialized: boolean
@@ -25,7 +24,5 @@ const contentReducer = (state: InitialContentStateType = initialContentState, ac
 }
 
 export const setInitializedContentAC = () => ({type: 'SET-INITIALIZED-CONTENT'} as const)
-export const setInitializedSelfStatusAC = () => ({type: 'SET-INITIALIZED-SELF-STATUS'} as const)
-
 
 export default contentReducer

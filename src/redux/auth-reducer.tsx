@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {authAPI} from "../common/API/API";
 import {setInitializedContentAC} from "./content-reducer";
+import {TypedDispatch} from "./redux-store";
 
 export type AuthReducerType = setAuthUserACType | loginUserACType
 
@@ -24,7 +25,6 @@ let initialState: InitialAuthStateType = {
 const authReducer = (state: InitialAuthStateType = initialState, action: AuthReducerType): InitialAuthStateType => {
     switch (action.type) {
         case 'SET-AUTH-USER': {
-
             return {
                 ...state,
                 ...action.data,
@@ -60,21 +60,22 @@ export const authThunk = () => {
                     dispatch(setAuthUserAC(id, login, email, true))
                 }
             })
-            .then(() => {
+            .finally(() => {
                 dispatch(setInitializedContentAC())
             })
     }
 }
 
 export const loginThunk = (email: string, password: string, rememberMe: boolean) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         authAPI.setLogin(email, password, rememberMe)
             .then(data => {
                 if (data.resultCode === 0) {
                     dispatch(loginUserAC(true))
-                    // @ts-ignore
-                    dispatch(authThunk())
                 }
+            })
+            .then(() => {
+                dispatch(authThunk())
             })
     }
 }

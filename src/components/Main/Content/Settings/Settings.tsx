@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from "../../../../common/redirect/Redirect";
 
 function Settings() {
     return (
@@ -8,4 +9,4 @@ function Settings() {
     )
 }
 
-export default Settings;
+export default Redirect(Settings);

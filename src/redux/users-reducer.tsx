@@ -97,6 +97,7 @@ export const setDisableFollowButtonAC = (status: boolean, id: number) => ({
     id
 } as const)
 
+//Thunk
 
 export const setUsersThunk = (page: number) => {
     return (dispatch: Dispatch) => {
@@ -111,7 +112,6 @@ export const setUsersThunk = (page: number) => {
         }
     }
 }
-
 export const followUserThunk = (id: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setDisableFollowButtonAC(true, id))
@@ -124,7 +124,6 @@ export const followUserThunk = (id: number) => {
             })
     }
 }
-
 export const unFollowUserThunk = (id: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setDisableFollowButtonAC(true, id))

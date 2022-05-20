@@ -1,14 +1,19 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import s from "./Header.module.css";
 import {NavLink} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {ReduxStateType} from "../../redux/redux-store";
-import {authThunk, InitialAuthStateType, logoutThunk} from "../../redux/auth-reducer";
+import {InitialAuthStateType, logoutThunk} from "../../redux/auth-reducer";
+import {Modal} from "../../common/modal/Modal";
+import {LoginForm} from "../LoginPage/LoginForm";
 
 function Header() {
 
-    let [showOptionUser, setShowOptionUser] = useState<boolean>(false);
-    let headerState = useSelector<ReduxStateType, InitialAuthStateType>(state => state.auth)
+    const [showOptionUser, setShowOptionUser] = useState<boolean>(false)
+    const headerState = useSelector<ReduxStateType, InitialAuthStateType>(state => state.auth)
+    const [modalActive, setModalActive] = useState<boolean>(false);
+
+
     let dispatch = useDispatch()
 
     const clickToToggleLoginMenu = () => {
@@ -19,12 +24,6 @@ function Header() {
         dispatch(logoutThunk())
         setShowOptionUser(!showOptionUser)
     }
-
-    useEffect(() => {
-        if (!headerState.isAuth) {
-            dispatch(authThunk())
-        }
-    }, [dispatch, headerState.isAuth])
 
     return (
         <div className={s.header__body}>
@@ -41,7 +40,6 @@ function Header() {
                 <h1>Social-Network</h1>
             </div>
             <div className={s.login}>
-
                 {
                     headerState.isAuth ?
                         <div className={s.login__container}>
@@ -52,6 +50,8 @@ function Header() {
                             >
                                 {headerState.login}
                             </div>
+
+
                             {
                                 showOptionUser &&
                                 <div style={{fontSize: '12px', marginTop: '5px'}}>
@@ -62,12 +62,14 @@ function Header() {
                         </div>
 
                         :
-                        <NavLink to='login' title='Login'>
-                            <div className={s.login__name}>
-                                Login
-                            </div>
-                        </NavLink>
+                        <div className={s.login__name} onClick={() => setModalActive(true)}>
+                            Login
+                        </div>
                 }
+                <Modal active={modalActive} setActive={setModalActive}>
+                    <LoginForm />
+                </Modal>
+
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ const instance = axios.create({
     }
 })
 
-type ResponseType<D> = {
+type ResponseType<D = {}> = {
     resultCode: number
     messages: string[]
     data: D
@@ -61,7 +61,7 @@ type authAPISetAuthUserType = {
 export const selfProfile = {
     setStatusProfile(status: string) {
         return (
-            instance.put<ResponseType<{}>>(`/profile/status`, {status})
+            instance.put<ResponseType>(`/profile/status`, {status})
                 .then(response => response.data)
         )
     }
@@ -89,13 +89,13 @@ export const userAPI = {
     },
     setUserFollow(id: number) {
         return (
-            instance.post<ResponseType<{}>>(`/follow/${id}`)
+            instance.post<ResponseType>(`/follow/${id}`)
                 .then(response => response.data)
         )
     },
     setUserUnFollow(id: number) {
         return (
-            instance.delete<ResponseType<{}>>(`/follow/${id}`)
+            instance.delete<ResponseType>(`/follow/${id}`)
                 .then(response => response.data)
         )
     }
@@ -115,7 +115,7 @@ export const authAPI = {
     },
     setLogout() {
         return (
-            instance.delete<ResponseType<{}>>(`/auth/login`)
+            instance.delete<ResponseType>(`/auth/login`)
                 .then(response => response.data)
         )
     }

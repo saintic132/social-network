@@ -2,7 +2,7 @@ import {ErrorMessage, Field, Form, Formik} from 'formik';
 import s from './LoginForm.module.css'
 import React from 'react';
 import {useDispatch} from "react-redux";
-import {loginThunk} from "../../../redux/auth-reducer";
+import {loginThunk} from "../../redux/auth-reducer";
 
 type FormikErrorsType = {
     email: string

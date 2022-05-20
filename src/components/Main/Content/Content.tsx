@@ -10,7 +10,6 @@ import Error404 from "../../../404/Error404";
 import {Profile} from "./Profile/Profile";
 import {Users} from "./Users/Users";
 import Dialogs from "./Dialogs/Dialogs";
-import {LoginPage} from "../../LoginPage/LoginPage";
 import {useSelector} from "react-redux";
 import {ReduxStateType} from "../../../redux/redux-store";
 
@@ -18,21 +17,14 @@ import {ReduxStateType} from "../../../redux/redux-store";
 function Content() {
 
     let isAuth = useSelector<ReduxStateType, boolean>(state => state.auth.isAuth)
-    let initializedContent = useSelector<ReduxStateType, boolean>(state => state.content.initialized)
 
     return (
         <div className={s.content}>
             <MainLogo/>
-            {
-                initializedContent &&
                 <Routes>
                     <Route
                         path="/"
                         element={<SelfProfile/>}
-                    />
-                    <Route
-                        path="login"
-                        element={<LoginPage/>}
                     />
                     <Route
                         path="profile/:userId"
@@ -43,7 +35,7 @@ function Content() {
                         element={<Dialogs isAuth={isAuth}/>}
                     />
                     <Route
-                        path="users/*"
+                        path="users"
                         element={<Users/>}
                     />
                     <Route
@@ -56,15 +48,13 @@ function Content() {
                     />
                     <Route
                         path="settings"
-                        element={<Settings/>}
+                        element={<Settings isAuth={isAuth}/>}
                     />
                     <Route
                         path="*"
                         element={<Error404/>}
                     />
                 </Routes>
-            }
-
         </div>
     )
 }
