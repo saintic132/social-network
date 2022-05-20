@@ -23,20 +23,20 @@ export type initialDialogStateType = {
 export type AddNewMessageActionType = ReturnType<typeof addDialogMessageAC>
 
 let initialState: initialDialogStateType = {
-        dialogsName: [
-            {id: v1(), name: 'Masha'},
-            {id: v1(), name: 'Pasha'},
-            {id: v1(), name: 'Vitya'},
-            {id: v1(), name: 'Dima'},
-        ],
-        dialogsMessage: [
-            {id: v1(), time: time, message: 'Hello'},
-            {id: v1(), time: time, message: 'How'},
-            {id: v1(), time: time, message: 'Are'},
-            {id: v1(), time: time, message: 'You'},
-            {id: v1(), time: time, message: 'Today'},
-            {id: v1(), time: time, message: '?'},
-        ],
+    dialogsName: [
+        {id: v1(), name: 'Masha'},
+        {id: v1(), name: 'Pasha'},
+        {id: v1(), name: 'Vitya'},
+        {id: v1(), name: 'Dima'},
+    ],
+    dialogsMessage: [
+        {id: v1(), time: time, message: 'Hello'},
+        {id: v1(), time: time, message: 'How'},
+        {id: v1(), time: time, message: 'Are'},
+        {id: v1(), time: time, message: 'You'},
+        {id: v1(), time: time, message: 'Today'},
+        {id: v1(), time: time, message: '?'},
+    ],
 }
 
 
@@ -56,7 +56,9 @@ const dialogReducer = (state: initialDialogStateType = initialState, action: Act
     }
 }
 
-export const addDialogMessageAC = (time: string, inputMessage: string)  => ({
+//actions
+
+export const addDialogMessageAC = (time: string, inputMessage: string) => ({
     type: 'ADD-NEW-MESSAGE',
     time: time,
     message: inputMessage

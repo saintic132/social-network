@@ -71,6 +71,8 @@ const profileReducer = (state: initialProfileStateType = initialState, action: A
     }
 }
 
+//actions
+
 export const addPostMessageAC = (time: string, inputMessage: string) => ({
     type: 'ADD-NEW-POST-MESSAGE',
     time: time,
@@ -91,42 +93,35 @@ type SetProfileActionType = ReturnType<typeof setProfileAC>
 type SetStatusToProfileActionType = ReturnType<typeof setStatusToProfileAC>
 type SetSelfStatusToProfileActionType = ReturnType<typeof setSelfStatusToProfileAC>
 
+//thunks
 
-export const setProfileThunk = (userId: string) => {
-    return (dispatch: TypedDispatch) => {
-        profileAPI.setProfile(userId)
-            .then(data => {
-                dispatch(setProfileAC(data))
-            })
-    }
+export const setProfileThunk = (userId: string) => (dispatch: TypedDispatch) => {
+    profileAPI.setProfile(userId)
+        .then(data => {
+            dispatch(setProfileAC(data))
+        })
 }
 
-export const getSelfStatusThunk = (id: number) => {
-    return (dispatch: TypedDispatch) => {
-        profileAPI.getProfileStatusUser(id)
-            .then(data => {
-                dispatch(setSelfStatusToProfileAC(data))
-            })
-    }
+export const getSelfStatusThunk = (id: number) => (dispatch: TypedDispatch) => {
+    profileAPI.getProfileStatusUser(id)
+        .then(data => {
+            dispatch(setSelfStatusToProfileAC(data))
+        })
 }
 
-export const setSelfStatusThunk = (status: string) => {
-    return (dispatch: TypedDispatch) => {
-        selfProfile.setStatusProfile(status)
-            .then(data => {
-                if (data.resultCode === 0)
-                    dispatch(setSelfStatusToProfileAC(status))
-            })
-    }
+export const setSelfStatusThunk = (status: string) => (dispatch: TypedDispatch) => {
+    selfProfile.setStatusProfile(status)
+        .then(data => {
+            if (data.resultCode === 0)
+                dispatch(setSelfStatusToProfileAC(status))
+        })
 }
 
-export const getProfileStatusUserThunk = (id: number) => {
-    return (dispatch: TypedDispatch) => {
-        profileAPI.getProfileStatusUser(id)
-            .then(data => {
-                dispatch(setStatusToProfileAC(data))
-            })
-    }
+export const getProfileStatusUserThunk = (id: number) => (dispatch: TypedDispatch) => {
+    profileAPI.getProfileStatusUser(id)
+        .then(data => {
+            dispatch(setStatusToProfileAC(data))
+        })
 }
 
 export default profileReducer

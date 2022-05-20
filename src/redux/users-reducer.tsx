@@ -16,7 +16,7 @@ export type setIsFetchingACType = ReturnType<typeof setIsFetchingAC>
 export type setDisableFollowButtonACType = ReturnType<typeof setDisableFollowButtonAC>
 
 
-export type InitialUserStateType =  {
+export type InitialUserStateType = {
     users: ItemUsersType[]
     allUsers: number,
     usersCountOnPage: number,
@@ -85,6 +85,8 @@ const usersReducer = (state: InitialUserStateType = initialState, action: Action
     }
 }
 
+//actions
+
 export const followAC = (id: number) => ({type: 'FOLLOW', userId: id} as const)
 export const unfollowAC = (id: number) => ({type: 'UNFOLLOW', userId: id} as const)
 export const setUsersAC = (users: ItemUsersType[]) => ({type: 'SET-USERS', setUsers: users} as const)
@@ -96,44 +98,38 @@ export const setDisableFollowButtonAC = (status: boolean, id: number) => ({
     id
 } as const)
 
-//Thunk
+//thunks
 
-export const setUsersThunk = (page: number) => {
-    return (dispatch: TypedDispatch) => {
-        if (initialState.users.length === 0) {
-            dispatch(setIsFetchingAC(true))
-            userAPI.setUsers(initialState.usersCountOnPage, page)
-                .then(data => {
-                    dispatch(setIsFetchingAC(false))
-                    dispatch(setUsersAC(data.items))
-                    dispatch(setCurrentPageAC(page))
-                })
-        }
-    }
-}
-export const followUserThunk = (id: number) => {
-    return (dispatch: TypedDispatch) => {
-        dispatch(setDisableFollowButtonAC(true, id))
-        userAPI.setUserFollow(id)
+export const setUsersThunk = (page: number) => (dispatch: TypedDispatch) => {
+    if (initialState.users.length === 0) {
+        dispatch(setIsFetchingAC(true))
+        userAPI.setUsers(initialState.usersCountOnPage, page)
             .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(followAC(id))
-                }
-                dispatch(setDisableFollowButtonAC(false, id))
+                dispatch(setIsFetchingAC(false))
+                dispatch(setUsersAC(data.items))
+                dispatch(setCurrentPageAC(page))
             })
     }
 }
-export const unFollowUserThunk = (id: number) => {
-    return (dispatch: TypedDispatch) => {
-        dispatch(setDisableFollowButtonAC(true, id))
-        userAPI.setUserUnFollow(id)
-            .then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(unfollowAC(id))
-                }
-                dispatch(setDisableFollowButtonAC(false, id))
-            })
-    }
+export const followUserThunk = (id: number) => (dispatch: TypedDispatch) => {
+    dispatch(setDisableFollowButtonAC(true, id))
+    userAPI.setUserFollow(id)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(followAC(id))
+            }
+            dispatch(setDisableFollowButtonAC(false, id))
+        })
+}
+export const unFollowUserThunk = (id: number) => (dispatch: TypedDispatch) => {
+    dispatch(setDisableFollowButtonAC(true, id))
+    userAPI.setUserUnFollow(id)
+        .then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unfollowAC(id))
+            }
+            dispatch(setDisableFollowButtonAC(false, id))
+        })
 }
 
 

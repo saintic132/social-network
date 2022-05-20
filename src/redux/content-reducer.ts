@@ -23,6 +23,8 @@ const contentReducer = (state: InitialContentStateType = initialContentState, ac
     }
 }
 
+//actions
+
 export const setInitializedContentAC = () => ({type: 'SET-INITIALIZED-CONTENT'} as const)
 
 export default contentReducer
