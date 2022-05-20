@@ -4,11 +4,11 @@ import {useDispatch} from "react-redux";
 import {addPostMessageAC} from "../../../../../../redux/profile-reducer";
 
 export const NewPosts = memo(() => {
-    let today = new Date()
-    let time = today.getHours() + ':' + today.getMinutes()
+    const today = new Date()
+    const time = today.getHours() + ':' + today.getMinutes()
 
-    let [inputPost, setInputPost] = useState<string>('');
-    let dispatch = useDispatch()
+    const [inputPost, setInputPost] = useState<string>('');
+    const dispatch = useDispatch()
 
 
     const addNewPostMessage = () => {

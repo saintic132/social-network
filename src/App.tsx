@@ -3,16 +3,16 @@ import s from './App.module.css';
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import {useDispatch, useSelector} from "react-redux";
-import {ReduxStateType} from "./redux/redux-store";
-import {authThunk, InitialAuthStateType} from "./redux/auth-reducer";
+import {useDispatch} from "react-redux";
+import {useAppSelector} from "./redux/redux-store";
+import {authThunk} from "./redux/auth-reducer";
 
 function App() {
 
-    let initializedContent = useSelector<ReduxStateType, boolean>(state => state.content.initialized)
-    let headerState = useSelector<ReduxStateType, InitialAuthStateType>(state => state.auth)
+    const initializedContent = useAppSelector(state => state.content.initialized)
+    const headerState = useAppSelector(state => state.auth)
 
-    let dispatch = useDispatch()
+    const dispatch = useDispatch()
 
 
     useEffect(() => {

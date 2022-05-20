@@ -1,20 +1,20 @@
 import React, {useState} from 'react';
 import s from "./Header.module.css";
 import {NavLink} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {ReduxStateType} from "../../redux/redux-store";
-import {InitialAuthStateType, logoutThunk} from "../../redux/auth-reducer";
+import {useDispatch} from "react-redux";
+import {useAppSelector} from "../../redux/redux-store";
+import {logoutThunk} from "../../redux/auth-reducer";
 import {Modal} from "../../common/modal/Modal";
 import {LoginForm} from "../LoginPage/LoginForm";
 
 function Header() {
 
     const [showOptionUser, setShowOptionUser] = useState<boolean>(false)
-    const headerState = useSelector<ReduxStateType, InitialAuthStateType>(state => state.auth)
+    const headerState = useAppSelector(state => state.auth)
     const [modalActive, setModalActive] = useState<boolean>(false);
 
 
-    let dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const clickToToggleLoginMenu = () => {
         setShowOptionUser(!showOptionUser)

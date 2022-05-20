@@ -5,7 +5,7 @@ import dialogReducer, {AddNewMessageActionType} from "./dialog-reducer";
 import usersReducer, {UsersActionType} from "./users-reducer";
 import authReducer, {AuthReducerType} from "./auth-reducer";
 import contentReducer, {ContentActionsType} from "./content-reducer";
-import {useDispatch} from "react-redux";
+import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 export type ActionsType =
     AddNewMessageActionType
@@ -26,6 +26,8 @@ let rootReducer = combineReducers({
 
 
 let store: Store<ReduxStateType, ActionsType> = createStore(rootReducer, applyMiddleware(thunk))
+
+export const useAppSelector: TypedUseSelectorHook<ReduxStateType> = useSelector
 
 export type TypedDispatch = ThunkDispatch<ReduxStateType, any, ActionsType>;
 export const useTypedDispatch = () => useDispatch<TypedDispatch>();

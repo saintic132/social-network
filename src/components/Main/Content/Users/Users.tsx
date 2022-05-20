@@ -2,25 +2,20 @@ import React, {memo, useEffect, useState} from "react";
 import s from './Users.module.css'
 import imgPhoto from '../../../../assets/img/no-avatar.png'
 import {NavLink} from "react-router-dom";
-import {
-    followUserThunk,
-    InitialUserStateType,
-    setUsersThunk,
-    unFollowUserThunk,
-} from "../../../../redux/users-reducer";
-import {useDispatch, useSelector} from "react-redux";
-import {ReduxStateType} from "../../../../redux/redux-store";
+import {followUserThunk, setUsersThunk, unFollowUserThunk,} from "../../../../redux/users-reducer";
+import {useDispatch} from "react-redux";
+import {useAppSelector} from "../../../../redux/redux-store";
 import Preloader from "../../../../common/Preloader/Preloader";
 
 
 export const Users = memo(() => {
 
-    let usersState = useSelector<ReduxStateType, InitialUserStateType>(state => state.usersPage)
-    let dispatch = useDispatch()
+    const usersState = useAppSelector(state => state.usersPage)
+    const dispatch = useDispatch()
 
-    let [idFollowUser, setIdFollowUser] = useState<number>();
-    let [idUnFollowUser, setUnIdFollowUser] = useState<number>();
-    let [currentPage, setCurrentPage] = useState<number>(1);
+    const [idFollowUser, setIdFollowUser] = useState<number>();
+    const [idUnFollowUser, setUnIdFollowUser] = useState<number>();
+    const [currentPage, setCurrentPage] = useState<number>(1);
 
     const pagesRender = Math.ceil(usersState.allUsers / usersState.usersCountOnPage)
     let count = []

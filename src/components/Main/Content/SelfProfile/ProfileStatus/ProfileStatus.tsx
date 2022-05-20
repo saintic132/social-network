@@ -1,19 +1,19 @@
 import React, {memo, useEffect, useState} from 'react';
 import s from './ProfileStatus.module.css'
-import {useDispatch, useSelector} from "react-redux";
-import {ReduxStateType} from "../../../../../redux/redux-store";
+import {useDispatch} from "react-redux";
+import {useAppSelector} from "../../../../../redux/redux-store";
 import {getSelfStatusThunk, setSelfStatusThunk} from "../../../../../redux/profile-reducer";
 
 
 export const ProfileStatus = memo(() => {
-    let [inputStatusValue, setInputStatusValue] = useState<string>('');
-    let [toggleChangeStatus, setToggleChangeStatus] = useState<boolean>(false);
-    let [errorMaxLength, setErrorMaxLength] = useState<boolean>(false);
-    let status = useSelector<ReduxStateType, string | null>(state => state.profilePage.selfStatus)
-    let isAuth = useSelector<ReduxStateType, boolean>(state => state.auth.isAuth)
-    let idForSelfStatus = useSelector<ReduxStateType, number | null>(state => state.auth.id)
+    const [inputStatusValue, setInputStatusValue] = useState<string>('');
+    const [toggleChangeStatus, setToggleChangeStatus] = useState<boolean>(false);
+    const [errorMaxLength, setErrorMaxLength] = useState<boolean>(false);
+    const status = useAppSelector(state => state.profilePage.selfStatus)
+    const isAuth = useAppSelector(state => state.auth.isAuth)
+    const idForSelfStatus = useAppSelector(state => state.auth.id)
 
-    let dispatch = useDispatch()
+    const dispatch = useDispatch()
 
 
     useEffect(() => {

@@ -1,9 +1,7 @@
 import React, {memo} from "react";
 import s from './Dialogs.module.css'
 import {InputNewMessage} from "./InputNewMessage/InputNewMessage";
-import {initialDialogStateType} from "../../../../redux/dialog-reducer";
-import {useSelector} from "react-redux";
-import {ReduxStateType} from "../../../../redux/redux-store";
+import {useAppSelector} from "../../../../redux/redux-store";
 import {Redirect} from "../../../../common/redirect/Redirect";
 import {DialogsMessage} from "./DialogsMessage/DialogsMessage";
 import {DialogsName} from "./DialogsName/DialogsName";
@@ -11,7 +9,7 @@ import {DialogsName} from "./DialogsName/DialogsName";
 
 const Dialogs = memo(() => {
 
-    const dialogsState = useSelector<ReduxStateType, initialDialogStateType>(state => state.dialogPage)
+    const dialogsState = useAppSelector(state => state.dialogPage)
 
     return (
         <div className={s.dialogs}>

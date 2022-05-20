@@ -10,13 +10,12 @@ import Error404 from "../../../404/Error404";
 import {Profile} from "./Profile/Profile";
 import {Users} from "./Users/Users";
 import Dialogs from "./Dialogs/Dialogs";
-import {useSelector} from "react-redux";
-import {ReduxStateType} from "../../../redux/redux-store";
+import {useAppSelector} from "../../../redux/redux-store";
 
 
 function Content() {
 
-    let isAuth = useSelector<ReduxStateType, boolean>(state => state.auth.isAuth)
+    const isAuth = useAppSelector(state => state.auth.isAuth)
 
     return (
         <div className={s.content}>

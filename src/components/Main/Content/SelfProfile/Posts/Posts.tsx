@@ -2,13 +2,11 @@ import React, {memo} from 'react';
 import s from "./Posts.module.css";
 import {ProfilePosts} from "./ProfilePosts/ProfilePosts";
 import {NewPosts} from "./NewPosts/NewPosts";
-import {initialProfileStateType} from "../../../../../redux/profile-reducer";
-import {useSelector} from "react-redux";
-import {ReduxStateType} from "../../../../../redux/redux-store";
+import {useAppSelector} from "../../../../../redux/redux-store";
 
 export const Posts = memo(() => {
 
-    let postsState = useSelector<ReduxStateType, initialProfileStateType>(state => state.profilePage)
+    const postsState = useAppSelector(state => state.profilePage)
 
 
     return (

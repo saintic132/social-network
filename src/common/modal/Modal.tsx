@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import style from './Modal.module.css'
-import {useSelector} from "react-redux";
-import {ReduxStateType} from "../../redux/redux-store";
+import {useAppSelector} from "../../redux/redux-store";
 import {useNavigate} from "react-router-dom";
 
 type PropsType = {
@@ -12,8 +11,8 @@ type PropsType = {
 
 export const Modal = ({active, setActive, children}: PropsType) => {
 
-    let isAuth = useSelector<ReduxStateType, boolean>(state => state.auth.isAuth)
-    let nav = useNavigate()
+    const isAuth = useAppSelector(state => state.auth.isAuth)
+    const nav = useNavigate()
 
     useEffect(() => {
         if (isAuth) {

@@ -5,10 +5,10 @@ import {addDialogMessageAC} from "../../../../../redux/dialog-reducer";
 
 export const InputNewMessage = memo(() => {
 
-    let today = new Date()
-    let time = today.getHours() + (today.getMinutes() < 10 ? ':0' : ':') + today.getMinutes()
-    let [inputMessage, setInputMessage] = useState<string>('');
-    let dispatch = useDispatch()
+    const today = new Date()
+    const time = today.getHours() + (today.getMinutes() < 10 ? ':0' : ':') + today.getMinutes()
+    const [inputMessage, setInputMessage] = useState<string>('');
+    const dispatch = useDispatch()
 
     const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputMessage(e.currentTarget.value)

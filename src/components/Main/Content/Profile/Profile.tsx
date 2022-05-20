@@ -9,9 +9,9 @@ import instagramLogo from '../../../../assets/img/social/instagram.png'
 import youtubeLogo from '../../../../assets/img/social/youtube.png'
 import githubLogo from '../../../../assets/img/social/gh.png'
 import mailLink from '../../../../assets/img/social/mail.png'
-import {useDispatch, useSelector} from "react-redux";
-import {ReduxStateType} from "../../../../redux/redux-store";
-import {getProfileStatusUserThunk, initialProfileStateType, setProfileThunk} from "../../../../redux/profile-reducer";
+import {useDispatch} from "react-redux";
+import {useAppSelector} from "../../../../redux/redux-store";
+import {getProfileStatusUserThunk, setProfileThunk} from "../../../../redux/profile-reducer";
 import {useParams} from "react-router-dom";
 import Preloader from "../../../../common/Preloader/Preloader";
 import {CheckHttpOrHttps} from "../../../../common/Helpers/CheckHttpOrHttps";
@@ -19,19 +19,19 @@ import {CheckHttpOrHttps} from "../../../../common/Helpers/CheckHttpOrHttps";
 
 export const Profile = memo(() => {
 
-    let {userId} = useParams<'userId'>()
-    let profileState = useSelector<ReduxStateType, initialProfileStateType>(state => state.profilePage)
-    let dispatch = useDispatch()
+    const {userId} = useParams<'userId'>()
+    const profileState = useAppSelector(state => state.profilePage)
+    const dispatch = useDispatch()
 
 
-    let facebookCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.facebook)
-    let websiteCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.website)
-    let vkCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.vk)
-    let twitterCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.twitter)
-    let instagramCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.instagram)
-    let youtubeCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.youtube)
-    let githubCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.github)
-    let mainLinkCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.mainLink)
+    const facebookCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.facebook)
+    const websiteCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.website)
+    const vkCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.vk)
+    const twitterCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.twitter)
+    const instagramCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.instagram)
+    const youtubeCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.youtube)
+    const githubCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.github)
+    const mainLinkCheckHttpOrHttps = CheckHttpOrHttps(profileState.profile?.contacts.mainLink)
 
     useEffect(() => {
         if (userId) {
