@@ -1,5 +1,4 @@
-import {ActionsType} from "./redux-store";
-import {Dispatch} from "redux";
+import {ActionsType, TypedDispatch} from "./redux-store";
 import {ItemUsersType, userAPI} from "../common/API/API";
 
 export type UsersActionType =
@@ -100,7 +99,7 @@ export const setDisableFollowButtonAC = (status: boolean, id: number) => ({
 //Thunk
 
 export const setUsersThunk = (page: number) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         if (initialState.users.length === 0) {
             dispatch(setIsFetchingAC(true))
             userAPI.setUsers(initialState.usersCountOnPage, page)
@@ -113,7 +112,7 @@ export const setUsersThunk = (page: number) => {
     }
 }
 export const followUserThunk = (id: number) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         dispatch(setDisableFollowButtonAC(true, id))
         userAPI.setUserFollow(id)
             .then(data => {
@@ -125,7 +124,7 @@ export const followUserThunk = (id: number) => {
     }
 }
 export const unFollowUserThunk = (id: number) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         dispatch(setDisableFollowButtonAC(true, id))
         userAPI.setUserUnFollow(id)
             .then(data => {

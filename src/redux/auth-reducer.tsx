@@ -1,4 +1,3 @@
-import {Dispatch} from "redux";
 import {authAPI} from "../common/API/API";
 import {setInitializedContentAC} from "./content-reducer";
 import {TypedDispatch} from "./redux-store";
@@ -52,7 +51,7 @@ export const loginUserAC = (isAuth: boolean) => ({
 } as const)
 
 export const authThunk = () => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         authAPI.setAuthUser()
             .then(data => {
                 if (data.resultCode === 0) {
@@ -81,7 +80,7 @@ export const loginThunk = (email: string, password: string, rememberMe: boolean)
 }
 
 export const logoutThunk = () => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         authAPI.setLogout()
             .then(data => {
                 if (data.resultCode === 0) {

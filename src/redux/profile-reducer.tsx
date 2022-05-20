@@ -1,7 +1,6 @@
 import {v1} from "uuid";
-import {ActionsType} from "./redux-store";
+import {ActionsType, TypedDispatch} from "./redux-store";
 import {profileAPI, profileAPISetProfileType, selfProfile} from "../common/API/API";
-import {Dispatch} from "redux";
 
 // Для лучшего отображения времени, время уменьшено на 2 минуты
 let today = new Date()
@@ -94,7 +93,7 @@ type SetSelfStatusToProfileActionType = ReturnType<typeof setSelfStatusToProfile
 
 
 export const setProfileThunk = (userId: string) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         profileAPI.setProfile(userId)
             .then(data => {
                 dispatch(setProfileAC(data))
@@ -103,7 +102,7 @@ export const setProfileThunk = (userId: string) => {
 }
 
 export const getSelfStatusThunk = (id: number) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         profileAPI.getProfileStatusUser(id)
             .then(data => {
                 dispatch(setSelfStatusToProfileAC(data))
@@ -112,7 +111,7 @@ export const getSelfStatusThunk = (id: number) => {
 }
 
 export const setSelfStatusThunk = (status: string) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         selfProfile.setStatusProfile(status)
             .then(data => {
                 if (data.resultCode === 0)
@@ -122,7 +121,7 @@ export const setSelfStatusThunk = (status: string) => {
 }
 
 export const getProfileStatusUserThunk = (id: number) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: TypedDispatch) => {
         profileAPI.getProfileStatusUser(id)
             .then(data => {
                 dispatch(setStatusToProfileAC(data))
