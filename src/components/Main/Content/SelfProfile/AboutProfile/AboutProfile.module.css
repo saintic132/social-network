@@ -10,7 +10,7 @@
     margin: 0 5px 0 5px;
 }
 
-.aboutProfile__img  img{
+.aboutProfile__img img {
     width: 100px;
     height: 100px;
 }
@@ -22,5 +22,19 @@
 .aboutProfile__about {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+}
+
+.aboutProfile__about > div {
+    flex: 0 1 auto;
+}
+
+@media (max-width: 583px) {
+    .aboutProfile__description {
+        margin-left: 0
+    }
+
+    .aboutProfile__body {
+        flex-direction: column;
+    }
+
 }

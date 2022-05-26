@@ -6,13 +6,13 @@ import {AboutProfile} from "./AboutProfile/AboutProfile";
 const SelfProfile = memo(() => {
 
     return (
-        <div>
+        <>
             <AboutProfile/>
 
             <ProfileStatus/>
 
             <Posts/>
-        </div>
+        </>
 
     )
 })

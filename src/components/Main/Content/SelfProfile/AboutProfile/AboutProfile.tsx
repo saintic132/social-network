@@ -18,7 +18,6 @@ export const AboutProfile = memo(() => {
                         <div>Date of Birth: 17 December</div>
                         <div>City: Minsk</div>
                         <div>Education: IT-Incubator</div>
-                        <div>Web Site: https://saintic132.github.io/social-network/</div>
                     </div>
                 </div>
             </div>

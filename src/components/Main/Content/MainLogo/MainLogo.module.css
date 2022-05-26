@@ -1,8 +1,9 @@
 .content__mainLogo {
-    flex: 0 1 auto;
+    flex: 1 1 auto;
 }
 
 .content__img img {
-    width: 850px;
-    height: 120px;
+    max-width: 850px;
+    width: 100%;
+    max-height: 120px;
 }

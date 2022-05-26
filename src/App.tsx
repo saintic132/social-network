@@ -22,7 +22,7 @@ function App() {
     }, [dispatch, headerState.isAuth])
 
     return (
-        <div>
+        <div className={s.app__container}>
             {
                 initializedContent && <div className={s.app}>
 

@@ -30,7 +30,7 @@ export const NewPosts = memo(() => {
     }
 
     return (
-        <div>
+        <>
             <div className={s.nameMyPosts}>
                 My posts
             </div>
@@ -50,7 +50,7 @@ export const NewPosts = memo(() => {
                 >Add post
                 </button>
             </div>
-        </div>
+        </>
     )
 })
 

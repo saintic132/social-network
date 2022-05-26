@@ -1,5 +1,5 @@
 .header__body {
-    width: 1000px;
+    width: 100%;
     background: lightseagreen;
     display: flex;
     justify-content: space-between;
